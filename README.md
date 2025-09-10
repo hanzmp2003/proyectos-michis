@@ -12,7 +12,7 @@ Consiste en programar un simulador básico de batallas de gimnasio inspirado en 
 ## Integrantes
 - Hanz Madrigal Porras, C4G754
 - Chun Ping Liu Li, C5G492
--
+- Emanuel Sancho Sánchez C07332
 -
 
 ## Profesor y Asistente
