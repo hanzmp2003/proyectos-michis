@@ -1,3 +1,3 @@
-public class pokemon {
+public class Pokemon {
     
 }
