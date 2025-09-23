@@ -9,3 +9,5 @@ public class Main {
         Elemento elemento = new Elemento();
     }
 }
+
+// Se deben crear los objetos gimnasio, ataque y elemento 

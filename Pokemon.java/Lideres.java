@@ -5,7 +5,7 @@ private String elemento;
 private String[] listaPokemones;
 
 
-publi Lideres(String nombre, int nivel){
+public Lideres(String nombre, int nivel){
     this.nombre=nombre;
     this.nivel=nivel;
     this.listaPokemones=new String[6];
