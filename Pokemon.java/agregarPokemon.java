@@ -83,5 +83,46 @@ public class AgregarPokemon {
         Ketamina.setStats(38, 50, 20, 40);
         Ketamina.setHabilidades("Confusión", "Somnolencia", "Vuelo Mental", "Ataque Sorpresa");
         Ketamina.setEstado(true);
+                Pokemon fourloko = new Pokemon();
+        fourloko.setCaracteristicas("FourLoko", "Fuego");
+        fourloko.setStats(28, 55, 20, 35);
+        fourloko.setHabilidades("Bebida Explosiva", "Patada Alcohólica", "Resaca Mortal", "Escupitajo Ardiente");
+        fourloko.setEstado(true);
+
+        Pokemon clonazemugre = new Pokemon();
+        clonazemugre.setCaracteristicas("Clonazemugre", "Psíquico");
+        clonazemugre.setStats(30, 50, 18, 40);
+        clonazemugre.setHabilidades("Confusión Callejera", "Somnolencia", "Grito Mental", "Ataque Sorpresa");
+        clonazemugre.setEstado(true);
+
+        Pokemon zsmieo = new Pokemon();
+        zsmieo.setCaracteristicas("ZsMieo", "Siniestro");
+        zsmieo.setStats(35, 45, 20, 50);
+        zsmieo.setHabilidades("Risa Macabra", "Susto Callejero", "Patada Sorpresa", "Finta Mortal");
+        zsmieo.setEstado(true);
+
+        Pokemon profepasanoselcurso = new Pokemon();
+        profepasanoselcurso.setCaracteristicas("ProfePasaNoSeLCurso", "Normal");
+        profepasanoselcurso.setStats(20, 60, 25, 30);
+        profepasanoselcurso.setHabilidades("Sello Aprobado", "Tiza Explosiva", "Grito Catedrático", "Papelazo");
+        profepasanoselcurso.setEstado(true);
+
+        Pokemon perikiki = new Pokemon();
+        perikiki.setCaracteristicas("Perikiki", "Veneno");
+        perikiki.setStats(22, 40, 15, 45);
+        perikiki.setHabilidades("Picotazo Callejero", "Vuelo Nervioso", "Rugido Barrio", "Escape Rápido");
+        perikiki.setEstado(true);
+
+        Pokemon machetearrumbradoo = new Pokemon();
+        machetearrumbradoo.setCaracteristicas("MacheteArrumbradoo", "Roca");
+        machetearrumbradoo.setStats(40, 70, 45, 20);
+        machetearrumbradoo.setHabilidades("Corte Oxidado", "Aplastón", "Giro Mortal", "Rugido Pesado");
+        machetearrumbradoo.setEstado(true);
+
+        Pokemon coronavirus = new Pokemon();
+        coronavirus.setCaracteristicas("Coronavirus", "Veneno");
+        coronavirus.setStats(50, 60, 30, 40);
+        coronavirus.setHabilidades("Infección Masiva", "Tos Letal", "Mutación Rápida", "Esquiva Viral");
+        coronavirus.setEstado(true);
     }
 }
