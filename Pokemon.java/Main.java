@@ -10,4 +10,3 @@ public class Main {
     }
 }
 
-// Se deben crear los objetos gimnasio, ataque y elemento 
