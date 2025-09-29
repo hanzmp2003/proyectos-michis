@@ -83,3 +83,4 @@ public class Pokemon {    //Método modelo para Pokemon
         return estado;
     }
 }
+
