@@ -31,5 +31,9 @@ public class Jugador {
         System.out.println("");
         String entrenador = scanner.nextLine();
         return entrenador;
+
+    public String elegirNombre();
+        System.out.println("Digite el nombre del jugador");
+        String nombre = scanner.nextLine();
     }
 }

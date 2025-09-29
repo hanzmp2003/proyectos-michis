@@ -30,7 +30,7 @@ public class AgregarPokemon {
         laSaicaTimida.setHabilidades("Beso con lengua", "Huida Rápida", "Ojo de Barrio", "Le pega pensión ");
         laSaicaTimida.setEstado(true);
 
-        Pokemon GokuFaseTerminal = new Pokemon();
+        Pokemon gokuFaseTerminal = new Pokemon();
         GokuFaseTerminal.setCaracteristicas("Goku Fase Terminal", "Fuego");
         GokuFaseTerminal.setStats(50, 120, 40, 60);
         GokuFaseTerminal.setHabilidades("Quimiokameterapia", "Puño Mortal", "transfución de sangre", "Golpe teletón");
@@ -54,7 +54,7 @@ public class AgregarPokemon {
         paracetamol.setHabilidades("Curación Ligera", "Golpe Tranquilo", "Reposo", "no hace nada");
         paracetamol.setEstado(true);
 
-        Pokemon Bazuco = new Pokemon();
+        Pokemon bazuco = new Pokemon();
         Bazuco.setCaracteristicas("Bazuco", "Fuego");
         Bazuco.setStats(30, 45, 20, 40);
         Bazuco.setHabilidades("Explosión Callejera", "Golpe De Adicción", "Fuego Negro", "Aplasta Todo");
@@ -66,24 +66,25 @@ public class AgregarPokemon {
         tiaToxica.setHabilidades("Veneno Mortal", "Chancletazo Ácido", "Chisme", "Escape Venenoso");
         tiaToxica.setEstado(true);
 
-        Pokemon Crackosaurio = new Pokemon();
+        Pokemon crackosaurio = new Pokemon();
         Crackosaurio.setCaracteristicas("Crackosaurio", "Roca");
         Crackosaurio.setStats(35, 65, 40, 20);
         Crackosaurio.setHabilidades("Mordida Dura", "Aplastón", "Patada Fuerte", "Grito piedrero");
         Crackosaurio.setEstado(true);
 
-        Pokemon Fentalino = new Pokemon();
+        Pokemon fentalino = new Pokemon();
         Fentalino.setCaracteristicas("Fentalino", "Veneno");
         Fentalino.setStats(40, 55, 25, 45);
         Fentalino.setHabilidades("Polvo Mortal", "Vuelo Errático", "Puñalada en la traquea", "Escape Rápido");
         Fentalino.setEstado(true);
 
-        Pokemon Ketamina = new Pokemon();
+        Pokemon ketamina = new Pokemon();
         Ketamina.setCaracteristicas("Ketamina", "Psíquico");
         Ketamina.setStats(38, 50, 20, 40);
         Ketamina.setHabilidades("Confusión", "Somnolencia", "Vuelo Mental", "Ataque Sorpresa");
         Ketamina.setEstado(true);
-                Pokemon fourloko = new Pokemon();
+        
+        Pokemon fourloko = new Pokemon();
         fourloko.setCaracteristicas("FourLoko", "Fuego");
         fourloko.setStats(28, 55, 20, 35);
         fourloko.setHabilidades("Bebida Explosiva", "Patada Alcohólica", "Resaca Mortal", "Escupitajo Ardiente");
@@ -102,7 +103,7 @@ public class AgregarPokemon {
         zsmieo.setEstado(true);
 
         Pokemon profepasanoselcurso = new Pokemon();
-        profepasanoselcurso.setCaracteristicas("ProfePasaNoSeLCurso", "Normal");
+        profepasanoselcurso.setCaracteristicas("ProfePasanosElCurso", "Normal");
         profepasanoselcurso.setStats(20, 60, 25, 30);
         profepasanoselcurso.setHabilidades("Tienen 100", "Hay Quiz", "No tengo Monster", "Java se para");
         profepasanoselcurso.setEstado(true);
@@ -124,5 +125,11 @@ public class AgregarPokemon {
         coronavirus.setStats(50, 60, 30, 40);
         coronavirus.setHabilidades("Infección Masiva", "Tos Letal", "Mutación Rápida", "Cuarentena");
         coronavirus.setEstado(true);
+
+        Pokemon kamakahai = new Pokemon();
+        kamakahai.setCaracteristicas("Kamakahai", "Siniestro");
+        kamakahai.setStats(38, 55, 25, 45);
+        kamakahai.setHabilidades("Puño del Barrio", "Rugido Chino", "Sombra Errante", "Escape Sigiloso");
+        kamakahai.setEstado(true);
     }
 }
