@@ -27,7 +27,7 @@ public class AgregarPokemon {
         Pokemon laSaicaTimida = new Pokemon();
         laSaicaTimida.setCaracteristicas("La Saica Tímida", "Siniestro");
         laSaicaTimida.setStats(20, 40, 18, 35);
-        laSaicaTimida.setHabilidades("Beso con lengua", "Huida Rápida", "Ojo de Barrio", "Le pega pensión");
+        laSaicaTimida.setHabilidades("Beso con lengua", "Huida Rápida", "Ojo de Barrio", "Le pega pensión ");
         laSaicaTimida.setEstado(true);
 
         Pokemon GokuFaseTerminal = new Pokemon();
