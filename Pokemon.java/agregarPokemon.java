@@ -131,5 +131,11 @@ public class AgregarPokemon {
         kamakahai.setStats(38, 55, 25, 45);
         kamakahai.setHabilidades("Puño del Barrio", "Rugido Chino", "Sombra Errante", "Escape Sigiloso");
         kamakahai.setEstado(true);
+
+        public void ListaDePokemones(){
+            // hacer una lista de pokemon de tamaño 20 para almacenar datos string
+
+            //hacer lista para poner datos int o sea los stats
+        }
     }
 }
