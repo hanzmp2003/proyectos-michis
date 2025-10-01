@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // Clase Jugador que representa a un jugador con su nombre, equipo de Pokémon y estado (actualmente en combate o no)
@@ -40,4 +41,47 @@ public class Jugador {
         String nombre = scanner.nextLine();
         return nombre;
     }
+
+    public int elegirPokeJugador(){
+    int vivos = 0;
+    int posicion = 0;
+    int seleccion = 0;
+    for (Pokemon i : equipo) {
+        if (i.getEstado()) {
+            vivos += 1;
+        }
+    }
+    Pokemon[] pokesvivos = new Pokemon[vivos];
+    for (Pokemon i : equipo){
+        pokesvivos[posicion] = i;
+        posicion += 1;
+    }
+    int cerrar = 0;
+    int opcion = 0;
+    Scanner sc = new Scanner(System.in);
+    while (cerrar == 0){
+        try {
+            System.out.println("Selecciona el número asociado para escoger un pokemon:\n");
+            for (int i = 0; i < pokesvivos.length ; i++) {
+                System.out.printf("\n%d) %s",i+1,pokesvivos[i]);
+            }
+            opcion = sc.nextInt();
+            if (opcion <= pokesvivos.length && opcion > 0){
+                for (int i = 0 ; i < equipo.length ; i++) {
+                    if (pokesvivos[opcion - 1] == equipo[i]) {
+                        seleccion = i;
+                    }
+                }
+            } else {
+                System.out.println("Por favor, ingrese una de las opciones.\n");
+            }
+            sc.close();
+        } catch (InputMismatchException e) {
+            System.err.println("Error: " + e);
+            System.out.println("Por favor ingrese una opción válida, tus pokemones esperan.\n");
+        }
+    }
+    return seleccion;
+    }
+
 }

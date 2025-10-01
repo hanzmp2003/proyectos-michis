@@ -48,7 +48,7 @@ public class Entrenador {
         }
     }
 
-    // Pokemon aleatorio del NPC
+    // Pokemon aleatorio del NPC (PUEDE ELIMIRARSE)
     public Pokemon elegirPokeNPC(){
         Random rand = new Random();
         int posicion = 0;
@@ -71,6 +71,17 @@ public class Entrenador {
         } else {
             return null;
         }
+    }
+
+    public int npcElige(){
+        int cerrarElegir = 0;
+        int seleccionNPC = 0;
+        for (int i = 0 ; i < equipo.length && cerrarElegir < 1 ; i++){
+            if (equipo[i].getEstado()){
+                seleccionNPC = i;
+            }
+        }
+        return seleccionNPC;
     }
     
     // Ataque aleatorio del NPC

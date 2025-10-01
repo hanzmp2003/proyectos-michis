@@ -1,4 +1,6 @@
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 // Clase para manejar el combate entre un jugador y un entrenador
 public class Combate {
@@ -159,7 +161,12 @@ public class Combate {
     public void iniciarCombate() {
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         // Aquí va la lógica del combate
-
+        int seleccionJugador = jugador.elegirPokeJugador();
+        int seleccionRival = entrenador.npcElige();
+        System.out.println();
+        System.out.printf("\nHas elegido a %s",jugador.getEquipo()[seleccionJugador].getNombre());
+        System.out.printf("\n%s elige a %s",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre());
+        
     }
 
     // Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
