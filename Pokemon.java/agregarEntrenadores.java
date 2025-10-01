@@ -1,11 +1,11 @@
 public class AgregarEntrenadores {
     public AgregarEntrenadores() {
-        Pokemon[] equipoBrittany = {choripan, salamandra};
-        Pokemon[] equipoKimberly = {pejelagarto, tralalerotralala, gokuFaseTerminal};
-        Pokemon[] equipoBrayan = {laSaicaTimida, perikiki, machetearrumbradoo};
-        Pokemon[] equipoKevin = {perikiki, machetearrumbradoo, ketamina, fentalino};
-        Pokemon[] equipoByron = {fentalino, ketamina, coronavirus};
-        Pokemon[] equipoYandel = {coronavirus, fourloko, kamakahai, marihuanauta};
+        Pokemon[] equipoBrittany = {AgregarPokemon.choripan, AgregarPokemon.salamandra};
+        Pokemon[] equipoKimberly = {AgregarPokemon.pejelagarto, AgregarPokemon.tralalerotralala, AgregarPokemon.gokuFaseTerminal};
+        Pokemon[] equipoBrayan = {AgregarPokemon.laSaicaTimida, AgregarPokemon.perikiki, AgregarPokemon.machetearrumbradoo};
+        Pokemon[] equipoKevin = {AgregarPokemon.perikiki, AgregarPokemon.machetearrumbradoo, AgregarPokemon.ketamina, AgregarPokemon.fentalino};
+        Pokemon[] equipoByron = {AgregarPokemon.fentalino, AgregarPokemon.ketamina, AgregarPokemon.coronavirus};
+        Pokemon[] equipoYandel = {AgregarPokemon.coronavirus, AgregarPokemon.fourloko, AgregarPokemon.kamakahai, AgregarPokemon.marihuanauta};
 
         Entrenador brittany = new Entrenador("Brittany", false, equipoBrittany);
         Entrenador kimberly = new Entrenador("Kimberly", false, equipoKimberly);

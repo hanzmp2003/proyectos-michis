@@ -1,8 +1,8 @@
 public class Lideres{
-private String nombre;
-private int nivel;
-private String elemento;
-private Pokemon[] listaPokemones;
+public String nombre;
+public int nivel;
+public String elemento;
+public Pokemon[] listaPokemones;
 
 
     public Lideres(String nombre, int nivel, String elemento){
