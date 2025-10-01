@@ -35,7 +35,34 @@ public class Entrenador {
         this.equipo = equipo; 
         }
 
+    // Pokemon aleatorio del NPC
+    public Pokemon elegirPokeNPC(){
+        Random rand = new Random();
+        int posicion = 0;
+        int tamaño = 0;
+        for (Pokemon a : equipo) {
+            if (a.getHp()>0){
+                tamaño += 1;
+            }
+        }
+        Pokemon[] pokemones = new Pokemon[tamaño];
+        for (int i = 0; i < equipo.length ; i ++){
+            if (equipo[i].getHp() > 0){
+                pokemones[posicion] = equipo[i];
+                posicion += 1;
+            }
+        }
+        
+        if (tamaño > 0){
+            return pokemones[rand.nextInt(tamaño)];
+        } else {
+            return null;
+        }
+    }
+    
+    // Ataque aleatorio del NPC
     public Ataque ataqueNPC(Pokemon pokemon){
+        Random rand = new Random();
         int posicion = 0;
         int tamaño = 0;
         for (Ataque a : pokemon.getHabilidades()) {
@@ -44,13 +71,17 @@ public class Entrenador {
             }
         }
         Ataque[] atqdis = new Ataque[tamaño];
-        for (int i = 0; i < atqdis.length ; i ++){
+        for (int i = 0; i < pokemon.getHabilidades().length ; i ++){
             if (pokemon.getHabilidades()[i].getPp() > 0){
                 atqdis[posicion] = pokemon.getHabilidades()[i];
                 posicion += 1;
             }
         }
-        return atqdis[nextInt(tamaño)];
+        if (tamaño > 0){
+            return atqdis[rand.nextInt(tamaño)];
+        } else {
+            return null;
+        }
     }
 
 }
