@@ -1,3 +1,4 @@
+// Clase Entrenador que representa a un entrenador con su nombre, si es jugador o no, y su equipo de Pokémon
 public class Entrenador {
     private String nombre;
     private boolean esJugador;

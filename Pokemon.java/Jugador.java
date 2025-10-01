@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// Clase Jugador que representa a un jugador con su nombre, equipo de Pokémon y estado (actualmente en combate o no)
 public class Jugador {
     String nombre;
     Pokemon[] equipo = new Pokemon[6];

@@ -1,10 +1,9 @@
 import java.util.Random;
 
+// Clase para manejar el combate entre un jugador y un entrenador
 public class Combate {
     Jugador jugador;
     Entrenador entrenador;
-
-
 
     public Combate(Jugador jugador, Entrenador entrenador) {
         this.jugador = jugador;
@@ -37,7 +36,7 @@ public class Combate {
 
         double efectividad = 1.0;
 
-        // STAB: Si el ataque coincide con el tipo del Pokémon atacante
+        // STAB: Si el ataque coincide con el tipo del Pokémon atacante (eso lo tienen los juegos originales)
         if (tipoAtacante.equals(tipoAtaque)) {
             efectividad *= 1.5;
         }
@@ -145,6 +144,18 @@ public class Combate {
         }
     }
 
+    public void imprimirProbabilidadCritico(double probabilidadCritico) {
+        if (probabilidadCritico == 2.0) {
+            System.out.println("¡Golpe crítico!");
+        } 
+    }
+    
+    // Cuando se termine de realizar toda la lógica del combate, se debe crear un método para determinar el daño final basado en una fórmula
+    // Ya tenemos efectividad y probabilidad de crítico, falta la fórmula completa que incluya lo anterior, nivel, poder del ataque, etc.
+    // Aún no se ha implementado la fórmula de daño completa porque no se ha definido cómo se seleccionarán los ataques ni cómo se manejarán los turnos en el combate.
+    // Una vez que se defina esa lógica, se podrá implementar la fórmula de daño completa, pero está casi lista.
+
+    // Método para iniciar el combate
     public void iniciarCombate() {
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         // Aquí va la lógica del combate

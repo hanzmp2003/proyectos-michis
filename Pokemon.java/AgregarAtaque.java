@@ -1,3 +1,4 @@
+// Clase AgregarAtaque que inicializa todos los ataques disponibles en el juego
 public class AgregarAtaque {
 
     public static Ataque asadoArdiente = new Ataque("Asado Ardiente", 40, "Fuego", 15);

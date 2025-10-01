@@ -1,9 +1,9 @@
+// Clase Lideres que representa un líder de gimnasio con su nombre, nivel, elemento y lista de Pokémon
 public class Lideres{
-public String nombre;
-public int nivel;
-public String elemento;
-public Pokemon[] listaPokemones;
-
+    public String nombre;
+    public int nivel;
+    public String elemento;
+    public Pokemon[] listaPokemones;
 
     public Lideres(String nombre, int nivel, String elemento){
         this.nombre=nombre;

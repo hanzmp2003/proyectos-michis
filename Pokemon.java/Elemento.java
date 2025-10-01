@@ -1,3 +1,4 @@
+// Clase Elemento que representa un elemento con su nombre
 public class Elemento {
     private String nombre;
 

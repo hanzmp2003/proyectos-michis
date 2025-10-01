@@ -1,3 +1,4 @@
+// Clase Gimnasio que representa un gimnasio con su nombre, tipo y nivel
 public class Gimnasio {
     private String nombre;
     private String tipo; 

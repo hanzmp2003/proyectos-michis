@@ -1,3 +1,4 @@
+// Clase AgregarPokemon que inicializa todos los Pokémon disponibles en el juego
 public class AgregarPokemon {
 
     public static Pokemon choripan;
@@ -22,6 +23,8 @@ public class AgregarPokemon {
     public static Pokemon machetearrumbradoo;
     public static Pokemon coronavirus;
     public static Pokemon kamakahai;
+
+    // Constructor que inicializa todos los Pokémon con sus características, stats y ataques
 
     public AgregarPokemon() {
 

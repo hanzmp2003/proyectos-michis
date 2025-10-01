@@ -1,3 +1,4 @@
+// Clase Ataque que representa un ataque de un Pokémon
 public class Ataque {
     private String nombre;
     private int poder;

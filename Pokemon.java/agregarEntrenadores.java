@@ -1,4 +1,6 @@
+// Clase AgregarEntrenadores que inicializa todos los entrenadores con sus equipos de Pokémon
 public class AgregarEntrenadores {
+    // Constructor que inicializa todos los entrenadores con sus respectivos equipos de Pokémon
     public AgregarEntrenadores() {
         Pokemon[] equipoBrittany = {AgregarPokemon.choripan, AgregarPokemon.salamandra};
         Pokemon[] equipoKimberly = {AgregarPokemon.pejelagarto, AgregarPokemon.tralalerotralala, AgregarPokemon.gokuFaseTerminal};
