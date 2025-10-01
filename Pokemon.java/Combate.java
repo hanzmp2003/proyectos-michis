@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Combate {
     Jugador jugador;
@@ -131,6 +132,16 @@ public class Combate {
             System.out.println("poco efectivo");
         } else {
             System.out.println("no efectivo");
+        }
+    }
+
+    public double calcularProbabilidadCritico() {
+        Random random = new Random();
+        int probabilidad = random.nextInt(100);
+        if (probabilidad < 10) { // 10% de probabilidad de crítico
+            return 2.0; // Daño crítico
+        } else {
+            return 1.0; // Daño normal
         }
     }
 
