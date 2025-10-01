@@ -4,13 +4,14 @@ public class Pokemon {    //Método modelo para Pokemon
     private int hp;
     private int def;
     private int velocidad;
-    private String elemento;
+    private String tipo;
     private Ataque[] habilidades;
     private boolean estado;
+    
 
     public Pokemon() {
         nombre = "";
-        elemento = "";
+        tipo = "";
         nivel = 0;
         hp = 0;
         def = 0;
@@ -20,9 +21,9 @@ public class Pokemon {    //Método modelo para Pokemon
     }
 
     // Setters de las Características
-    public void setCaracteristicas(String nombre, String elemento) {
+    public void setCaracteristicas(String nombre, String tipo) {
         this.nombre = nombre;
-        this.elemento = elemento;
+        this.tipo = tipo;
     }
     
     // Getters individuales para características
@@ -30,8 +31,8 @@ public class Pokemon {    //Método modelo para Pokemon
         return nombre;
     }
     
-    public String getElemento() {
-        return elemento;
+    public String getTipo() {
+        return tipo;
     }
     
     // Setter de Stats
