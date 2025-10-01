@@ -30,7 +30,7 @@ public class AgregarPokemon {
 
         choripan = new Pokemon();
         choripan.setCaracteristicas("Choripan", "Fuego");
-        choripan.setStats(12, 50, 20, 30);
+        choripan.setStats(12, 50, 22, 30, 28);
         choripan.setHabilidades(
             AgregarAtaque.asadoArdiente,
             AgregarAtaque.patadaCallejera,
@@ -41,7 +41,7 @@ public class AgregarPokemon {
 
         salamandra = new Pokemon();
         salamandra.setCaracteristicas("Salamandra", "Agua");
-        salamandra.setStats(15, 60, 25, 40);
+        salamandra.setStats(15, 60, 25, 40, 32);
         salamandra.setHabilidades(
             AgregarAtaque.llamaHumeda,
             AgregarAtaque.salpicon,
@@ -52,7 +52,7 @@ public class AgregarPokemon {
 
         pejelagarto = new Pokemon();
         pejelagarto.setCaracteristicas("Pejelagarto", "Tierra");
-        pejelagarto.setStats(10, 55, 30, 25);
+        pejelagarto.setStats(10, 55, 28, 25, 24);
         pejelagarto.setHabilidades(
             AgregarAtaque.mordidaBarrosa,
             AgregarAtaque.colaAfilada,
@@ -63,7 +63,7 @@ public class AgregarPokemon {
 
         tralalerotralala = new Pokemon();
         tralalerotralala.setCaracteristicas("Tralalerotralala", "Eléctrico");
-        tralalerotralala.setStats(18, 45, 15, 50);
+        tralalerotralala.setStats(18, 45, 18, 20, 50);
         tralalerotralala.setHabilidades(
             AgregarAtaque.rayoDescontrolado,
             AgregarAtaque.patadaLocura,
@@ -74,7 +74,7 @@ public class AgregarPokemon {
 
         laSaicaTimida = new Pokemon();
         laSaicaTimida.setCaracteristicas("La Saica Tímida", "Psíquico");
-        laSaicaTimida.setStats(20, 40, 18, 35);
+        laSaicaTimida.setStats(20, 40, 20, 18, 35);
         laSaicaTimida.setHabilidades(
             AgregarAtaque.besoConLengua,
             AgregarAtaque.ojoDeBarrio,
@@ -85,7 +85,7 @@ public class AgregarPokemon {
 
         gokuFaseTerminal = new Pokemon();
         gokuFaseTerminal.setCaracteristicas("Goku Fase Terminal", "Fuego");
-        gokuFaseTerminal.setStats(50, 120, 40, 60);
+        gokuFaseTerminal.setStats(50, 120, 45, 40, 55);
         gokuFaseTerminal.setHabilidades(
             AgregarAtaque.quimiokameterapia,
             AgregarAtaque.puñoMortal,
@@ -96,7 +96,7 @@ public class AgregarPokemon {
 
         pericrack = new Pokemon();
         pericrack.setCaracteristicas("Pericrack", "Veneno");
-        pericrack.setStats(25, 35, 15, 45);
+        pericrack.setStats(25, 35, 15, 18, 45);
         pericrack.setHabilidades(
             AgregarAtaque.vueloNervioso,
             AgregarAtaque.demeUnaTejita,
@@ -107,7 +107,7 @@ public class AgregarPokemon {
 
         marihuanauta = new Pokemon();
         marihuanauta.setCaracteristicas("Marihuanauta", "Planta");
-        marihuanauta.setStats(22, 60, 20, 20);
+        marihuanauta.setStats(22, 60, 24, 25, 20);
         marihuanauta.setHabilidades(
             AgregarAtaque.humoVerdeFatal,
             AgregarAtaque.raizCortante,
@@ -118,7 +118,7 @@ public class AgregarPokemon {
 
         paracetamol = new Pokemon();
         paracetamol.setCaracteristicas("Paracetamol", "Hielo");
-        paracetamol.setStats(18, 55, 22, 25);
+        paracetamol.setStats(18, 55, 22, 22, 25);
         paracetamol.setHabilidades(
             AgregarAtaque.demeUnaTejita,
             AgregarAtaque.golpeTranquilo,
@@ -129,7 +129,7 @@ public class AgregarPokemon {
 
         bazuco = new Pokemon();
         bazuco.setCaracteristicas("Bazuco", "Siniestro");
-        bazuco.setStats(30, 45, 20, 40);
+        bazuco.setStats(30, 45, 26, 20, 40);
         bazuco.setHabilidades(
             AgregarAtaque.explosionCallejera,
             AgregarAtaque.golpeAdiccion,
@@ -140,7 +140,7 @@ public class AgregarPokemon {
 
         tiaToxica = new Pokemon();
         tiaToxica.setCaracteristicas("Tía Tóxica", "Eléctrico");
-        tiaToxica.setStats(28, 50, 18, 35);
+        tiaToxica.setStats(28, 50, 20, 18, 35);
         tiaToxica.setHabilidades(
             AgregarAtaque.golpePension,
             AgregarAtaque.fuegoNegro,
@@ -151,7 +151,7 @@ public class AgregarPokemon {
 
         crackosaurio = new Pokemon();
         crackosaurio.setCaracteristicas("Crackosaurio", "Roca");
-        crackosaurio.setStats(35, 65, 40, 20);
+        crackosaurio.setStats(35, 65, 40, 35, 20);
         crackosaurio.setHabilidades(
             AgregarAtaque.mutacionRapida,
             AgregarAtaque.aplaston,
@@ -162,7 +162,7 @@ public class AgregarPokemon {
 
         fentalino = new Pokemon();
         fentalino.setCaracteristicas("Fentalino", "Fantasma");
-        fentalino.setStats(40, 55, 25, 45);
+        fentalino.setStats(40, 55, 28, 22, 45);
         fentalino.setHabilidades(
             AgregarAtaque.punoDelBarrio,
             AgregarAtaque.vueloErratico,
@@ -173,7 +173,7 @@ public class AgregarPokemon {
 
         ketamina = new Pokemon();
         ketamina.setCaracteristicas("Ketamina", "Psíquico");
-        ketamina.setStats(38, 50, 20, 40);
+        ketamina.setStats(38, 50, 20, 20, 40);
         ketamina.setHabilidades(
             AgregarAtaque.rugidoBarrio,
             AgregarAtaque.somnolencia,
@@ -184,7 +184,7 @@ public class AgregarPokemon {
 
         fourloko = new Pokemon();
         fourloko.setCaracteristicas("FourLoko", "Hielo");
-        fourloko.setStats(28, 55, 20, 35);
+        fourloko.setStats(28, 55, 24, 20, 35);
         fourloko.setHabilidades(
             AgregarAtaque.bebidaExplosiva,
             AgregarAtaque.patadaAlcoholica,
@@ -195,7 +195,7 @@ public class AgregarPokemon {
 
         clonazemugre = new Pokemon();
         clonazemugre.setCaracteristicas("Clonazemugre", "Fantasma");
-        clonazemugre.setStats(30, 50, 18, 40);
+        clonazemugre.setStats(30, 50, 22, 18, 40);
         clonazemugre.setHabilidades(
             AgregarAtaque.confusionCallejera,
             AgregarAtaque.somnolencia,
@@ -206,7 +206,7 @@ public class AgregarPokemon {
 
         zsmieo = new Pokemon();
         zsmieo.setCaracteristicas("ZsMieo", "Fantasma");
-        zsmieo.setStats(35, 45, 20, 50);
+        zsmieo.setStats(35, 45, 25, 20, 50);
         zsmieo.setHabilidades(
             AgregarAtaque.risaMacabra,
             AgregarAtaque.sustoCallejero,
@@ -217,7 +217,7 @@ public class AgregarPokemon {
 
         profepasanoselcurso = new Pokemon();
         profepasanoselcurso.setCaracteristicas("ProfePasanosElCurso", "Normal");
-        profepasanoselcurso.setStats(20, 60, 25, 30);
+        profepasanoselcurso.setStats(20, 60, 25, 25, 30);
         profepasanoselcurso.setHabilidades(
             AgregarAtaque.tienen100,
             AgregarAtaque.hayQuiz,
@@ -228,7 +228,7 @@ public class AgregarPokemon {
 
         perikiki = new Pokemon();
         perikiki.setCaracteristicas("Perikiki", "Eléctrico");
-        perikiki.setStats(22, 40, 15, 45);
+        perikiki.setStats(22, 40, 15, 15, 45);
         perikiki.setHabilidades(
             AgregarAtaque.picotazoCallejero,
             AgregarAtaque.vueloNervioso,
@@ -239,7 +239,7 @@ public class AgregarPokemon {
 
         machetearrumbradoo = new Pokemon();
         machetearrumbradoo.setCaracteristicas("MacheteArrumbradoo", "Roca");
-        machetearrumbradoo.setStats(40, 70, 45, 20);
+        machetearrumbradoo.setStats(40, 70, 45, 40, 20);
         machetearrumbradoo.setHabilidades(
             AgregarAtaque.corteOxidado,
             AgregarAtaque.ataqueMachetazoAbuelo,
@@ -250,7 +250,7 @@ public class AgregarPokemon {
 
         coronavirus = new Pokemon();
         coronavirus.setCaracteristicas("Coronavirus", "Veneno");
-        coronavirus.setStats(50, 60, 30, 40);
+        coronavirus.setStats(50, 60, 35, 30, 40);
         coronavirus.setHabilidades(
             AgregarAtaque.infeccionMasiva,
             AgregarAtaque.tosLetal,
@@ -261,7 +261,7 @@ public class AgregarPokemon {
 
         kamakahai = new Pokemon();
         kamakahai.setCaracteristicas("Kamakahai", "Hada");
-        kamakahai.setStats(38, 55, 25, 45);
+        kamakahai.setStats(38, 55, 28, 25, 45);
         kamakahai.setHabilidades(
             AgregarAtaque.punoDelBarrio,
             AgregarAtaque.rugidoChino,
