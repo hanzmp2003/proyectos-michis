@@ -166,7 +166,7 @@ public class Combate {
     public double ataque(Pokemon ofensivo, Pokemon defensivo, Ataque ataque){
         double critico = calcularProbabilidadCritico();
         double efectiv = calcularEfectividad(ofensivo, defensivo, ataque);
-        double danioB = ataque.getPoder() * ofensivo.getAtaque() / defensivo.getDef();
+        double danioB = ataque.getPoder() * ofensivo.getAtq() / defensivo.getDef();
         int daniototal = (int) Math.round(danioB * critico * efectiv);
         System.out.printf("\n¡%s realiza %s!\n",ofensivo.getNombre(),ataque.getNombre());
         imprimirProbabilidadCritico(critico);
