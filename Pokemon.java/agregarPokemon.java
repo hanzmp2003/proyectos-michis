@@ -70,7 +70,7 @@ public class AgregarPokemon {
         tralalerotralala.setEstado(true);
 
         laSaicaTimida = new Pokemon();
-        laSaicaTimida.setCaracteristicas("La Saica Tímida", "Siniestro");
+        laSaicaTimida.setCaracteristicas("La Saica Tímida", "Psíquico");
         laSaicaTimida.setStats(20, 40, 18, 35);
         laSaicaTimida.setHabilidades(
             AgregarAtaque.besoConLengua,
@@ -114,35 +114,35 @@ public class AgregarPokemon {
         marihuanauta.setEstado(true);
 
         paracetamol = new Pokemon();
-        paracetamol.setCaracteristicas("Paracetamol", "Normal");
+        paracetamol.setCaracteristicas("Paracetamol", "Hielo");
         paracetamol.setStats(18, 55, 22, 25);
         paracetamol.setHabilidades(
             AgregarAtaque.demeUnaTejita,
             AgregarAtaque.golpeTranquilo,
-            AgregarAtaque.patadaFuerte,
+            AgregarAtaque.abrazoLetal,
             AgregarAtaque.escupitajoArdiente
         );
         paracetamol.setEstado(true);
 
         bazuco = new Pokemon();
-        bazuco.setCaracteristicas("Bazuco", "Fuego");
+        bazuco.setCaracteristicas("Bazuco", "Siniestro");
         bazuco.setStats(30, 45, 20, 40);
         bazuco.setHabilidades(
             AgregarAtaque.explosionCallejera,
             AgregarAtaque.golpeAdiccion,
             AgregarAtaque.fuegoNegro,
-            AgregarAtaque.aplastaTodo
+            AgregarAtaque.ojoDeBarrio
         );
         bazuco.setEstado(true);
 
         tiaToxica = new Pokemon();
-        tiaToxica.setCaracteristicas("Tía Tóxica", "Veneno");
+        tiaToxica.setCaracteristicas("Tía Tóxica", "Eléctrico");
         tiaToxica.setStats(28, 50, 18, 35);
         tiaToxica.setHabilidades(
-            AgregarAtaque.venenoMortal,
-            AgregarAtaque.chancletazoAcido,
-            AgregarAtaque.chisme,
-            AgregarAtaque.escapeVenenoso
+            AgregarAtaque.golpePension,
+            AgregarAtaque.fuegoNegro,
+            AgregarAtaque.aplaston,
+            AgregarAtaque.explosionCallejera
         );
         tiaToxica.setEstado(true);
 
@@ -150,21 +150,21 @@ public class AgregarPokemon {
         crackosaurio.setCaracteristicas("Crackosaurio", "Roca");
         crackosaurio.setStats(35, 65, 40, 20);
         crackosaurio.setHabilidades(
-            AgregarAtaque.mordidaDura,
+            AgregarAtaque.mutacionRapida,
             AgregarAtaque.aplaston,
-            AgregarAtaque.patadaFuerte,
-            AgregarAtaque.gritoPiedrero
+            AgregarAtaque.punoDelBarrio,
+            AgregarAtaque.sombraErrante
         );
         crackosaurio.setEstado(true);
 
         fentalino = new Pokemon();
-        fentalino.setCaracteristicas("Fentalino", "Veneno");
+        fentalino.setCaracteristicas("Fentalino", "Fantasma");
         fentalino.setStats(40, 55, 25, 45);
         fentalino.setHabilidades(
-            AgregarAtaque.polvoMortal,
+            AgregarAtaque.punoDelBarrio,
             AgregarAtaque.vueloErratico,
             AgregarAtaque.punaladaTraquea,
-            AgregarAtaque.escapeRapido
+            AgregarAtaque.vueloMental
         );
         fentalino.setEstado(true);
 
@@ -172,7 +172,7 @@ public class AgregarPokemon {
         ketamina.setCaracteristicas("Ketamina", "Psíquico");
         ketamina.setStats(38, 50, 20, 40);
         ketamina.setHabilidades(
-            AgregarAtaque.confusion,
+            AgregarAtaque.rugidoBarrio,
             AgregarAtaque.somnolencia,
             AgregarAtaque.vueloMental,
             AgregarAtaque.ataqueSorpresa
@@ -180,7 +180,7 @@ public class AgregarPokemon {
         ketamina.setEstado(true);
 
         fourloko = new Pokemon();
-        fourloko.setCaracteristicas("FourLoko", "Fuego");
+        fourloko.setCaracteristicas("FourLoko", "Hielo");
         fourloko.setStats(28, 55, 20, 35);
         fourloko.setHabilidades(
             AgregarAtaque.bebidaExplosiva,
@@ -191,7 +191,7 @@ public class AgregarPokemon {
         fourloko.setEstado(true);
 
         clonazemugre = new Pokemon();
-        clonazemugre.setCaracteristicas("Clonazemugre", "Psíquico");
+        clonazemugre.setCaracteristicas("Clonazemugre", "Fantasma");
         clonazemugre.setStats(30, 50, 18, 40);
         clonazemugre.setHabilidades(
             AgregarAtaque.confusionCallejera,
@@ -202,7 +202,7 @@ public class AgregarPokemon {
         clonazemugre.setEstado(true);
 
         zsmieo = new Pokemon();
-        zsmieo.setCaracteristicas("ZsMieo", "Siniestro");
+        zsmieo.setCaracteristicas("ZsMieo", "Fantasma");
         zsmieo.setStats(35, 45, 20, 50);
         zsmieo.setHabilidades(
             AgregarAtaque.risaMacabra,
@@ -224,13 +224,13 @@ public class AgregarPokemon {
         profepasanoselcurso.setEstado(true);
 
         perikiki = new Pokemon();
-        perikiki.setCaracteristicas("Perikiki", "Veneno");
+        perikiki.setCaracteristicas("Perikiki", "Eléctrico");
         perikiki.setStats(22, 40, 15, 45);
         perikiki.setHabilidades(
             AgregarAtaque.picotazoCallejero,
             AgregarAtaque.vueloNervioso,
             AgregarAtaque.rugidoBarrio,
-            AgregarAtaque.escapeRapido
+            AgregarAtaque.tosLetal
         );
         perikiki.setEstado(true);
 
@@ -257,7 +257,7 @@ public class AgregarPokemon {
         coronavirus.setEstado(true);
 
         kamakahai = new Pokemon();
-        kamakahai.setCaracteristicas("Kamakahai", "Siniestro");
+        kamakahai.setCaracteristicas("Kamakahai", "Hada");
         kamakahai.setStats(38, 55, 25, 45);
         kamakahai.setHabilidades(
             AgregarAtaque.punoDelBarrio,
