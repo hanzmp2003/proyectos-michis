@@ -38,7 +38,7 @@ public class Entrenador {
     
 
     // Reiniciar estadísticas de entrenadores y jugador luego de cada combate
-    public void resetStats(){
+    public void reiniciarEstadisticas(){
         for (Pokemon i : equipo){
             i.resetHp();
             i.setEstado(true);

@@ -1,5 +1,6 @@
 public class Pokemon {    //Método modelo para Pokemon
     private String nombre;
+    private int ataque;
     private int nivel;
     private int hp;
     private int hpReset;
@@ -45,6 +46,18 @@ public class Pokemon {    //Método modelo para Pokemon
         this.hpReset = hp;
     }
     
+    public void setAtaque(){
+        int suma = 0;
+        for (int i = 0; i < habilidades.length; i++) {
+            suma += habilidades[i].getPoder();
+        }
+        this.ataque = (int) Math.round(suma / habilidades.length); // Devuelve el entero más grande menor que el promedio
+    }
+
+    public int getAtaque(){
+        return ataque;
+    }
+
     // Getters individuales para cada Stat 
     public int getNivel() {
         return nivel;

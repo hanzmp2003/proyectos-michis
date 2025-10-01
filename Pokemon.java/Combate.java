@@ -124,13 +124,13 @@ public class Combate {
 
     public void imprimirCategoriaDanio(double efectividad){
         if (efectividad >= 2) {
-            System.out.println("súper efectivo");
+            System.out.println("¡Es súper efectivo!");
         } else if (efectividad >= 1 && efectividad < 2) {
-            System.out.println("efectivo");
+            System.out.println("¡Es efectivo!");
         } else if (efectividad >= 0.5 && efectividad < 1) {
-            System.out.println("poco efectivo");
+            System.out.println("Es poco efectivo");
         } else {
-            System.out.println("no efectivo");
+            System.out.println("Es no efectivo");
         }
     }
 
@@ -159,5 +159,20 @@ public class Combate {
     public void iniciarCombate() {
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         // Aquí va la lógica del combate
+
     }
+
+    // Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
+    public double ataque(Pokemon ofensivo, Pokemon defensivo, Ataque ataque){
+        double critico = calcularProbabilidadCritico();
+        double efectiv = calcularEfectividad(ofensivo, defensivo, ataque);
+        double danioB = ataque.getPoder() * ofensivo.getAtaque() / defensivo.getDef();
+        int daniototal = (int) Math.round(danioB * critico * efectiv);
+        System.out.printf("\n¡%s realiza %s!\n",ofensivo.getNombre(),ataque.getNombre());
+        imprimirProbabilidadCritico(critico);
+        imprimirCategoriaDanio(efectiv);
+        System.out.printf("\n%s recibe un total de %d de daño.",ofensivo.getNombre(),daniototal);
+        return daniototal;
+    }
+
 }
