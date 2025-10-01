@@ -1,0 +1,42 @@
+public class AgregarAtaque {
+
+    public static Ataque asadoArdiente = new Ataque("Asado Ardiente", 40, "Fuego", 15);
+    public static Ataque patadaCallejera = new Ataque("Patada Callejera", 35, "Lucha", 20);
+    public static Ataque ladridoBravo = new Ataque("Ladrido Bravo", 30, "Normal", 25);
+    public static Ataque escupitajo = new Ataque("Escupitajo", 25, "Agua", 20);
+    public static Ataque llamaHumeda = new Ataque("Llama Húmeda", 40, "Agua", 15);
+    public static Ataque salpicon = new Ataque("Salpicón", 30, "Agua", 20);
+    public static Ataque rugidoFeroz = new Ataque("Rugido Feroz", 35, "Normal", 20);
+    public static Ataque golpeAcuatico = new Ataque("Golpe Acuático", 45, "Agua", 15);
+    public static Ataque mordidaBarrosa = new Ataque("Mordida Barrosa", 35, "Tierra", 20);
+    public static Ataque camuflajeAfilado = new Ataque("Camuflaje Afilado", 30, "Tierra", 20);
+    public static Ataque colaAfilada = new Ataque("Cola Afilada", 40, "Tierra", 15);
+    public static Ataque aplaston = new Ataque("Aplastón", 50, "Roca", 10);
+    public static Ataque rayoDescontrolado = new Ataque("Rayo Descontrolado", 45, "Eléctrico", 15);
+    public static Ataque patadaLocura = new Ataque("Patada Locura", 40, "Lucha", 20);
+    public static Ataque chillidoFeroz = new Ataque("Chillido Feroz", 35, "Normal", 20);
+    public static Ataque saltoLoco = new Ataque("Salto Loco", 35, "Normal", 20);
+    public static Ataque besoConLengua = new Ataque("Beso con Lengua", 30, "Siniestro", 20);
+    public static Ataque huidaViolenta = new Ataque("Huida Violenta", 25, "Normal", 20);
+    public static Ataque ojoDeBarrio = new Ataque("Ojo de Barrio", 30, "Siniestro", 20);
+    public static Ataque golpePension = new Ataque("Le pega pensión", 40, "Siniestro", 15);
+    public static Ataque quimiokameterapia = new Ataque("Quimiokameterapia", 50, "Fuego", 10);
+    public static Ataque puñoMortal = new Ataque("Puño Mortal", 55, "Lucha", 10);
+    public static Ataque transfusionSangre = new Ataque("Transfusión de sangre", 40, "Psíquico", 15);
+    public static Ataque golpeTeleton = new Ataque("Golpe Teletón", 45, "Normal", 15);
+    public static Ataque vueloNervioso = new Ataque("Vuelo Nervioso", 35, "Veneno", 20);
+    public static Ataque demeUnaTejita = new Ataque("Deme una tejita", 30, "Veneno", 20);
+    public static Ataque rugidoSaico = new Ataque("Rugido Saico", 40, "Veneno", 15);
+    public static Ataque ataqueViolento = new Ataque("Ataque Violento", 35, "Normal", 20);
+    public static Ataque humoVerdeFatal = new Ataque("Humo Verde Fatal", 30, "Planta", 20);
+    public static Ataque raizCortante = new Ataque("Raíz Cortante", 35, "Planta", 20);
+    public static Ataque abrazoLetal = new Ataque("Abrazo Letal", 30, "Planta", 20);
+    public static Ataque ritmoDestructivo = new Ataque("Ritmo Destructivo", 25, "Planta", 15);
+    public static Ataque golpeTranquilo = new Ataque("Golpe Tranquilo", 30, "Normal", 20);
+    public static Ataque puñaladaRapida = new Ataque("Puñalada Rápida", 45, "Psíquico", 15);
+    public static Ataque patadaVoladora = new Ataque("Patada Voladora", 40, "Lucha", 15);
+    public static Ataque explosionCallejera = new Ataque("Explosión Callejera", 50, "Fuego", 10);
+    public static Ataque golpeAdiccion = new Ataque("Golpe de Adicción", 45, "Veneno", 15);
+    public static Ataque fuegoNegro = new Ataque("Fuego Negro", 55, "Fuego", 10);
+    public static Ataque aplastaTodo = new Ataque("Aplasta Todo", 50, "Roca", 10);
+}

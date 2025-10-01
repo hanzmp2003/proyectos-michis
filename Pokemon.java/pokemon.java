@@ -5,7 +5,7 @@ public class Pokemon {    //Método modelo para Pokemon
     private int def;
     private int velocidad;
     private String elemento;
-    private String[] habilidades;
+    private Ataque[] habilidades;
     private boolean estado;
 
     public Pokemon() {
@@ -16,7 +16,7 @@ public class Pokemon {    //Método modelo para Pokemon
         def = 0;
         velocidad = 0;
         estado = true;
-        habilidades = new String[4]; 
+        habilidades = new Ataque[4]; 
     }
 
     // Setters de las Características
@@ -60,8 +60,8 @@ public class Pokemon {    //Método modelo para Pokemon
     }
     
     // Setter de Habilidades del pokemon 
-    public void setHabilidades(String habilidad1, String habilidad2, String habilidad3, String habilidad4) {
-        habilidades = new String[4];
+    public void setHabilidades(Ataque habilidad1, Ataque habilidad2, Ataque habilidad3, Ataque habilidad4) {
+        habilidades = new Ataque[4];
         habilidades [0] = habilidad1;
         habilidades [1] = habilidad2;
         habilidades [2] = habilidad3;
@@ -69,7 +69,7 @@ public class Pokemon {    //Método modelo para Pokemon
     }
 
     // Getter de Habilidades
-    public String[] getHabilidades() {
+    public Ataque[] getHabilidades() {
         return habilidades;
     }
    

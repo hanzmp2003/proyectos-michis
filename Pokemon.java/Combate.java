@@ -8,7 +8,7 @@ public class Combate {
     }
 
     public void iniciarCombate() {
-        System.out.println("El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
+        System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         // Aquí pondrías la lógica del combate
     }
 }

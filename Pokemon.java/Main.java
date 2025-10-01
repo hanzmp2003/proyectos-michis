@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,6 +6,8 @@ public class Main {
         Gimnasio gimnasio = new Gimnasio();
         Ataque ataque = new Ataque();
         Elemento elemento = new Elemento();
+        AgregarAtaque agregarAtaque = new AgregarAtaque();
+        AgregarPokemon agregarPokemon = new AgregarPokemon();
     }
 }
 
