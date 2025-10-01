@@ -4,6 +4,7 @@ public class Ataque {
     private int poder;
     private String tipo;
     private int pp;
+    private int ppReset;
 
     public Ataque() {
         nombre = "";
@@ -17,6 +18,11 @@ public class Ataque {
         this.poder = poder;
         this.tipo = tipo;
         this.pp = pp;
+        this.ppReset = pp;
+    }
+
+    public void resetPP(){
+        this.pp = this.ppReset;
     }
 
     public String getNombre() { return nombre; }

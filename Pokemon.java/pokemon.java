@@ -2,6 +2,7 @@ public class Pokemon {    //Método modelo para Pokemon
     private String nombre;
     private int nivel;
     private int hp;
+    private int hpReset;
     private int def;
     private int velocidad;
     private String tipo;
@@ -41,6 +42,7 @@ public class Pokemon {    //Método modelo para Pokemon
         this.hp = hp;
         this.def = def;
         this.velocidad = velocidad;
+        this.hpReset = hp;
     }
     
     // Getters individuales para cada Stat 
@@ -83,5 +85,10 @@ public class Pokemon {    //Método modelo para Pokemon
     public boolean getEstado() {
         return estado;
     }
+
+    public void resetHp(){
+        this.hp = this.hpReset;
+    }
+
 }
 

@@ -4,6 +4,7 @@ public class Entrenador {
     private String nombre;
     private boolean esJugador;
     private Pokemon[] equipo;
+    private boolean estado;
 
     public Entrenador(String nombre, boolean esJugador, Pokemon[] equipo) {
         this.nombre = nombre;
@@ -34,6 +35,18 @@ public class Entrenador {
     public void setEquipo(Pokemon[] equipo) { 
         this.equipo = equipo; 
         }
+    
+
+    // Reiniciar estadísticas de entrenadores y jugador luego de cada combate
+    public void resetStats(){
+        for (Pokemon i : equipo){
+            i.resetHp();
+            i.setEstado(true);
+            for (Ataque j : i.getHabilidades()) {
+                j.resetPP();
+            }
+        }
+    }
 
     // Pokemon aleatorio del NPC
     public Pokemon elegirPokeNPC(){
@@ -82,6 +95,10 @@ public class Entrenador {
         } else {
             return null;
         }
+    }
+
+    public void setEstado(boolean estado){
+        this.estado = estado;
     }
 
 }
