@@ -3,6 +3,7 @@ public class Pokemon {    //Método modelo para Pokemon
     private int ataque;
     private int nivel;
     private int hp;
+    private int atq;
     private int hpReset;
     private int def;
     private int velocidad;
@@ -16,6 +17,7 @@ public class Pokemon {    //Método modelo para Pokemon
         tipo = "";
         nivel = 0;
         hp = 0;
+        atq = 0;
         def = 0;
         velocidad = 0;
         estado = true;
@@ -38,9 +40,10 @@ public class Pokemon {    //Método modelo para Pokemon
     }
     
     // Setter de Stats
-    public void setStats(int nivel, int hp, int def, int velocidad) {
+    public void setStats(int nivel, int hp, int atq, int def, int velocidad) {
         this.nivel = nivel;
         this.hp = hp;
+        this.atq = atq;
         this.def = def;
         this.velocidad = velocidad;
         this.hpReset = hp;
@@ -65,6 +68,10 @@ public class Pokemon {    //Método modelo para Pokemon
     
     public int getHp() {
         return hp;
+    }
+
+    public int getAtq(){
+        return atq;
     }
     
     public int getDef() {
