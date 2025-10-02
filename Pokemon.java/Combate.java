@@ -158,8 +158,8 @@ public class Combate {
     // Aún no se ha implementado la fórmula de daño completa porque no se ha definido cómo se seleccionarán los ataques ni cómo se manejarán los turnos en el combate.
     // Una vez que se defina esa lógica, se podrá implementar la fórmula de daño completa, pero está casi lista.
 
-    // Método para iniciar el combate
 
+    // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
     public int iniciarCombate() {
         int vidasJugador = 1;
         int vidasRival = 1;
