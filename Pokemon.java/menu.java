@@ -1,5 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 public class menu {
     public menu(){
         Scanner sc = new Scanner(System.in);
@@ -10,12 +11,14 @@ public class menu {
         String nombre;
         Pokemon[] equipo = new Pokemon[3];
 
-
-
         // Empezar a registrar datos de jugador
-        System.out.println("Bienvenido al Gimnasio ___\n\nIntroduzca su nombre: ");
+        System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
+        System.out.println("Introduzca su nombre: ");
         nombre = sc.nextLine();
-        System.out.printf("\n\n¡Muy bien %s! Debes escoger ahora 3 pokemones de todos los siguientes.\n",nombre);
+        System.out.printf("Un gusto conocerte %s, estás a punto de partir hacia una nueva aventura por las zonas rojas de Costa Rica :D\n", nombre);
+        System.out.println("Ten en cuenta que este viaje es muy peligroso, por lo que tendrás que escoger a tus compañeros de confianza para poder luchar.\n");
+
+        System.out.printf("\nPuedes elegir uno por uno entre los valientes pokemones de todos los siguientes hasta tres.\n",nombre);
         Pokemon pokemon1 = elegirPoke(catalogoPokemones,sc);
         Pokemon pokemon2 = elegirPoke(catalogoPokemones,sc);
         Pokemon pokemon3 = elegirPoke(catalogoPokemones,sc);

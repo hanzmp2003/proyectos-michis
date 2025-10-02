@@ -1,6 +1,7 @@
 // Clase AgregarEntrenadores que inicializa todos los entrenadores con sus equipos de Pokémon
 public class AgregarEntrenadores {
     // Constructor que inicializa todos los entrenadores con sus respectivos equipos de Pokémon
+    Entrenador[] entrenadores = new Entrenador[6];
     public AgregarEntrenadores() {
         Pokemon[] equipoBrittany = {AgregarPokemon.choripan, AgregarPokemon.salamandra};
         Pokemon[] equipoKimberly = {AgregarPokemon.pejelagarto, AgregarPokemon.tralalerotralala, AgregarPokemon.gokuFaseTerminal};
@@ -15,5 +16,13 @@ public class AgregarEntrenadores {
         Entrenador kevin = new Entrenador("Kevin", false, equipoKevin);
         Entrenador byron = new Entrenador("Byron", false, equipoByron);
         Entrenador yandel = new Entrenador("Yandel", false, equipoYandel);
+
+        entrenadores = new Entrenador[] {brittany,kimberly,brayan,kevin,byron,yandel};
+
     }
+
+    public Entrenador[] getEntrenadores(){
+        return entrenadores;
+    }
+
 }

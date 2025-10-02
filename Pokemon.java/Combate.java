@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Combate {
     Jugador jugador;
     Entrenador entrenador;
+    private Scanner scanner = new Scanner(System.in);
 
     public Combate(Jugador jugador, Entrenador entrenador) {
         this.jugador = jugador;
@@ -165,8 +166,8 @@ public class Combate {
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         // Aquí va la lógica del combate
         while (vidasJugador > 0 && vidasRival > 0) {
-            vidasJugador = 0;
-            vidasRival = 0;
+            vidasJugador = 1;
+            vidasRival = 1;   //hice un arreglo aqui para que el ciclo no se cierre
             int seleccionJugador = jugador.elegirPokeJugador(); // AGREGAR CASO EN QUE SEA -1
             int seleccionRival = entrenador.npcElige();
             System.out.println();
@@ -211,7 +212,7 @@ public class Combate {
     public void peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
         int cerrarAtaque = 0;
         int opcionAtaque = 0;
-        Scanner scanner = new Scanner(System.in);
+        
 
         // Pierde el que se quede sin vida
         while (pokemonJugador.getHp() > 0 && pokemonRival.getHp() > 0) { 
@@ -318,7 +319,7 @@ public class Combate {
                 }
             }
         }
-        scanner.close();
+  
         if (pokemonJugador.getHp() <= 0) {
             pokemonJugador.setEstado(false);
             System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
