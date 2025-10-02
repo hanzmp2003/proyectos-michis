@@ -6,15 +6,15 @@ public class Lideres{
     public Pokemon[] listaPokemones;
 
     public Lideres(String nombre, int nivel, String elemento){
-        this.nombre=nombre;
-        this.nivel=nivel;
-        this.elemento=elemento;
-        this.listaPokemones=new Pokemon[6];
+        this.nombre = nombre;
+        this.nivel = nivel;
+        this.elemento = elemento;
+        this.listaPokemones = new Pokemon[6];
 
     }
      
     public void setNombre(String nombre){
-        this.nombre=nombre;
+        this.nombre = nombre;
     }
 
     public String getNombre(){
@@ -22,7 +22,7 @@ public class Lideres{
     }
 
     public void setNivel(int nivel){
-        this.nivel=nivel;
+        this.nivel = nivel;
     }
 
     public int getNivel(){
@@ -30,13 +30,15 @@ public class Lideres{
     }
 
     public void setElemento(String elemento){
-        this.elemento=elemento;
+        this.elemento = elemento;
     }
 
     public String getElemento(){
         return elemento;
     }
 
-
+    public Pokemon[] getEquipo() {
+        return listaPokemones;
+    }
 }
 

@@ -1,7 +1,9 @@
 // Clase AgregarLideres que inicializa todos los líderes de gimnasio con sus equipos de Pokémon
 public class AgregarLideres {
+    public Lideres[] listaLideres;
     // Constructor que inicializa todos los líderes con sus respectivos equipos de Pokémon
     public AgregarLideres() {
+        listaLideres = new Lideres[3];
         // Líder 1: El Juankiloco -> 3 Pokémon, tipo Siniestro
         Lideres juankiloco = new Lideres("El Juankiloco", 50, "Siniestro");
         juankiloco.listaPokemones[0] = AgregarPokemon.kamakahai;
@@ -22,5 +24,9 @@ public class AgregarLideres {
         chunche.listaPokemones[2] = AgregarPokemon.marihuanauta;
         chunche.listaPokemones[3] = AgregarPokemon.bazuco;
         chunche.listaPokemones[4] = AgregarPokemon.paracetamol;
+
+        listaLideres[0] = juankiloco;
+        listaLideres[1] = porcionzon;
+        listaLideres[2] = chunche;
     }
 }
