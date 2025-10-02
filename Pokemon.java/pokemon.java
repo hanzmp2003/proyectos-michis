@@ -1,9 +1,10 @@
 public class Pokemon {    //Método modelo para Pokemon
     private String nombre;
-    private int ataque;
+    private boolean mostrar; // Solo funciona para mostrar catalogo inicial
     private int nivel;
     private int hp;
     private int atq;
+    private int ataque;
     private int hpReset;
     private int def;
     private int velocidad;
@@ -21,7 +22,25 @@ public class Pokemon {    //Método modelo para Pokemon
         def = 0;
         velocidad = 0;
         estado = true;
-        habilidades = new Ataque[4]; 
+        habilidades = new Ataque[4];
+        mostrar = true; 
+    }
+
+    // Constructor pokemon para copiarlo
+    public Pokemon(Pokemon pokemon){
+        this.mostrar = true;
+        this.nivel = pokemon.getNivel();
+        this.nombre = pokemon.getNombre();
+        this.hp = pokemon.getHp();
+        this.def = pokemon.getDef();
+        this.velocidad = pokemon.getVelocidad();
+        this.hpReset = pokemon.getHp();
+        this.tipo = pokemon.getTipo();
+        this.estado = pokemon.getEstado();
+        habilidades = new Ataque[pokemon.getHabilidades().length];
+        for (int i = 0 ; i < habilidades.length ; i++) {
+            habilidades[i] = new Ataque(pokemon.getHabilidades()[i]);
+        }
     }
 
     // Setters de las Características
@@ -112,6 +131,14 @@ public class Pokemon {    //Método modelo para Pokemon
 
     public void resetHp(){
         this.hp = this.hpReset;
+    }
+
+    public boolean mostrar(){
+        return mostrar;
+    }
+
+    public void setMostrar(boolean mostrar){
+        this.mostrar = mostrar;
     }
 
 }

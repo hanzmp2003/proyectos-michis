@@ -21,6 +21,14 @@ public class Ataque {
         this.ppReset = pp;
     }
 
+    // Constructor para copiar ataques
+    public Ataque(Ataque ataque) {
+        this.nombre = ataque.getNombre();
+        this.poder = ataque.getPoder();
+        this.tipo = ataque.getTipo();
+        this.pp = ataque.getPp();
+    }
+
     public void resetPP(){
         this.pp = this.ppReset;
     }

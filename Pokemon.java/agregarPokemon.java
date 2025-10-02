@@ -1,4 +1,5 @@
 // Clase AgregarPokemon que inicializa todos los Pokémon disponibles en el juego
+import java.util.Random;
 public class AgregarPokemon {
 
     public static Pokemon choripan;
@@ -23,6 +24,8 @@ public class AgregarPokemon {
     public static Pokemon machetearrumbradoo;
     public static Pokemon coronavirus;
     public static Pokemon kamakahai;
+    public Pokemon[] catalogo;
+    public Pokemon[] catalogoEleccion;
 
     // Constructor que inicializa todos los Pokémon con sus características, stats y ataques
 
@@ -269,5 +272,27 @@ public class AgregarPokemon {
             AgregarAtaque.escapeSigiloso
         );
         kamakahai.setEstado(true);
+
+        catalogo = new Pokemon[] {
+            choripan, salamandra, pejelagarto, tralalerotralala, laSaicaTimida,
+            gokuFaseTerminal, pericrack, marihuanauta, paracetamol, bazuco,
+            tiaToxica, crackosaurio, fentalino, ketamina, fourloko,
+            clonazemugre, zsmieo, profepasanoselcurso, perikiki, machetearrumbradoo,
+            coronavirus, kamakahai
+        };
+    }
+
+    public Pokemon[] catalogoEleccion(){
+        int iteracion = 0;
+        Random rand = new Random();
+        int max = 7 + rand.nextInt(22 - 7 + 1);
+        int min = max - 7;
+        Pokemon[] nuevoCatalogo = new Pokemon[7];
+        for (int i = min ; i < max ; i++) {
+            nuevoCatalogo[iteracion] = catalogo[i];
+            iteracion += 1;
+        }
+        this.catalogoEleccion = nuevoCatalogo;
+        return this.catalogoEleccion;
     }
 }
