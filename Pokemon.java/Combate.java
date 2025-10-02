@@ -193,7 +193,7 @@ public class Combate {
         while (pokemonJugador.getHp() > 0 && pokemonRival.getHp() > 0) { 
             cerrarAtaque = 0;
             // Quien ataca primero según velocidad
-            if (pokemonJugador.getVelocidad() > pokemonRival.getVelocidad()) {
+            if (pokemonJugador.getVelocidad() >= pokemonRival.getVelocidad()) {
                 System.out.println("Tu pokemon es más rápido y ataca primero. Selecciona un ataque: ");
                 while (cerrarAtaque == 0) {
                     try {
@@ -245,7 +245,52 @@ public class Combate {
                 }
                 scanner.close();
             } else if (pokemonJugador.getVelocidad() < pokemonRival.getVelocidad()) {
+                
                 // Lo mismo de arriba pero el rival ataca primero
+                System.out.println("El pokemon rival es más rápido y ataca primero.");
+                if (pokemonRival.getHp() > 0) {
+                    int posAtkRival = entrenador.ataqueNPC(pokemonRival);
+                    int ppActual = pokemonRival.getHabilidades()[posAtkRival].getPp();
+                    pokemonJugador.setHp(pokemonJugador.getHp() - ataque(pokemonRival,pokemonJugador,pokemonRival.getHabilidades()[posAtkRival]));
+                    pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);                    
+                }
+                System.out.println("Es tu turno. Selecciona un ataque: ");
+                while (cerrarAtaque == 0) {
+                    try {
+                        int cantataques = 0;
+                        int posicionAtk = 0;
+                        for (Ataque i : pokemonJugador.getHabilidades()){
+                            if (i.getPp() > 0){
+                                cantataques += 1;
+                            }
+                        }
+                        Ataque[] ataquesdisp = new Ataque[cantataques];
+                        for (int i = 0 ; i < pokemonJugador.getHabilidades().length ; i++){
+                            if (pokemonJugador.getHabilidades()[i].getPp() > 0){
+                                ataquesdisp[posicionAtk] = pokemonJugador.getHabilidades()[i];
+                                posicionAtk += 1;
+                            }
+                        }
+                        for (int i = 0 ; i < ataquesdisp.length ; i++){
+                            System.out.printf("\n%d) %s (Poder: %d, PP: %d)", i+1, pokemonJugador.getHabilidades()[i].getNombre(), pokemonJugador.getHabilidades()[i].getPoder(), pokemonJugador.getHabilidades()[i].getPp());
+                        }
+                        opcionAtaque = scanner.nextInt() - 1;
+                        if (opcionAtaque >= 0 && opcionAtaque < ataquesdisp.length) {
+                            pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));
+                            int ppActual = ataquesdisp[opcionAtaque].getPp();
+                            ataquesdisp[opcionAtaque].setPp(ppActual - 1);
+                            cerrarAtaque = 1;
+                            if (pokemonRival.getHp() < 0) {
+                                pokemonRival.setHp(0);
+                            }
+                        } else {
+                            System.out.println("Opción inválida. Por favor, seleccione un ataque.\n");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.err.println("Error: " + e);
+                        System.err.println("Por favor, ingresa una opción válida para el ataque.");
+                    }
+                }
             }
         }
 
