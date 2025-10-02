@@ -158,16 +158,41 @@ public class Combate {
     // Una vez que se defina esa lógica, se podrá implementar la fórmula de daño completa, pero está casi lista.
 
     // Método para iniciar el combate
-    public void iniciarCombate() {
+
+    public int iniciarCombate() {
+        int vidasJugador = 1;
+        int vidasRival = 1;
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         // Aquí va la lógica del combate
-        int seleccionJugador = jugador.elegirPokeJugador();
-        int seleccionRival = entrenador.npcElige();
-        System.out.println();
-        System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
-        System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-        peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
-
+        while (vidasJugador > 0 && vidasRival > 0) {
+            vidasJugador = 0;
+            vidasRival = 0;
+            int seleccionJugador = jugador.elegirPokeJugador(); // AGREGAR CASO EN QUE SEA -1
+            int seleccionRival = entrenador.npcElige();
+            System.out.println();
+            System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
+            System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+            peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
+            for (Pokemon i : jugador.getEquipo()){
+                if (i.getEstado() == true){
+                    vidasJugador += 1; // La idea es que si nunca suma más de 0, el jugador pierde
+                }
+            }
+            for (Pokemon j : entrenador.getEquipo()){
+                if (j.getEstado() == true){
+                    vidasRival += 1; // Lo mismo para el rival
+                }
+            }
+        }
+        if (vidasJugador == 0){
+            System.out.printf("\n¡Has sido derrotado por %s!\n",entrenador.getNombre());
+            return 0;
+        } else if (vidasRival == 0){
+            System.out.printf("\n¡Has derrotado a %s!\n",entrenador.getNombre());
+            return 1;
+        } else {   
+            return -1; // No debería llegar aquí. Se deja para manejar un posible error.
+        }
     }
 
     // Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
@@ -179,7 +204,7 @@ public class Combate {
         System.out.printf("\n¡%s realiza %s!\n",ofensivo.getNombre(),ataque.getNombre());
         imprimirProbabilidadCritico(critico);
         imprimirCategoriaDanio(efectiv);
-        System.out.printf("\n%s recibe un total de %d de daño.",ofensivo.getNombre(),daniototal);
+        System.out.printf("\n%s recibe un total de %d de daño.",defensivo.getNombre(),daniototal);
         return daniototal;
     }
 
@@ -233,6 +258,7 @@ public class Combate {
                     } catch (InputMismatchException e) {
                         System.err.println("Error: " + e);
                         System.err.println("Por favor, ingresa una opción válida para el ataque.");
+                        scanner.nextLine();
                     }
                 // Ataque del rival si sigue con vida
                 if (pokemonRival.getHp() > 0) {
@@ -242,7 +268,6 @@ public class Combate {
                     pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);                    
                 }
                 }
-                scanner.close();
             } else if (pokemonJugador.getVelocidad() < pokemonRival.getVelocidad()) {
 
                 // Lo mismo de arriba pero el rival ataca primero
@@ -288,10 +313,12 @@ public class Combate {
                     } catch (InputMismatchException e) {
                         System.err.println("Error: " + e);
                         System.err.println("Por favor, ingresa una opción válida para el ataque.");
+                        scanner.nextLine();
                     }
                 }
             }
         }
+        scanner.close();
         if (pokemonJugador.getHp() <= 0) {
             pokemonJugador.setEstado(false);
             System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
