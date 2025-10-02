@@ -61,6 +61,10 @@ public class Pokemon {    //Método modelo para Pokemon
         return ataque;
     }
 
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
     // Getters individuales para cada Stat 
     public int getNivel() {
         return nivel;

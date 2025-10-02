@@ -85,7 +85,8 @@ public class Entrenador {
     }
     
     // Ataque aleatorio del NPC
-    public Ataque ataqueNPC(Pokemon pokemon){
+    public int ataqueNPC(Pokemon pokemon){
+        int seleccion = 0; 
         Random rand = new Random();
         int posicion = 0;
         int tamaño = 0;
@@ -94,22 +95,30 @@ public class Entrenador {
                 tamaño += 1;
             }
         }
+
         Ataque[] atqdis = new Ataque[tamaño];
+        int aleatorio = rand.nextInt(tamaño);
+
         for (int i = 0; i < pokemon.getHabilidades().length ; i ++){
             if (pokemon.getHabilidades()[i].getPp() > 0){
                 atqdis[posicion] = pokemon.getHabilidades()[i];
                 posicion += 1;
             }
         }
-        if (tamaño > 0){
-            return atqdis[rand.nextInt(tamaño)];
-        } else {
-            return null;
+
+        for (int j = 0; j < pokemon.getHabilidades().length;j++){
+            if (atqdis[aleatorio] == pokemon.getHabilidades()[j]){
+                seleccion = j;
+            }
         }
+        if (tamaño > 0){
+            return seleccion;
+        } else {
+            return -1;
+        }  
     }
 
     public void setEstado(boolean estado){
         this.estado = estado;
     }
-
 }
