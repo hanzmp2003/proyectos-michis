@@ -166,8 +166,7 @@ public class Combate {
         System.out.println();
         System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
         System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-        
-        // Falta terminar la función de abajo y llamarla acá
+        peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
 
     }
 
@@ -245,7 +244,7 @@ public class Combate {
                 }
                 scanner.close();
             } else if (pokemonJugador.getVelocidad() < pokemonRival.getVelocidad()) {
-                
+
                 // Lo mismo de arriba pero el rival ataca primero
                 System.out.println("El pokemon rival es más rápido y ataca primero.");
                 if (pokemonRival.getHp() > 0) {
@@ -293,7 +292,13 @@ public class Combate {
                 }
             }
         }
-
+        if (pokemonJugador.getHp() <= 0) {
+            pokemonJugador.setEstado(false);
+            System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
+        } else if (pokemonRival.getHp() <= 0) {
+            pokemonRival.setEstado(false);
+            System.out.printf("\nEl pokemon rival %s ha sido derrotado.\n", pokemonRival.getNombre());
+        }
     }
 
 }
