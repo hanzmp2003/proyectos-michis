@@ -113,6 +113,18 @@ public class Pokemon {    //Método modelo para Pokemon
     public void resetHp(){
         this.hp = this.hpReset;
     }
+   
+    //sube de nivel cuando gana una batalla
+    public void subirNivel() {
+    setStats(
+        this.nivel + 1,
+        this.hp + 5,
+        this.atq + 15,
+        this.def + 5,
+        this.velocidad + 5
+    );
+    System.out.println(nombre + " ha subido al nivel " + this.nivel + "!");
+  }
 
 }
 

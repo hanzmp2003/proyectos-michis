@@ -1,29 +1,19 @@
 // Clase Gimnasio que representa un gimnasio con su nombre, tipo y nivel
 public class Gimnasio {
     private String nombre;
-    private String tipo; 
-    private int nivel;
+    private String dificultad;  // Es para mencionar si es facil, intermedio o díficil
 
     // Constructor con parámetros
-    public Gimnasio(String nombre, String tipo, int nivel) {
+    public Gimnasio(String nombre, String dificultad) {
         this.nombre = nombre;
-        this.tipo = tipo;
-        this.nivel = nivel;
-    }
-
-    // Constructor vacío
-    public Gimnasio() {
-        this.nombre = "";
-        this.tipo = "";
-        this.nivel = 0;
+        this.dificultad = dificultad;
     }
 
     // Getters y setters
-    public String getNombre() { return nombre; }
-    public String getTipo() { return tipo; }
-    public int getNivel() { return nivel; }
-
     public void setNombre(String nombre) { this.nombre = nombre; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
-    public void setNivel(int nivel) { this.nivel = nivel; }
+    public void setNivel(String nivel) { this.dificultad = nivel; }
+
+    public String getNombre() { return nombre; }
+    public String getNivel() { return dificultad; } 
+    
 }
