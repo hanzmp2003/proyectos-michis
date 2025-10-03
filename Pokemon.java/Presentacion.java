@@ -20,19 +20,16 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
     }
 
     public void IniciarViaje(){
-        System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
-        System.out.println("Introduzca su nombre: ");
-        nombre = sc.nextLine();
-        System.out.printf("Un gusto conocerte %s, estás a punto de partir hacia una nueva aventura por las zonas rojas de Costa Rica :D\n", nombre);
-        System.out.println("Ten en cuenta que este viaje es muy peligroso, por lo que tendrás que escoger a tus compañeros de confianza para poder luchar.\n");
-
-        System.out.printf("\nPuedes elegir uno por uno entre los valientes pokemones de todos los siguientes hasta tres.\n",nombre);
         Pokemon pokemon1 = elegirPoke(catalogoPokemones,sc);
         Pokemon pokemon2 = elegirPoke(catalogoPokemones,sc);
         Pokemon pokemon3 = elegirPoke(catalogoPokemones,sc);
         equipo[0] = new Pokemon(pokemon1);
         equipo[1] = new Pokemon(pokemon2);
         equipo[2] = new Pokemon(pokemon3);
+        System.out.println("Tu equipo inicial es: ");
+        for(int i = 0; i < equipo.length; i++){
+        System.out.printf("\n%d) %s", i+1, equipo[i]);}
+        System.out.println();
 
         Jugador jugador = new Jugador(nombre,equipo);
 
@@ -71,7 +68,7 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
     return catalogoPokemones[opcion - 1];
     }
 
-    public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){
+     public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
         int pokemonesMostrar = 0;
         int posicion = 0;
         for (Pokemon i : nuevoCatalogo) {
@@ -86,15 +83,14 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
                 posicion += 1;
             }
         }
-        //Imprime todos los pokemones elegidos
-        System.out.println("Tu equipo incial es: ");
         for (int i = 0 ; i < nuevoCatalogoEleccion.length ; i++) {
         System.out.printf("\n%d) %s", i+1, nuevoCatalogoEleccion[i]);
-        System.out.println(); //Salto de línea, ajuste aesthethic
+        
         }
         System.out.println();
-        return nuevoCatalogoEleccion; //devuelve las lista de los pokemones que el jugador escogió
+        return nuevoCatalogoEleccion; 
     }
+
 
 }
 

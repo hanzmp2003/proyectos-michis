@@ -25,8 +25,11 @@ public class menu {
         equipo[0] = new Pokemon(pokemon1);
         equipo[1] = new Pokemon(pokemon2);
         equipo[2] = new Pokemon(pokemon3);
-        mostrarCatalogo(catalogoPokemones);
-
+        System.out.println("Tu equipo inicial es: ");
+        for(int i = 0; i < equipo.length; i++){
+        System.out.printf("\n%d) %s", i+1, equipo[i]);}
+        System.out.println();
+       
         Jugador jugador = new Jugador(nombre,equipo);
     
       // Idea para el combate 
@@ -63,7 +66,7 @@ public class menu {
     return catalogoPokemones[opcion - 1];
     }
 
-    public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){
+    public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
         int pokemonesMostrar = 0;
         int posicion = 0;
         for (Pokemon i : nuevoCatalogo) {
@@ -78,14 +81,12 @@ public class menu {
                 posicion += 1;
             }
         }
-        //Imprime todos los pokemones elegidos
-        System.out.println("Tu equipo incial es: ");
         for (int i = 0 ; i < nuevoCatalogoEleccion.length ; i++) {
         System.out.printf("\n%d) %s", i+1, nuevoCatalogoEleccion[i]);
-        System.out.println(); //Salto de línea, ajuste aesthethic
+        
         }
         System.out.println();
-        return nuevoCatalogoEleccion; //devuelve las lista de los pokemones que el jugador escogió
+        return nuevoCatalogoEleccion; 
     }
 
 }
