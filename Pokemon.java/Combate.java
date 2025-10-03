@@ -7,8 +7,8 @@ public class Combate {
     private Jugador jugador;
     private Entrenador entrenador;
     private Scanner scanner = new Scanner(System.in);
-    private int vidasJugador = 0; 
-    private int vidasRival = 0;
+    private int vidasJugador; 
+    private int vidasRival;
 
     public Combate(Jugador jugador, Entrenador entrenador) {
         this.jugador = jugador;
@@ -164,8 +164,8 @@ public class Combate {
     // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
     public int iniciarCombate() {
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
-        int vidasJugador = 0;   
-        int vidasRival = 0;
+        vidasJugador = 0;   
+        vidasRival = 0;
 
         // Contar pokémones vivos del Jugador
         for (Pokemon pokemon : jugador.getEquipo()) { 
