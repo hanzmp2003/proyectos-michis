@@ -16,10 +16,17 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
         entrenadores = new AgregarEntrenadores();
         catalogoPokemones = catalogoCompleto.catalogoEleccion();
         nombre = "";
-        equipo = new Pokemon[3];
+        equipo = new Pokemon[6]; //Va ser 6 porque conforme venza al segundo entrenador de cada gimnasio consigue un pokemon adicional a su equipo eso se detalla después
     }
 
     public void IniciarViaje(){
+        System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
+        System.out.println("Introduzca su nombre: ");
+        nombre = sc.nextLine();
+        System.out.printf("Un gusto conocerte %s, estás a punto de partir hacia una nueva aventura por las zonas rojas de Costa Rica :D\n", nombre);
+        System.out.println("Ten en cuenta que este viaje es muy peligroso, por lo que tendrás que escoger a tus compañeros de confianza para poder luchar.\n");
+        //Eleccion de pokemones
+        System.out.printf("\nPuedes elegir uno por uno entre los valientes pokemones de todos los siguientes hasta tres.\n",nombre);
         Pokemon pokemon1 = elegirPoke(catalogoPokemones,sc);
         Pokemon pokemon2 = elegirPoke(catalogoPokemones,sc);
         Pokemon pokemon3 = elegirPoke(catalogoPokemones,sc);
