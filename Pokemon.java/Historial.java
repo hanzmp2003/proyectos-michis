@@ -2,7 +2,7 @@ public class Historial {
     private boolean estadoBatalla; // true = Victoria, false = Derrota
     private Entrenador entrenador;
     private Lideres lider;
-    Jugador jugador;
+    private Jugador jugador;
 
     public void setHistorialEntrenador(int numBatalla, boolean estadoBatalla, Entrenador entrenador,  Jugador jugador) {
         String[][] batalla = new String[31][5];  // matriz para almacenar múltiples batallas 5 datos, 31 batallas

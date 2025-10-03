@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 // Clase para manejar el combate entre un jugador y un entrenador
 public class Combate {
-    Jugador jugador;
-    Entrenador entrenador;
+    private Jugador jugador;
+    private Entrenador entrenador;
     private Scanner scanner = new Scanner(System.in);
+    private int vidasJugador = 0; 
+    private int vidasRival = 0;
 
     public Combate(Jugador jugador, Entrenador entrenador) {
         this.jugador = jugador;
@@ -161,40 +163,68 @@ public class Combate {
 
     // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
     public int iniciarCombate() {
-        int vidasJugador = 1;
-        int vidasRival = 1;
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
+        int vidasJugador = 0;   
+        int vidasRival = 0;
+
+        // Contar pokémones vivos del Jugador
+        for (Pokemon pokemon : jugador.getEquipo()) { 
+        if (pokemon.getEstado()) {
+            vidasJugador++;
+        }
+    }
+
+        // Contar pokémones vivos del Rival
+        for (Pokemon pokemon : entrenador.getEquipo()) {
+        if (pokemon.getEstado()) {
+            vidasRival++;
+        }
+    }   
         // Aquí va la lógica del combate
         while (vidasJugador > 0 && vidasRival > 0) {
-            vidasJugador = 1;
-            vidasRival = 1;   //hice un arreglo aqui para que el ciclo no se cierre
-            int seleccionJugador = jugador.elegirPokeJugador(); // AGREGAR CASO EN QUE SEA -1
+
+            int seleccionJugador = jugador.elegirPokeJugador(); 
+                if(seleccionJugador == -1){
+                     System.out.println("\n¡Has decidido retirarte del combate!");
+                    return -1; // Retirada del jugad
+                }
+
             int seleccionRival = entrenador.npcElige();
+            //Mostar elecciones
             System.out.println();
             System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
             System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+            //Realizar Pelea
             peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
-            for (Pokemon i : jugador.getEquipo()){
-                if (i.getEstado() == true){
-                    vidasJugador += 1; // La idea es que si nunca suma más de 0, el jugador pierde
+            
+            //recuenta los pokemones vivos
+            vidasJugador = 0;
+            vidasRival = 0; 
+
+            for (Pokemon pokemon : jugador.getEquipo()) { 
+            if (pokemon.getEstado()) {
+            vidasJugador++;
                 }
             }
-            for (Pokemon j : entrenador.getEquipo()){
-                if (j.getEstado() == true){
-                    vidasRival += 1; // Lo mismo para el rival
+
+            for (Pokemon pokemon : entrenador.getEquipo()) {
+            if (pokemon.getEstado()) {
+            vidasRival++;
                 }
             }
-        }
+        }    
+         //Condicionales para determinar el ganador   
         if (vidasJugador == 0){
             System.out.printf("\n¡Has sido derrotado por %s!\n",entrenador.getNombre());
-            return 0;
-        } else if (vidasRival == 0){
+            return 0; //derrota
+        } else {
             System.out.printf("\n¡Has derrotado a %s!\n",entrenador.getNombre());
-            return 1;
-        } else {   
-            return -1; // No debería llegar aquí. Se deja para manejar un posible error.
-        }
+            return 1; //victoria
+        }  
+            
     }
+
+    
 
     // Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
     public int ataque(Pokemon ofensivo, Pokemon defensivo, Ataque ataque){
@@ -297,8 +327,8 @@ public class Combate {
                             }
                         }
                         for (int i = 0 ; i < ataquesdisp.length ; i++){
-                            System.out.printf("\n%d) %s (Poder: %d, PP: %d)", i+1, pokemonJugador.getHabilidades()[i].getNombre(), pokemonJugador.getHabilidades()[i].getPoder(), pokemonJugador.getHabilidades()[i].getPp());
-                        }
+                            System.out.printf("\n%d) %s (Poder: %d, PP: %d)", i+1, ataquesdisp[i].getNombre(), ataquesdisp[i].getPoder(), ataquesdisp[i].getPp());
+                        }                                                       //cambie habilidades por ataques disp
                         opcionAtaque = scanner.nextInt() - 1;
                         if (opcionAtaque >= 0 && opcionAtaque < ataquesdisp.length) {
                             pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));

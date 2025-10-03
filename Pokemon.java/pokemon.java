@@ -32,6 +32,7 @@ public class Pokemon {    //Método modelo para Pokemon
         this.nivel = pokemon.getNivel();
         this.nombre = pokemon.getNombre();
         this.hp = pokemon.getHp();
+        this.atq = pokemon.getAtq();
         this.def = pokemon.getDef();
         this.velocidad = pokemon.getVelocidad();
         this.hpReset = pokemon.getHp();
