@@ -1,17 +1,25 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+public class Presentacion { //Esto nada más es para poner una prueba del prototipo sin poner mucha vaina en el menu
+    //luego lo cambio para que sea vea más aesthethic y solo libere funciones en vez de poner lógica en el menu
+    private AgregarPokemon catalogoCompleto;
+    private AgregarEntrenadores entrenadores;
+    Pokemon[] catalogoPokemones;
+    String nombre;
+    Pokemon[] equipo;
+    Scanner sc;
 
-public class menu {
-    public menu(){
-        Scanner sc = new Scanner(System.in);
+    public Presentacion(){
+        sc = new Scanner(System.in);
         // Inicializar todos los pokemones, entrenadores y el catálogo de elección para el jugador
-        AgregarPokemon catalogoCompleto = new AgregarPokemon();
-        AgregarEntrenadores entrenadores = new AgregarEntrenadores();
-        Pokemon[] catalogoPokemones = catalogoCompleto.catalogoEleccion();
-        String nombre;
-        Pokemon[] equipo = new Pokemon[3];
+        catalogoCompleto = new AgregarPokemon();
+        entrenadores = new AgregarEntrenadores();
+        catalogoPokemones = catalogoCompleto.catalogoEleccion();
+        nombre = "";
+        equipo = new Pokemon[3];
+    }
 
-        // Empezar a registrar datos de jugador
+    public void IniciarViaje(){
         System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
         System.out.println("Introduzca su nombre: ");
         nombre = sc.nextLine();
@@ -25,18 +33,18 @@ public class menu {
         equipo[0] = new Pokemon(pokemon1);
         equipo[1] = new Pokemon(pokemon2);
         equipo[2] = new Pokemon(pokemon3);
-        mostrarCatalogo(catalogoPokemones);
 
         Jugador jugador = new Jugador(nombre,equipo);
-    
-      // Idea para el combate 
+
+      // Idea para el combate  
       int ganador = 0;
         for (int i = 0 ; i < entrenadores.getEntrenadores().length ; i++) {
             Combate pelea = new Combate(jugador, entrenadores.getEntrenadores()[i]);
             ganador = pelea.iniciarCombate(); // Con ganador se pueden realizar luego casos; si es 1 jugador gana y avanza, si es 2 jugador pierde y puede volver a intentarlo o terminar partida  
 
     }
-    }
+}
+
 
     public Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
         Pokemon[] nuevoCatalogo;
@@ -89,3 +97,6 @@ public class menu {
     }
 
 }
+
+
+

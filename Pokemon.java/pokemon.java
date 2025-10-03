@@ -153,5 +153,10 @@ public class Pokemon {    //Método modelo para Pokemon
         this.mostrar = mostrar;
     }
 
+    public String toString() {  //Convertir a texto para mostrar el catalogo
+    return String.format("%s (Tipo: %s, Nivel: %d, Vida: %d, Ataque: %d, Defensa: %d, Velocidad: %d)", 
+        this.nombre, this.tipo, this.nivel, this.hp, this.atq, this.def, this.velocidad);
+}
+
 }
 
