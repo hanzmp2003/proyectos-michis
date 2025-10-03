@@ -1,8 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class menu {
-    public menu(){
+public class Menu {
+    public Menu(){
         Scanner sc = new Scanner(System.in);
         // Inicializar todos los pokemones, entrenadores y el catálogo de elección para el jugador
         AgregarPokemon catalogoCompleto = new AgregarPokemon();
