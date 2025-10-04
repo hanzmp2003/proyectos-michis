@@ -94,6 +94,10 @@ public class Pokemon {    //Método modelo para Pokemon
         return hp;
     }
 
+    public int getHpReset(){
+        return hpReset;
+    }
+
     public int getAtq(){
         return atq;
     }

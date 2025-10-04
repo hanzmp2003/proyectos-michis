@@ -261,6 +261,7 @@ public class Combate {
     }
 
     public int peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
+        int inicio = 0;
         int cambiarPokemon = -1;
         int salir = -1;
         int seleccion = 1;
@@ -270,8 +271,10 @@ public class Combate {
 
             // Quien ataca primero según velocidad
             if (pokemonJugador.getVelocidad() >= pokemonRival.getVelocidad()) {
-
-                System.out.println("Tu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
+                if (inicio < 1) {
+                    System.out.println("Tu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
+                    inicio ++;
+                }
                 seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
                 if (seleccion == 2){
                     cambiarPokemon = jugador.elegirPokeJugador(1);
@@ -289,8 +292,10 @@ public class Combate {
             } else if (pokemonJugador.getVelocidad() < pokemonRival.getVelocidad()) {
 
                 // Lo mismo de arriba pero el rival ataca primero
+                if (inicio < 1){
+                    System.out.println("El pokemon rival es más rápido y ataca primero.");
+                }
 
-                System.out.println("El pokemon rival es más rápido y ataca primero.");
                 turnoRival(pokemonJugador, pokemonRival);
 
                 if (pokemonJugador.getHp() > 0) {
@@ -325,6 +330,8 @@ public class Combate {
     }
 
     private void turnoRival(Pokemon pokemonJugador, Pokemon pokemonRival){
+        mostrarVida(pokemonJugador, pokemonRival);
+        System.out.printf("\nEs el turno de %s...",entrenador.getNombre());
         int posAtkRival = entrenador.ataqueNPC(pokemonRival);
         Ataque atk = pokemonRival.getHabilidades()[posAtkRival];
         int ppActual = pokemonRival.getHabilidades()[posAtkRival].getPp();
@@ -338,6 +345,8 @@ public class Combate {
         int opcionTurno;
         while (turno == 0){
             try {
+                mostrarVida(pokemonJugador, pokemonRival);
+                System.out.println("¡Es tu turno!\n");
                 System.out.println("1) Atacar\n2) Cambiar pokemon\n3) Retirarse\n");
                 opcionTurno = scanner.nextInt();
                 if (opcionTurno == 1) {
@@ -345,7 +354,7 @@ public class Combate {
                     int opcionAtaque;
                     while (cerrarAtaque == 0) {
                         try {
-                            System.out.println("Selecciona un ataque: ");
+                            System.out.println("\nSelecciona un ataque: ");
                             int cantataques = 0;
                             int posicionAtk = 0;
                             for (Ataque i : pokemonJugador.getHabilidades()){
@@ -404,4 +413,16 @@ public class Combate {
         }
         return decision;
     }
+
+    public void mostrarVida(Pokemon pokemon1, Pokemon pokemon2){
+        if (pokemon1.getVelocidad() >= pokemon2.getVelocidad()){
+            System.out.printf("\nHP de %s: %d/%d",pokemon1.getNombre(),pokemon1.getHp(),pokemon1.getHpReset());
+            System.out.printf("\nHP de %s: %d/%d\n",pokemon2.getNombre(),pokemon2.getHp(),pokemon2.getHpReset());
+        } else {
+            System.out.printf("\nHP de %s: %d/%d",pokemon2.getNombre(),pokemon2.getHp(),pokemon2.getHpReset());
+            System.out.printf("\nHP de %s: %d/%d\n",pokemon1.getNombre(),pokemon1.getHp(),pokemon1.getHpReset());
+        }
+        System.out.println("--------------------------------------------------------------------------------------\n");
+    }
+
 }
