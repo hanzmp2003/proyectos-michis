@@ -163,6 +163,9 @@ public class Combate {
 
     // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
     public int iniciarCombate() {
+        int seleccionJugador = 0;
+        int seleccionRival = 0;
+        int decisionPelea = -1;
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         vidasJugador = 0;   
         vidasRival = 0;
@@ -183,19 +186,29 @@ public class Combate {
         // Aquí va la lógica del combate
         while (vidasJugador > 0 && vidasRival > 0) {
 
-            int seleccionJugador = jugador.elegirPokeJugador(); 
-                if(seleccionJugador == -1){
-                     System.out.println("\n¡Has decidido retirarte del combate!");
-                    return -1; // Retirada del jugad
-                }
+            switch (decisionPelea){
+                case -1: // En este caso siempre entra la primera vez
+                    // Aquí se muestran las elecciones
+                    seleccionJugador = jugador.elegirPokeJugador();
+                    seleccionRival = entrenador.npcElige();
+                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
+                    System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+                        if(seleccionJugador == -1){
+                            System.out.println("\n¡Has decidido retirarte del combate!");
+                            return -1; // Retirada del jugad
+                        }
 
-            int seleccionRival = entrenador.npcElige();
-            //Mostar elecciones
+                case 0:
+                    seleccionJugador = jugador.elegirPokeJugador();
+                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
+
+                case 1:
+                    seleccionRival = entrenador.npcElige();
+                    System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+            }
+
             System.out.println();
-            System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
-            System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-            //Realizar Pelea
-            peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
+            decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
             
             //recuenta los pokemones vivos
             vidasJugador = 0;
@@ -239,7 +252,7 @@ public class Combate {
         return daniototal;
     }
 
-    public void peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
+    public int peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
         int cerrarAtaque = 0;
         int opcionAtaque = 0;
         
@@ -352,11 +365,12 @@ public class Combate {
   
         if (pokemonJugador.getHp() <= 0) {
             pokemonJugador.setEstado(false);
-            System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
-        } else if (pokemonRival.getHp() <= 0) {
+            return 0;
+            // System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
+        } else {
             pokemonRival.setEstado(false);
-            System.out.printf("\nEl pokemon rival %s ha sido derrotado.\n", pokemonRival.getNombre());
+            return 1;
+            // System.out.printf("\nEl pokemon rival %s ha sido derrotado.\n", pokemonRival.getNombre());
         }
     }
-
 }

@@ -79,6 +79,7 @@ public class Entrenador {
         for (int i = 0 ; i < equipo.length && cerrarElegir < 1 ; i++){
             if (equipo[i].getEstado()){
                 seleccionNPC = i;
+                cerrarElegir++;
             }
         }
         return seleccionNPC;
