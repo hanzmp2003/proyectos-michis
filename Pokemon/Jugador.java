@@ -47,7 +47,7 @@ public class Jugador {
         return nombre;
     }
 
-    public int elegirPokeJugador(){
+    public int elegirPokeJugador(int cambiar){
     int vivos = 0;
     int posicion = 0;
     int seleccion = 0;
@@ -70,6 +70,9 @@ public class Jugador {
             for (int i = 0; i < pokesvivos.length ; i++) {
                 System.out.printf("\n%d) %s",i+1,pokesvivos[i]);
             }
+            if (cambiar == 1) {
+                System.out.printf("\n%d) Atrás\n", pokesvivos.length + 1);
+            }
             opcion = sc.nextInt();
             if (opcion <= pokesvivos.length && opcion > 0){
                 for (int i = 0 ; i < equipo.length ; i++) {
@@ -77,6 +80,8 @@ public class Jugador {
                         seleccion = i;
                     }
                 }
+            } else if (opcion == pokesvivos.length + 1 && cambiar == 1) {
+                seleccion = -1;
             } else {
                 System.out.println("Por favor, ingrese una de las opciones.\n");
             }

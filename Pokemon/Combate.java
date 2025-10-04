@@ -163,9 +163,10 @@ public class Combate {
 
     // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
     public int iniciarCombate() {
+        int salir = 0;
         int seleccionJugador = 0;
         int seleccionRival = 0;
-        int decisionPelea = -1;
+        int decisionPelea = -4;
         System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
         vidasJugador = 0;   
         vidasRival = 0;
@@ -184,32 +185,38 @@ public class Combate {
         }
     }   
         // Aquí va la lógica del combate
-        while (vidasJugador > 0 && vidasRival > 0) {
+        while (vidasJugador > 0 && vidasRival > 0 && salir == 0) {
 
-            switch (decisionPelea){
-                case -1: // En este caso siempre entra la primera vez
+            switch (decisionPelea){ // Se utilizan casos negativos pues el return de decisionPelea contiene la posición del nuevo pokemon, en caso de cambio
+                
+                case -1 :
+                    seleccionRival = entrenador.npcElige();
+                    System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+                case -2 :
+                    seleccionJugador = jugador.elegirPokeJugador(0);
+                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
+                case -3 :
+                    System.out.println("\n¡Has decidido retirarte del combate!");
+                    salir = -1;
+                case -4 :
+                    // En este caso siempre entra la primera vez
                     // Aquí se muestran las elecciones
-                    seleccionJugador = jugador.elegirPokeJugador();
+                    seleccionJugador = jugador.elegirPokeJugador(0);
                     seleccionRival = entrenador.npcElige();
                     System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
                     System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-                        if(seleccionJugador == -1){
-                            System.out.println("\n¡Has decidido retirarte del combate!");
-                            return -1; // Retirada del jugad
-                        }
-
-                case 0:
-                    seleccionJugador = jugador.elegirPokeJugador();
-                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
-
-                case 1:
-                    seleccionRival = entrenador.npcElige();
-                    System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-            }
+                }
 
             System.out.println();
             decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
             
+            while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
+
+                System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
+                decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], entrenador.getEquipo()[seleccionRival]);
+
+            }
+
             //recuenta los pokemones vivos
             vidasJugador = 0;
             vidasRival = 0; 
@@ -230,11 +237,12 @@ public class Combate {
         if (vidasJugador == 0){
             System.out.printf("\n¡Has sido derrotado por %s!\n",entrenador.getNombre());
             return 0; //derrota
-        } else {
+        } else if (vidasRival == 0){
             System.out.printf("\n¡Has derrotado a %s!\n",entrenador.getNombre());
             return 1; //victoria
-        }  
-            
+        }  else {
+            return salir;
+        }    
     }
 
     
@@ -253,16 +261,26 @@ public class Combate {
     }
 
     public int peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
+        int cambiarPokemon = -1;
+        int salir = -1;
+        int seleccion = 1;
 
         // Pierde el que se quede sin vida
-        while (pokemonJugador.getHp() > 0 && pokemonRival.getHp() > 0) { 
-            
+        while (pokemonJugador.getHp() > 0 && pokemonRival.getHp() > 0 && salir == -1) { 
+
             // Quien ataca primero según velocidad
             if (pokemonJugador.getVelocidad() >= pokemonRival.getVelocidad()) {
 
-                System.out.println("Tu pokemon es más rápido y ataca primero. Selecciona un ataque: ");
-                turnoJugador(pokemonJugador, pokemonRival, scanner);
-
+                System.out.println("Tu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
+                seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
+                if (seleccion == 2){
+                    cambiarPokemon = jugador.elegirPokeJugador(1);
+                    if (cambiarPokemon >= 0){
+                        salir = 0;
+                    }
+                } else if (seleccion == -3){
+                    salir = 0;
+                }
                 // Ataque del rival si sigue con vida
                 if (pokemonRival.getHp() > 0) {
                     turnoRival(pokemonJugador, pokemonRival);                   
@@ -276,20 +294,33 @@ public class Combate {
                 turnoRival(pokemonJugador, pokemonRival);
 
                 if (pokemonJugador.getHp() > 0) {
-                    System.out.println("Es tu turno. Selecciona un ataque: ");
-                    turnoJugador(pokemonJugador, pokemonRival, scanner);     
+                    System.out.println("Es tu turno.");
+                    seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
+                    if (seleccion == 2){
+                        cambiarPokemon = jugador.elegirPokeJugador(1);
+                        if (cambiarPokemon >= 0){
+                            salir = 0;
+                        }
+                    } else if (seleccion == -3){
+                        salir = 0;
+                    }
                 }
             }
+
         }
   
         if (pokemonJugador.getHp() <= 0) {
             pokemonJugador.setEstado(false);
-            return 0;
+            return -2;
             // System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
-        } else {
+        } else if (pokemonRival.getHp() <= 0){
             pokemonRival.setEstado(false);
-            return 1;
+            return -1;
             // System.out.printf("\nEl pokemon rival %s ha sido derrotado.\n", pokemonRival.getNombre());
+        } else if (seleccion == 2 && cambiarPokemon >= 0){
+            return cambiarPokemon;
+        } else {
+            return seleccion;
         }
     }
 
@@ -301,51 +332,76 @@ public class Combate {
         pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);
     }
 
-    private void turnoJugador(Pokemon pokemonJugador, Pokemon pokemonRival, Scanner scanner){
-        int cerrarAtaque = 0;
-        int opcionAtaque;
-        while (cerrarAtaque == 0) {
+    private int turnoJugador(Pokemon pokemonJugador, Pokemon pokemonRival, Scanner scanner){
+        int decision = 0;
+        int turno = 0;
+        int opcionTurno;
+        while (turno == 0){
             try {
-                int cantataques = 0;
-                int posicionAtk = 0;
-                for (Ataque i : pokemonJugador.getHabilidades()){
-                    if (i.getPp() > 0){
-                        cantataques += 1;
-                    }
-                }
-                // Lista temporal para mostrar solo los ataques con PP > 0
-                Ataque[] ataquesdisp = new Ataque[cantataques];
-                for (int i = 0 ; i < pokemonJugador.getHabilidades().length ; i++){
-                    if (pokemonJugador.getHabilidades()[i].getPp() > 0){
-                        ataquesdisp[posicionAtk] = pokemonJugador.getHabilidades()[i];
-                        posicionAtk += 1;
-                    }
-                }
-                for (int i = 0 ; i < ataquesdisp.length ; i++){
-                    System.out.printf("\n%d) %s (Poder: %d, PP: %d)", i+1, pokemonJugador.getHabilidades()[i].getNombre(), pokemonJugador.getHabilidades()[i].getPoder(), pokemonJugador.getHabilidades()[i].getPp());
-                }
-                opcionAtaque = scanner.nextInt() - 1;
-                // Verifica que la opción sea válida
-                if (opcionAtaque >= 0 && opcionAtaque < ataquesdisp.length) {
+                System.out.println("1) Atacar\n2) Cambiar pokemon\n3) Retirarse\n");
+                opcionTurno = scanner.nextInt();
+                if (opcionTurno == 1) {
+                    int cerrarAtaque = 0;
+                    int opcionAtaque;
+                    while (cerrarAtaque == 0) {
+                        try {
+                            System.out.println("Selecciona un ataque: ");
+                            int cantataques = 0;
+                            int posicionAtk = 0;
+                            for (Ataque i : pokemonJugador.getHabilidades()){
+                                if (i.getPp() > 0){
+                                    cantataques += 1;
+                                }
+                            }
+                            // Lista temporal para mostrar solo los ataques con PP > 0
+                            Ataque[] ataquesdisp = new Ataque[cantataques];
+                            for (int i = 0 ; i < pokemonJugador.getHabilidades().length ; i++){
+                                if (pokemonJugador.getHabilidades()[i].getPp() > 0){
+                                    ataquesdisp[posicionAtk] = pokemonJugador.getHabilidades()[i];
+                                    posicionAtk += 1;
+                                }
+                            }
+                            for (int i = 0 ; i < ataquesdisp.length ; i++){
+                                System.out.printf("\n%d) %s (Poder: %d, PP: %d)", i+1, pokemonJugador.getHabilidades()[i].getNombre(), pokemonJugador.getHabilidades()[i].getPoder(), pokemonJugador.getHabilidades()[i].getPp());
+                            }
+                            opcionAtaque = scanner.nextInt() - 1;
+                            // Verifica que la opción sea válida
+                            if (opcionAtaque >= 0 && opcionAtaque < ataquesdisp.length) {
 
-                    // Realiza el ataque y resta el PP
-                    pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));
-                    int ppActual = ataquesdisp[opcionAtaque].getPp();
-                    ataquesdisp[opcionAtaque].setPp(ppActual - 1);
-                    cerrarAtaque = 1;
-                    if (pokemonRival.getHp() < 0) {
-                        // Evita que la vida quede negativa
-                        pokemonRival.setHp(0);
+                                // Realiza el ataque y resta el PP
+                                pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));
+                                int ppActual = ataquesdisp[opcionAtaque].getPp();
+                                ataquesdisp[opcionAtaque].setPp(ppActual - 1);
+                                cerrarAtaque = 1;
+                                turno = 1;
+                                if (pokemonRival.getHp() < 0) {
+                                    // Evita que la vida quede negativa
+                                    pokemonRival.setHp(0);
+                                }
+                            } else {
+                                System.out.println("Opción inválida. Por favor, seleccione un ataque.\n");
+                                scanner.nextLine();
+                            }
+                        } catch (InputMismatchException e) {
+                            System.err.println("Error: " + e);
+                            System.err.println("Por favor, ingresa una opción válida para el ataque.\n");
+                            scanner.nextLine();
+                        }
                     }
+                } else if (opcionTurno == 2) {
+                    decision = opcionTurno;
+                    turno = 1;
+                } else if (opcionTurno == 3) {
+                    decision = -3;
+                    turno = 1;
                 } else {
-                    System.out.println("Opción inválida. Por favor, seleccione un ataque.\n");
+                    System.out.println("Por favor, introduzca una de las opciones.\n");
                 }
+
             } catch (InputMismatchException e) {
-                System.err.println("Error: " + e);
-                System.err.println("Por favor, ingresa una opción válida para el ataque.");
-                scanner.nextLine();
+                System.out.println("Por favor, introduzca una de las opciones.\n");
             }
         }
-
+        return decision;
     }
 }
