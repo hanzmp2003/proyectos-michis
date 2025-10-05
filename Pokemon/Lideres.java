@@ -6,14 +6,15 @@ public class Lideres{
     public String nombre;
     public int nivel;
     public String elemento;
+     private Pokemon[] equipo;
     public Pokemon[] listaPokemones;
     public boolean estado;
 
-    public Lideres(String nombre, int nivel, String elemento){
+    public Lideres(String nombre, int nivel, String elemento, Pokemon[] equipo){
         this.nombre = nombre;
         this.nivel = nivel;
         this.elemento = elemento;
-        this.listaPokemones = new Pokemon[6];
+        this.equipo = equipo;
         this.estado = true;
     }
      
@@ -49,9 +50,6 @@ public class Lideres{
         return elemento;
     }
 
-    public Pokemon[] getEquipo() {
-        return listaPokemones;
-    }
 
     public void reiniciarEstadisticas(){
         for (Pokemon i : listaPokemones){
@@ -107,5 +105,13 @@ public class Lideres{
             return -1;
         }  
     }
+
+     public Pokemon[] getEquipo() { 
+        return equipo; 
+        }
+
+    public void setEquipo(Pokemon[] equipo) { 
+        this.equipo = equipo; 
+        }
 }
 
