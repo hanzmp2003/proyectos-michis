@@ -1,10 +1,13 @@
 public class AgregarGimnasio {
+    Gimnasio laJungla;
+    Gimnasio elBunker;
+    Gimnasio LosTigres; 
 
     public AgregarGimnasio() {
         // Instancias de gimnasios bien chatas
-        Gimnasio laJungla = new Gimnasio("La Jungla del Precario", "Fácil");
-        Gimnasio elBunker = new Gimnasio("El Búnker de los Chatas", "Intermedio");
-        Gimnasio LosTigres = new Gimnasio("Los Tigres del Guarco", "Difícil");
+        laJungla = new Gimnasio("La Jungla del Precario", "Fácil");
+        elBunker = new Gimnasio("El Búnker de los Chatas", "Intermedio");
+        LosTigres = new Gimnasio("Los Tigres del Guarco", "Difícil");
     }
 
  // Imprime los nombres de los gimansios
