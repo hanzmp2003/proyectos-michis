@@ -31,7 +31,7 @@ public class Menu {
     }
 
     private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
-        Pokemon[] nuevoCatalogo;
+        Pokemon[] nuevoCatalogo = new Pokemon[0];
         int opcion = 0;
         int cerrar = 0;
         while (cerrar == 0){
@@ -52,7 +52,7 @@ public class Menu {
                 sc.nextLine();
             }
         }
-    return catalogoPokemones[opcion - 1];
+    return nuevoCatalogo[opcion - 1];
     }
 
     public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
