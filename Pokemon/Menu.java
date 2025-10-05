@@ -19,7 +19,7 @@ public class Menu {
         // Empezar a registrar datos de jugador
         Jugador jugador = iniciarJugador(catalogoPokemones, sc);
     
-        System.out.println("Presione enter para continuar:\n");
+        System.out.println("Presione enter para conti nuar:\n");
         sc.nextLine(); // Esto hace que salte un scanner que para el programa hasta que se introduzca enter
 
         System.out.printf("\nExcelente, tu primera parada es el gimnasio %s.",gimnasio.getNombre());
@@ -110,13 +110,7 @@ public class Menu {
         System.out.println("Sus entrenadores y líderes son los siguientes:\n");
         gimnasio.verOponentes();
         int oponente = verificarEntrenadores(gimnasio);
-        if (oponente >= 0){
-            oponente = verificarEntrenadores(gimnasio);
-            System.out.printf("\nTu siguiente combate es contra %s.\n",gimnasio.entrenadores()[oponente].getNombre());
-        } else {
-            ganados = 2;
-            System.out.printf("\nTu último combate es contra el lider %s\n",gimnasio.getLider().getNombre());
-        }
+        System.out.printf("\nTu primer combate es contra %s.\n",gimnasio.entrenadores()[oponente].getNombre());
         System.out.println("¿Deseas empezar con el combate?\n1) Empezar combate\n2) Salir\n");
         while (ganados < 2 && retirarse == 0) { 
             try {
@@ -140,21 +134,17 @@ public class Menu {
                                     } else if (i == gimnasio.entrenadores().length) {
                                         System.out.printf("\nTu último combate es contra el lider del gimnasio %s.",gimnasio.getLider().getNombre());
                                     }
-                                    preguntarContinuar(sc, "Ir al combate");
+                                    preguntarContinuar(sc, "Ir a combate contra lider");
                                     ganados++;
-                                } else if (resultado == 0) { // System.out.println("\n¡Excelente! Tu rival te reconoce por no rendirte.\n");
+                                } else if (resultado == 0) {
                                     System.out.println("Has sido derrotado. ¿Deseas volver a intentarlo?");
                                     preguntarContinuar(sc, "Volver a intentarlo");
                                 } else {
                                     System.out.println("\nTe has retirado del combate.");
                                     preguntarContinuar(sc, "Volver a intentalo");
                                 }
-
                             }
                         }
-                    }
-                    if (salir == 0) {
-                        ganados = 2;
                     }
 
                 } else if (opcion == 2) {
@@ -177,7 +167,7 @@ public class Menu {
                     gimnasio.getLider().reiniciarEstadisticas();
                     if (resultado == 1) {
                         System.out.printf("\n¡Felicidades! Has derrotado al lider del gimnasio, y con ello obtenido la insignia del gimnasio %s",gimnasio.getNombre());
-                        ganados = 3;
+                        ganados++;
                         intentar = 0;
                     } else if (resultado == 0) {
                         System.out.println("Has sido derrotado.¿Deseas volver a intentarlo?\n");
@@ -189,15 +179,11 @@ public class Menu {
                 }
             }
         }
-
         if (retirarse == 0 && ganados == 3) {
-            return ganados;
-        } else if (retirarse == 1 && ganados > 0){
             return ganados;
         } else {
             return -1;
         }
-
     }
 
     private int verificarEntrenadores(Gimnasio gimnasio){

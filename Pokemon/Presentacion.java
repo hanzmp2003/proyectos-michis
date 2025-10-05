@@ -43,15 +43,15 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
       // Idea para el combate  
       int ganador = 0;
         for (int i = 0 ; i < entrenadores.getEntrenadores().length ; i++) {
-            Combate pelea = new Combate(jugador, entrenadores.getEntrenadores()[i]);
+            CombateEntrenador pelea = new CombateEntrenador(jugador, entrenadores.getEntrenadores()[i]);
             ganador = pelea.iniciarCombate(); // Con ganador se pueden realizar luego casos; si es 1 jugador gana y avanza, si es 2 jugador pierde y puede volver a intentarlo o terminar partida  
 
+        }
     }
-}
 
 
     public Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
-        Pokemon[] nuevoCatalogo = new Pokemon[0];
+        Pokemon[] nuevoCatalogo;
         int opcion = 0;
         int cerrar = 0;
         while (cerrar == 0){
@@ -62,7 +62,7 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
                 opcion = sc.nextInt();
                 if (opcion>0 && opcion <= nuevoCatalogo.length) {
                     System.out.printf("\n¡Excelente! Has elegido a %s\n",nuevoCatalogo[opcion - 1].getNombre());
-                    nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones. Tmb oculta el pokemon elegido
+                    nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones.
                     cerrar = 1;
                 } else {
                     System.out.println("Por favor, introduzca un número de los que acompaña a los pokemones.");
@@ -72,7 +72,7 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
                 sc.nextLine();
             }
         }
-    return nuevoCatalogo[opcion - 1];
+    return catalogoPokemones[opcion - 1];
     }
 
      public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
