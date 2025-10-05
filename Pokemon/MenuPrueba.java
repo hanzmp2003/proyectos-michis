@@ -16,28 +16,24 @@ public class MenuPrueba{
         AgregarEntrenadores ae = new AgregarEntrenadores();
         AgregarLideres al = new AgregarLideres();
        
-
-        
-        
         // Empezar a registrar datos de jugador
         Jugador jugador = iniciarJugador(catalogoPokemones, sc);
     
         System.out.println("Presione enter para continuar:\n");
         sc.nextLine(); // Esto hace que salte un scanner que para el programa hasta que se introduzca enter
 
+        //Gimnasio #1
         System.out.println("\nExcelente, tu primera parada es:" );
         Entrenador entrenador1 = ae.brittany;
         Entrenador entrenador2 = ae.kimberly;
         Lideres lider = al.juankiloco;
         Gimnasio gimnasio = ag.laJungla;
         ag.MostrarGimnasio(gimnasio, entrenador1, entrenador2, lider);
-        
 
-        System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes, te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
-
-
+        System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
+        System.out.println("te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
         // Idea para el combate 
-        peleaGimnasio(jugador, gimnasio, sc);
+       
         
     }
 
@@ -134,8 +130,7 @@ public class MenuPrueba{
 
                         // Falta agregar lógica de entrenador con lider cada dos entrenadores
                         if (true){
-                            Combate combate = new Combate(jugador, gimnasio.entrenadores()[i]);
-                            int resultado = combate.iniciarCombate();
+                            
                         }
                     }
                 } else if (opcion == 2) {
