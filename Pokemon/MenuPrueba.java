@@ -32,7 +32,6 @@ public class MenuPrueba{
         Gimnasio gimnasio = ag.laJungla;
         ag.MostrarGimnasio(gimnasio, entrenador1, entrenador2, lider);
         
-
         System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes, te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
 
 
