@@ -47,6 +47,16 @@ public class Jugador {
         return nombre;
     }
 
+    public void reiniciarEstadisticas(){
+        for (Pokemon i : equipo){
+            i.resetHp();
+            i.setEstado(true);
+            for (Ataque j : i.getHabilidades()) {
+                j.resetPP();
+            }
+        }
+    }
+
     public int elegirPokeJugador(int cambiar){
     int vivos = 0;
     int posicion = 0;

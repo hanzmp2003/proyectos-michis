@@ -3,20 +3,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 // Clase para manejar el combate entre un jugador y un entrenador
-public class Combate {
+public class CombateEntrenador {
     private Jugador jugador;
     private Entrenador entrenador;
-    private Lideres lider;
     private Scanner scanner = new Scanner(System.in);
     private int vidasJugador; 
     private int vidasRival;
 
-    public Combate(Jugador jugador, Entrenador entrenador) {
+    public CombateEntrenador(Jugador jugador, Entrenador entrenador) {
         this.jugador = jugador;
         this.entrenador = entrenador;
     }
-
-    public
 
     public Jugador getJugador() {
         return jugador;
@@ -166,7 +163,7 @@ public class Combate {
 
     // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
 
-    public int combateEntrenador() {
+    public int iniciarCombate() {
         int salir = 0;
         int seleccionJugador = 0;
         int seleccionRival = 0;
@@ -243,89 +240,7 @@ public class Combate {
             return 0; //derrota
         } else if (vidasRival == 0){
             System.out.printf("\n¡Has derrotado a %s!\n",entrenador.getNombre());
-            return 1; //victoria
-        }  else {
-            return salir;
-        }    
-    }
-
-    public int combateLider() {
-        int salir = 0;
-        int seleccionJugador = 0;
-        int seleccionRival = 0;
-        int decisionPelea = -4;
-        System.out.println("¡El combate entre " + jugador.getNombre() + " y " + entrenador.getNombre() + " ha comenzado!");
-        vidasJugador = 0;   
-        vidasRival = 0;
-
-        // Contar pokémones vivos del Jugador
-        for (Pokemon pokemon : jugador.getEquipo()) { 
-        if (pokemon.getEstado()) {
-            vidasJugador++;
-        }
-    }
-
-        // Contar pokémones vivos del Rival
-        for (Pokemon pokemon : entrenador.getEquipo()) {
-        if (pokemon.getEstado()) {
-            vidasRival++;
-        }
-    }   
-        // Aquí va la lógica del combate
-        while (vidasJugador > 0 && vidasRival > 0 && salir == 0) {
-
-            switch (decisionPelea){ // Se utilizan casos negativos pues el return de decisionPelea contiene la posición del nuevo pokemon, en caso de cambio
-                
-                case -1 :
-                    seleccionRival = entrenador.npcElige();
-                    System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-                case -2 :
-                    seleccionJugador = jugador.elegirPokeJugador(0);
-                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
-                case -3 :
-                    System.out.println("\n¡Has decidido retirarte del combate!");
-                    salir = -1;
-                case -4 :
-                    // En este caso siempre entra la primera vez
-                    // Aquí se muestran las elecciones
-                    seleccionJugador = jugador.elegirPokeJugador(0);
-                    seleccionRival = entrenador.npcElige();
-                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
-                    System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
-                }
-
-            System.out.println();
-            decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
-            
-            while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
-
-                System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
-                decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], entrenador.getEquipo()[seleccionRival]);
-
-            }
-
-            //recuenta los pokemones vivos
-            vidasJugador = 0;
-            vidasRival = 0; 
-
-            for (Pokemon pokemon : jugador.getEquipo()) { 
-            if (pokemon.getEstado()) {
-            vidasJugador++;
-                }
-            }
-
-            for (Pokemon pokemon : entrenador.getEquipo()) {
-            if (pokemon.getEstado()) {
-            vidasRival++;
-                }
-            }
-        }    
-         //Condicionales para determinar el ganador   
-        if (vidasJugador == 0){
-            System.out.printf("\n¡Has sido derrotado por %s!\n",entrenador.getNombre());
-            return 0; //derrota
-        } else if (vidasRival == 0){
-            System.out.printf("\n¡Has derrotado a %s!\n",entrenador.getNombre());
+            entrenador.setEstado(false);
             return 1; //victoria
         }  else {
             return salir;
