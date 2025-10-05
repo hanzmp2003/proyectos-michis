@@ -2,6 +2,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
+    private int retirarse;
+    private int salir;
+    private int intentar;
 
     public Menu(){
         Scanner sc = new Scanner(System.in);
@@ -10,7 +13,6 @@ public class Menu {
         AgregarPokemon catalogoCompleto = new AgregarPokemon();
         Gimnasio gimnasio = new Gimnasio("La California","Intermedio");
         Entrenador[] entrenadores = gimnasio.entrenadores();
-        Lideres[] lideres = gimnasio.lideres();
         Pokemon[] catalogoPokemones = catalogoCompleto.catalogoEleccion();
         
         
@@ -24,12 +26,12 @@ public class Menu {
         System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes");
 
         // Idea para el combate 
-        peleaGimnasio(jugador, gimnasio, sc);
+        peleaGimnasio(jugador, gimnasio, sc); // En teoría, esta lógico no modificaría tipos primitivos. Pero es mejor verificar.
         
     }
 
     private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
-        Pokemon[] nuevoCatalogo = new Pokemon[0]; //Inicializa nuevoCatalogo
+        Pokemon[] nuevoCatalogo;
         int opcion = 0;
         int cerrar = 0;
         while (cerrar == 0){
@@ -50,7 +52,7 @@ public class Menu {
                 sc.nextLine();
             }
         }
-        return nuevoCatalogo[opcion - 1];
+    return catalogoPokemones[opcion - 1];
     }
 
     public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
@@ -101,43 +103,141 @@ public class Menu {
         return new Jugador(nombre,equipo);
     }
 
-    public void peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Scanner sc){
-        int peleaEntrenador;
-        int peleaLider;
-        int salir = 0;
-        int opcion = 0;
+    public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Scanner sc){
+        reiniciarOpciones();
+        int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
         System.out.println("Sus entrenadores y líderes son los siguientes:\n");
         gimnasio.verOponentes();
-        System.out.printf("\nTu primer combate es contra %s, quien parece haber estado esperándote.\n",gimnasio.entrenadores()[0].getNombre());
-        System.out.println("¿Deseas empezar con el combate?\\n" + // Esto es una prueba, no sé si funciona
-                            "1) Empezar combate\\n" + 
-                            "2) Salir\\n");
-        while (opcion != -1) { 
+        int oponente = verificarEntrenadores(gimnasio);
+        if (oponente >= 0){
+            oponente = verificarEntrenadores(gimnasio);
+            System.out.printf("\nTu siguiente combate es contra %s.\n",gimnasio.entrenadores()[oponente].getNombre());
+        } else {
+            ganados = 2;
+            System.out.printf("\nTu último combate es contra el lider %s\n",gimnasio.getLider().getNombre());
+        }
+        System.out.println("¿Deseas empezar con el combate?\n1) Empezar combate\n2) Salir\n");
+        while (ganados < 2 && retirarse == 0) { 
             try {
-                opcion = sc.nextInt();
+                int opcion = sc.nextInt();
                 if (opcion == 1){
                     for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
+                        if (gimnasio.entrenadores()[i].getEstado()) {
 
-                        // Falta agregar lógica de entrenador con lider cada dos entrenadores
-                        if (true){
-                            Combate combate = new Combate(jugador, gimnasio.entrenadores()[i]);
-                            int resultado = combate.iniciarCombate();
+                            while (intentar == 1){
+                                
+                                CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
+                                int resultado = combate.iniciarCombate();
+                                jugador.reiniciarEstadisticas();
+                                gimnasio.entrenadores()[i].reiniciarEstadisticas(); // Se reinician stats, más no estado
+
+                                if (resultado == 1) {
+                                    System.out.println("¡Enhorabuena! Has ganado el combate");
+                                    gimnasio.verOponentes();
+                                    if (i < gimnasio.entrenadores().length - 1){
+                                        System.out.printf("\nTu siguiente combate es contra %s",gimnasio.entrenadores()[i+1].getNombre());
+                                    } else if (i == gimnasio.entrenadores().length) {
+                                        System.out.printf("\nTu último combate es contra el lider del gimnasio %s.",gimnasio.getLider().getNombre());
+                                    }
+                                    preguntarContinuar(sc, "Ir al combate");
+                                    ganados++;
+                                } else if (resultado == 0) { // System.out.println("\n¡Excelente! Tu rival te reconoce por no rendirte.\n");
+                                    System.out.println("Has sido derrotado. ¿Deseas volver a intentarlo?");
+                                    preguntarContinuar(sc, "Volver a intentarlo");
+                                } else {
+                                    System.out.println("\nTe has retirado del combate.");
+                                    preguntarContinuar(sc, "Volver a intentalo");
+                                }
+
+                            }
                         }
                     }
+                    if (salir == 0) {
+                        ganados = 2;
+                    }
+
                 } else if (opcion == 2) {
-                    opcion = -1;
+                    retirarse = 1;
                 } else {
-                    System.out.println("Opción inválida. Ingrese:\n1) para empezar primer combate\n2) Salir\n");
+                    System.out.println("Opción inválida. Ingrese:\n1) Empezar el combate\n2) Salir\n");
                 }
             } catch (InputMismatchException e){
-                System.out.println("Error. Ingrese:\n1) para empezar primer combate\n2) Salir\n");
+                System.out.println("Error. Ingrese:\n1) Empezar el combate\n2) Salir\n");
                 sc.nextLine();
             }
         }
         
+        if (gimnasio.getLider().getEstado()){
+            if (retirarse == 0) {
+                while (intentar == 1){
+                    CombateLider combate = new CombateLider(jugador, gimnasio.getLider());
+                    int resultado = combate.iniciarCombate();
+                    jugador.reiniciarEstadisticas();
+                    gimnasio.getLider().reiniciarEstadisticas();
+                    if (resultado == 1) {
+                        System.out.printf("\n¡Felicidades! Has derrotado al lider del gimnasio, y con ello obtenido la insignia del gimnasio %s",gimnasio.getNombre());
+                        ganados = 3;
+                        intentar = 0;
+                    } else if (resultado == 0) {
+                        System.out.println("Has sido derrotado.¿Deseas volver a intentarlo?\n");
+                        preguntarContinuar(sc, "Intentar de nuevo el combate");
+                    } else {
+                        System.out.println("\nTe has retirado del combate.");
+                        preguntarContinuar(sc, "Volver a intentarlo");
+                    }
+                }
+            }
+        }
 
+        if (retirarse == 0 && ganados == 3) {
+            return ganados;
+        } else if (retirarse == 1 && ganados > 0){
+            return ganados;
+        } else {
+            return -1;
+        }
 
+    }
+
+    private int verificarEntrenadores(Gimnasio gimnasio){
+        int entrenadorVivo = -1;
+        int salir = 0;
+        for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
+            if (gimnasio.entrenadores()[i].getEstado()) {
+                entrenadorVivo = i;
+            }
+        }
+        return entrenadorVivo;
+    }
+
+    public void preguntarContinuar(Scanner sc, String opcion){
+        int cerrar = 0;
+        while (cerrar == 0){
+            try {
+                System.out.printf("\nIngresa:\n1) %s\n2) Retirarse",opcion);
+                int opcion2 = sc.nextInt();
+                if (opcion2 == 1) {
+                    cerrar = 1;
+                } else if (opcion2 == 2) {
+                    cerrar = 1;
+                    retirarse = 1;
+                    intentar = 0;
+                    salir = 1;
+                } else {
+                    System.out.println("Valor ingresado inválido.");
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Error: Entrada inválida.");
+                sc.nextLine();
+            }
+        }                                                                      
+    }
+
+    public void reiniciarOpciones(){
+        retirarse = 0;
+        intentar = 1;
+        salir = 0;
     }
 
 }

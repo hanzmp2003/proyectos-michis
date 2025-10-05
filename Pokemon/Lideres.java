@@ -1,4 +1,7 @@
 // Clase Lideres que representa un líder de gimnasio con su nombre, nivel, elemento y lista de Pokémon
+
+import java.util.Random;
+
 public class Lideres{
     public String nombre;
     public int nivel;
@@ -30,6 +33,10 @@ public class Lideres{
         return nivel;
     }
 
+    public void setEstado(boolean estado){
+        this.estado = estado;
+    }
+
     public boolean getEstado(){
         return estado;
     }
@@ -44,6 +51,61 @@ public class Lideres{
 
     public Pokemon[] getEquipo() {
         return listaPokemones;
+    }
+
+    public void reiniciarEstadisticas(){
+        for (Pokemon i : listaPokemones){
+            i.resetHp();
+            i.setEstado(true);
+            for (Ataque j : i.getHabilidades()) {
+                j.resetPP();
+            }
+        }
+    }
+
+    public int npcElige(){
+        int cerrarElegir = 0;
+        int seleccionNPC = 0;
+        for (int i = 0 ; i < listaPokemones.length && cerrarElegir < 1 ; i++){
+            if (listaPokemones[i].getEstado()){
+                seleccionNPC = i;
+                cerrarElegir++;
+            }
+        }
+        return seleccionNPC;
+    }
+
+    public int ataqueNPC(Pokemon pokemon){
+        int seleccion = 0; 
+        Random rand = new Random();
+        int posicion = 0;
+        int tamaño = 0;
+        for (Ataque a : pokemon.getHabilidades()) {
+            if (a.getPp()>0){
+                tamaño += 1;
+            }
+        }
+
+        Ataque[] atqdis = new Ataque[tamaño];
+        int aleatorio = rand.nextInt(tamaño);
+
+        for (int i = 0; i < pokemon.getHabilidades().length ; i ++){
+            if (pokemon.getHabilidades()[i].getPp() > 0){
+                atqdis[posicion] = pokemon.getHabilidades()[i];
+                posicion += 1;
+            }
+        }
+
+        for (int j = 0; j < pokemon.getHabilidades().length;j++){
+            if (atqdis[aleatorio] == pokemon.getHabilidades()[j]){
+                seleccion = j;
+            }
+        }
+        if (tamaño > 0){
+            return seleccion;
+        } else {
+            return -1;
+        }  
     }
 }
 

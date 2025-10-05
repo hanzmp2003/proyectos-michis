@@ -3,14 +3,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 // Clase para manejar el combate entre un jugador y un entrenador
-public class Combate {
+public class CombateEntrenador {
     private Jugador jugador;
     private Entrenador entrenador;
     private Scanner scanner = new Scanner(System.in);
     private int vidasJugador; 
     private int vidasRival;
 
-    public Combate(Jugador jugador, Entrenador entrenador) {
+    public CombateEntrenador(Jugador jugador, Entrenador entrenador) {
         this.jugador = jugador;
         this.entrenador = entrenador;
     }
@@ -162,6 +162,7 @@ public class Combate {
 
 
     // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
+
     public int iniciarCombate() {
         int salir = 0;
         int seleccionJugador = 0;
@@ -239,13 +240,12 @@ public class Combate {
             return 0; //derrota
         } else if (vidasRival == 0){
             System.out.printf("\n¡Has derrotado a %s!\n",entrenador.getNombre());
+            entrenador.setEstado(false);
             return 1; //victoria
         }  else {
             return salir;
         }    
     }
-
-    
 
     // Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
     public int ataque(Pokemon ofensivo, Pokemon defensivo, Ataque ataque){
