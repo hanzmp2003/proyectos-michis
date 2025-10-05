@@ -24,6 +24,7 @@ public class Menu {
         System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes");
 
         // Idea para el combate 
+        peleaGimnasio(jugador, gimnasio, sc);
         
     }
 
