@@ -51,7 +51,7 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
 
 
     public Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
-        Pokemon[] nuevoCatalogo;
+        Pokemon[] nuevoCatalogo = new Pokemon[0];
         int opcion = 0;
         int cerrar = 0;
         while (cerrar == 0){
@@ -62,7 +62,7 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
                 opcion = sc.nextInt();
                 if (opcion>0 && opcion <= nuevoCatalogo.length) {
                     System.out.printf("\n¡Excelente! Has elegido a %s\n",nuevoCatalogo[opcion - 1].getNombre());
-                    nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones.
+                    nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones. Tmb oculta el pokemon elegido
                     cerrar = 1;
                 } else {
                     System.out.println("Por favor, introduzca un número de los que acompaña a los pokemones.");
@@ -72,7 +72,7 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
                 sc.nextLine();
             }
         }
-    return catalogoPokemones[opcion - 1];
+    return nuevoCatalogo[opcion - 1];
     }
 
      public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
