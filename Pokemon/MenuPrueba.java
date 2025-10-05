@@ -134,8 +134,7 @@ public class MenuPrueba{
 
                         // Falta agregar lógica de entrenador con lider cada dos entrenadores
                         if (true){
-                            Combate combate = new Combate(jugador, gimnasio.entrenadores()[i]);
-                            int resultado = combate.iniciarCombate();
+                            
                         }
                     }
                 } else if (opcion == 2) {

@@ -43,8 +43,8 @@ public class Presentacion { //Esto nada más es para poner una prueba del protot
       // Idea para el combate  
       int ganador = 0;
         for (int i = 0 ; i < entrenadores.getEntrenadores().length ; i++) {
-            Combate pelea = new Combate(jugador, entrenadores.getEntrenadores()[i]);
-            ganador = pelea.iniciarCombate(); // Con ganador se pueden realizar luego casos; si es 1 jugador gana y avanza, si es 2 jugador pierde y puede volver a intentarlo o terminar partida  
+          
+              
 
     }
 }

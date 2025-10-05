@@ -31,7 +31,7 @@ public class Menu {
     }
 
     private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
-        Pokemon[] nuevoCatalogo = new Pokemon[0];
+        Pokemon[] nuevoCatalogo = new Pokemon[0]; //Inicializa nuevoCatalago
         int opcion = 0;
         int cerrar = 0;
         while (cerrar == 0){
