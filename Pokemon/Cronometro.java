@@ -1,6 +1,4 @@
-package Historial;
-
-public class Cronometro {
+public class Cronometro { 
     private long inicio;
     private long fin;
     private boolean enMarcha;
@@ -46,4 +44,3 @@ public class Cronometro {
     }
 }
     
-
