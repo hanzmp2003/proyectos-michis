@@ -4,13 +4,14 @@ public class Lideres{
     public int nivel;
     public String elemento;
     public Pokemon[] listaPokemones;
+    public boolean estado;
 
     public Lideres(String nombre, int nivel, String elemento){
         this.nombre = nombre;
         this.nivel = nivel;
         this.elemento = elemento;
         this.listaPokemones = new Pokemon[6];
-
+        this.estado = true;
     }
      
     public void setNombre(String nombre){
@@ -27,6 +28,10 @@ public class Lideres{
 
     public int getNivel(){
         return nivel;
+    }
+
+    public boolean getEstado(){
+        return estado;
     }
 
     public void setElemento(String elemento){

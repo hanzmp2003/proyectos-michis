@@ -17,7 +17,7 @@ public class AgregarEntrenadores {
         Entrenador byron = new Entrenador("Byron", false, equipoByron);
         Entrenador yandel = new Entrenador("Yandel", false, equipoYandel);
 
-        entrenadores = new Entrenador[] {brittany,kimberly,brayan,kevin,byron,yandel};
+        entrenadores = new Entrenador[] {brittany,kimberly,brayan,byron,kevin,yandel};
 
     }
 

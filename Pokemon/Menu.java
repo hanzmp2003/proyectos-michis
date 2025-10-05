@@ -2,46 +2,32 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
+
     public Menu(){
         Scanner sc = new Scanner(System.in);
+
         // Inicializar todos los pokemones, entrenadores y el catálogo de elección para el jugador
         AgregarPokemon catalogoCompleto = new AgregarPokemon();
-        AgregarEntrenadores entrenadores = new AgregarEntrenadores();
+        Gimnasio gimnasio = new Gimnasio("La California","Intermedio");
+        Entrenador[] entrenadores = gimnasio.entrenadores();
+        Lideres[] lideres = gimnasio.lideres();
         Pokemon[] catalogoPokemones = catalogoCompleto.catalogoEleccion();
-        String nombre;
-        Pokemon[] equipo = new Pokemon[3];
-
+        
+        
         // Empezar a registrar datos de jugador
-        System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
-        System.out.println("Introduzca su nombre: ");
-        nombre = sc.nextLine();
-        System.out.printf("Un gusto conocerte %s, estás a punto de partir hacia una nueva aventura por las zonas rojas de Costa Rica :D\n", nombre);
-        System.out.println("Ten en cuenta que este viaje es muy peligroso, por lo que tendrás que escoger a tus compañeros de confianza para poder luchar.\n");
-
-        System.out.printf("\nPuedes elegir uno por uno entre los valientes pokemones de todos los siguientes hasta tres.\n",nombre);
-        Pokemon pokemon1 = elegirPoke(catalogoPokemones,sc);
-        Pokemon pokemon2 = elegirPoke(catalogoPokemones,sc);
-        Pokemon pokemon3 = elegirPoke(catalogoPokemones,sc);
-        equipo[0] = new Pokemon(pokemon1);
-        equipo[1] = new Pokemon(pokemon2);
-        equipo[2] = new Pokemon(pokemon3);
-        System.out.println("Tu equipo inicial es: ");
-        for(int i = 0; i < equipo.length; i++){
-        System.out.printf("\n%d) %s", i+1, equipo[i]);}
-        System.out.println();
-       
-        Jugador jugador = new Jugador(nombre,equipo);
+        Jugador jugador = iniciarJugador(catalogoPokemones, sc);
     
-      // Idea para el combate 
-      int ganador = 0;
-        for (int i = 0 ; i < entrenadores.getEntrenadores().length ; i++) {
-            Combate pelea = new Combate(jugador, entrenadores.getEntrenadores()[i]);
-            ganador = pelea.iniciarCombate(); // Con ganador se pueden realizar luego casos; si es 1 jugador gana y avanza, si es 2 jugador pierde y puede volver a intentarlo o terminar partida  
+        System.out.println("Presione enter para continuar:\n");
+        sc.nextLine(); // Esto hace que salte un scanner que para el programa hasta que se introduzca enter
 
-    }
+        System.out.printf("\nExcelente, tu primera parada es el gimnasio %s.",gimnasio.getNombre());
+        System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes");
+
+        // Idea para el combate 
+        
     }
 
-    public Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
+    private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
         Pokemon[] nuevoCatalogo;
         int opcion = 0;
         int cerrar = 0;
@@ -87,6 +73,70 @@ public class Menu {
         }
         System.out.println();
         return nuevoCatalogoEleccion; 
+    }
+
+    private Jugador iniciarJugador(Pokemon[] catalogoPokemones, Scanner sc){
+        String nombre;
+        Pokemon[] equipo = new Pokemon[3];
+        System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
+        System.out.println("Introduzca su nombre: ");
+        nombre = sc.nextLine();
+        System.out.printf("Un gusto conocerte %s, estás a punto de partir hacia una nueva aventura por las zonas rojas de Costa Rica :D\n", nombre);
+        System.out.println("Ten en cuenta que este viaje es muy peligroso, por lo que tendrás que escoger a tus compañeros de confianza para poder luchar.\n");
+
+        System.out.printf("\nPuedes elegir uno por uno entre los valientes pokemones de todos los siguientes hasta tres.\n",nombre);
+        Pokemon pokemon1 = elegirPoke(catalogoPokemones,sc);
+        Pokemon pokemon2 = elegirPoke(catalogoPokemones,sc);
+        Pokemon pokemon3 = elegirPoke(catalogoPokemones,sc);
+        equipo[0] = new Pokemon(pokemon1);
+        equipo[1] = new Pokemon(pokemon2);
+        equipo[2] = new Pokemon(pokemon3);
+        System.out.println("Tu equipo inicial es: ");
+        for(int i = 0; i < equipo.length; i++){
+            System.out.printf("\n%d) %s", i+1, equipo[i].getNombre());
+        }
+        System.out.println();
+
+        return new Jugador(nombre,equipo);
+    }
+
+    public void peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Scanner sc){
+        int peleaEntrenador;
+        int peleaLider;
+        int salir = 0;
+        int opcion = 0;
+        System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
+        System.out.println("Sus entrenadores y líderes son los siguientes:\n");
+        gimnasio.verOponentes();
+        System.out.printf("\nTu primer combate es contra %s, quien parece haber estado esperándote.\n",gimnasio.entrenadores()[0].getNombre());
+        System.out.println("¿Deseas empezar con el combate?\\n" + // Esto es una prueba, no sé si funciona
+                            "1) Empezar combate\\n" + 
+                            "2) Salir\\n");
+        while (opcion != -1) { 
+            try {
+                opcion = sc.nextInt();
+                if (opcion == 1){
+                    for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
+
+                        // Falta agregar lógica de entrenador con lider cada dos entrenadores
+                        if (true){
+                            Combate combate = new Combate(jugador, gimnasio.entrenadores()[i]);
+                            int resultado = combate.iniciarCombate();
+                        }
+                    }
+                } else if (opcion == 2) {
+                    opcion = -1;
+                } else {
+                    System.out.println("Opción inválida. Ingrese:\n1) para empezar primer combate\n2) Salir\n");
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Error. Ingrese:\n1) para empezar primer combate\n2) Salir\n");
+                sc.nextLine();
+            }
+        }
+        
+
+
     }
 
 }

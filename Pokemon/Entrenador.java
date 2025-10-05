@@ -10,6 +10,7 @@ public class Entrenador {
         this.nombre = nombre;
         this.esJugador = esJugador;
         this.equipo = equipo;
+        this.estado = true;
     }
 
     // Getters y setters
@@ -36,6 +37,9 @@ public class Entrenador {
         this.equipo = equipo; 
         }
     
+    public boolean getEstado(){
+        return estado;
+    }
 
     // Reiniciar estadísticas de entrenadores y jugador luego de cada combate
     public void reiniciarEstadisticas(){

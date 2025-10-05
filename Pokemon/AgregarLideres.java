@@ -29,4 +29,9 @@ public class AgregarLideres {
         listaLideres[1] = porcionzon;
         listaLideres[2] = chunche;
     }
+
+    public Lideres[] lideres(){
+        return listaLideres;
+    }
+
 }
