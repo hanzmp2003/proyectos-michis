@@ -66,14 +66,19 @@ public class Jugador {
             vivos += 1;
         }
     }
+    
     Pokemon[] pokesvivos = new Pokemon[vivos];
-    for (Pokemon i : equipo){
-        pokesvivos[posicion] = i;
-        posicion += 1;
+    int idx = 0;
+    for (Pokemon p : equipo) {
+        if (p.getEstado()) {
+            pokesvivos[idx] = p;
+            idx++;
+        }
     }
+
     int cerrar = 0;
     int opcion = 0;
-        
+
     while (cerrar == 0){
         try {
             System.out.println("Selecciona el número asociado para escoger un pokemon:\n");
