@@ -73,34 +73,40 @@ public class Jugador {
     }
     int cerrar = 0;
     int opcion = 0;
-    Scanner sc = new Scanner(System.in);
+        
     while (cerrar == 0){
         try {
             System.out.println("Selecciona el número asociado para escoger un pokemon:\n");
             for (int i = 0; i < pokesvivos.length ; i++) {
-                System.out.printf("\n%d) %s",i+1,pokesvivos[i]);
+                System.out.printf("\n%d) %s", i+1, pokesvivos[i]);
             }
             if (cambiar == 1) {
                 System.out.printf("\n%d) Atrás\n", pokesvivos.length + 1);
             }
-            opcion = sc.nextInt();
+
+            opcion = scanner.nextInt();  
+
             if (opcion <= pokesvivos.length && opcion > 0){
                 for (int i = 0 ; i < equipo.length ; i++) {
                     if (pokesvivos[opcion - 1] == equipo[i]) {
                         seleccion = i;
                     }
                 }
+                cerrar = 1; 
             } else if (opcion == pokesvivos.length + 1 && cambiar == 1) {
                 seleccion = -1;
+                cerrar = 1; 
             } else {
                 System.out.println("Por favor, ingrese una de las opciones.\n");
             }
-            sc.close();
+
         } catch (InputMismatchException e) {
             System.err.println("Error: " + e);
             System.out.println("Por favor ingrese una opción válida, tus pokemones esperan.\n");
+            scanner.next(); // limpiar el input inválido
         }
     }
+
     return seleccion;
     }
 

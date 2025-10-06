@@ -7,11 +7,27 @@ public class Gimnasio {
 
     // Constructor con parámetros
     public Gimnasio(String nombre, String dificultad) {
-
+        AgregarLideres objetoLid = new AgregarLideres();
         AgregarEntrenadores objetoEnt = new AgregarEntrenadores();
         this.nombre = nombre;
         this.dificultad = dificultad;
         this.entrenadores = objetoEnt.getEntrenadores();
+
+        switch (nombre) {
+            case "La Jungla del Precario":
+                this.lider = objetoLid.juankiloco;
+                break;
+            case "Monte del Porcionzón":
+                this.lider = objetoLid.porcionzon;
+                break;
+            case "Cueva del Chunche":
+                this.lider = objetoLid.chunche;
+                break;
+            default:
+                // Si no hay un líder definido, se crea un líder "genérico" para no ser null
+                this.lider = new Lideres("Líder desconocido", 1, "Normal", new Pokemon[0]);
+                break;
+        }
 
     }
 
@@ -32,19 +48,20 @@ public class Gimnasio {
     
     public void verOponentes(){ 
         int contador = 1;
-        for (Entrenador i : entrenadores){
-            System.out.printf("\n%d) %s",contador,i.getNombre());
-            if (!i.getEstado())
-                System.out.printf("  ----> Ha sido derrotado");
-            if (contador % 2 == 0) {
-                contador++;
-                System.out.printf("\n%d) (LIDER) %s",contador,lider.getNombre());
-                if (lider.getEstado()) {
-                    System.out.printf("  ----> Ha sido derrotado");
-                }
-                System.out.println();
-            }
-            contador++;
+    for (Entrenador i : entrenadores){
+        System.out.printf("\n%d) %s", contador, i.getNombre());
+        if (!i.getEstado())
+            System.out.printf("  ----> Ha sido derrotado");
+        contador++;
+    }
+
+    // Mostrar al líder solo una vez al final
+    if (lider != null) {
+        System.out.printf("\n%d) (LIDER) %s", contador, lider.getNombre());
+        if (!lider.getEstado()) {
+            System.out.printf("  ----> Ha sido derrotado");
+        }
+        System.out.println();
         }
     }
 }
