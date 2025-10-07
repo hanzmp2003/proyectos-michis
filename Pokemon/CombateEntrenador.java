@@ -193,12 +193,15 @@ public class CombateEntrenador {
                 case -1 :
                     seleccionRival = entrenador.npcElige();
                     System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+                    break;
                 case -2 :
                     seleccionJugador = jugador.elegirPokeJugador(0);
                     System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
+                    break;
                 case -3 :
                     System.out.println("\n¡Has decidido retirarte del combate!");
                     salir = -1;
+                    break;
                 case -4 :
                     // En este caso siempre entra la primera vez
                     // Aquí se muestran las elecciones
@@ -206,6 +209,7 @@ public class CombateEntrenador {
                     seleccionRival = entrenador.npcElige();
                     System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[seleccionJugador].getNombre(),jugador.getEquipo()[seleccionJugador].getHp());
                     System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
+                    break;
                 }
 
             System.out.println();
