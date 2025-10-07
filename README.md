@@ -1,8 +1,8 @@
 # Tarea 1 - Michis
 
-## Universidad de Costa Rica  
-## CI-0112 Programación 1  
-## II Ciclo, 2025
+Universidad de Costa Rica  
+CI-0112 Programación 1  
+II Ciclo, 2025
 
 ## Descripción
 Este proyecto corresponde a la **Tarea Programada 1**.  
