@@ -308,7 +308,7 @@ public class CombateEntrenador {
                     seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
                     if (seleccion == 2){
                         cambiarPokemon = jugador.elegirPokeJugador(1);
-                        if (cambiarPokemon >= 0){
+                        if (cambiarPokemon >= 0){  //Cambio de Pokemon
                             pokemonJugador = jugador.getPokemon(cambiarPokemon);
                             System.out.printf("Has cambiado a %s\n", pokemonJugador.getNombre());
                             continue; 

@@ -4,6 +4,11 @@ public class Historial {
     private Lideres lider;
     private Jugador jugador;
 
+    public Historial(){
+        
+
+    }
+
     public void setHistorialEntrenador(int numBatalla, boolean estadoBatalla, Entrenador entrenador,  Jugador jugador) {
         String[][] batalla = new String[31][5];  // matriz para almacenar múltiples batallas 5 datos, 31 batallas
         if (numBatalla != 6 && numBatalla != 7 && numBatalla != 8 && numBatalla != 16 && numBatalla != 17 && numBatalla != 18 && numBatalla != 19 && numBatalla != 27 && numBatalla != 28 && numBatalla != 29 && numBatalla != 30 && numBatalla != 31){
