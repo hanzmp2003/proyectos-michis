@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuPrueba{
+public class MenuPrueba{ //Al final termino siendo el Menu principal xd
     Entrenador entrenador1; // Creo variables para no escribir tantos entrenadores y arpovechar las funciones
     Entrenador entrenador2;
     private int numBatalla;
@@ -14,6 +14,7 @@ public class MenuPrueba{
         numBatalla = 0;
         Historial historial = new Historial();
         Scanner sc = new Scanner(System.in);
+        Cronometro cronometroGimnasio = new Cronometro(); // Cronometro para el tiempo estando en x gimnasio
 
         // Inicializar todos los pokemones, entrenadores y el catálogo de elección para el jugador
         AgregarPokemon catalogoCompleto = new AgregarPokemon();
@@ -36,12 +37,14 @@ public class MenuPrueba{
         Gimnasio gimnasio1 = ag.laJungla;
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio1, entrenador1, entrenador2, lider);
-
         System.out.println("\nCuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
         System.out.println("te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
         //Inicia batalla gimnasio 1
+        cronometroGimnasio.iniciar();
         numBatalla = peleaGimnasio(jugador, gimnasio1, catalogoPokemones, sc, historial, numBatalla);
+        cronometroGimnasio.detener();
         historial.mostrarResumenGimnasio("La Jungla", new int[]{0, 1, 2});
+        System.out.printf("Tiempo en Gimnasio 1: " + cronometroGimnasio.getTiempoFormateado());
         
         //Gimnasio #2 : El Bunker
         entrenador1 = ae.brayan;
@@ -51,8 +54,12 @@ public class MenuPrueba{
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio2, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 2
+        cronometroGimnasio.reiniciar();
+        cronometroGimnasio.iniciar();
         numBatalla = peleaGimnasio(jugador, gimnasio2, catalogoPokemones, sc, historial, numBatalla);
+        cronometroGimnasio.detener();
         historial.mostrarResumenGimnasio("El Bunker", new int[]{3, 4, 5});
+        System.out.printf("Tiempo en Gimnasio 2: " + cronometroGimnasio.getTiempoFormateado());
 
         //Gimnasio #3 : Los Trigres
         entrenador1 = ae.byron;
@@ -62,8 +69,12 @@ public class MenuPrueba{
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio3, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 3
+        cronometroGimnasio.reiniciar();
+        cronometroGimnasio.iniciar();
         numBatalla = peleaGimnasio(jugador, gimnasio3, catalogoPokemones, sc, historial, numBatalla);
+        cronometroGimnasio.detener();
         historial.mostrarResumenGimnasio("Los Tigres", new int[]{6, 7, 8});
+        System.out.printf("Tiempo en Gimnasio 3: " + cronometroGimnasio.getTiempoFormateado());
 
     }
 
