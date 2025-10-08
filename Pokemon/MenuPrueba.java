@@ -4,13 +4,15 @@ import java.util.Scanner;
 public class MenuPrueba{
     Entrenador entrenador1; // Creo variables para no escribir tantos entrenadores y arpovechar las funciones
     Entrenador entrenador2;
+    private int numBatalla;
     Lideres lider;
     private int retirarse;
     private int intentar;
     private int salir;
 
     public MenuPrueba(){
-
+        numBatalla = 0;
+        Historial historial = new Historial();
         Scanner sc = new Scanner(System.in);
 
         // Inicializar todos los pokemones, entrenadores y el catálogo de elección para el jugador
@@ -38,7 +40,8 @@ public class MenuPrueba{
         System.out.println("\nCuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
         System.out.println("te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
         //Inicia batalla gimnasio 1
-        peleaGimnasio(jugador, gimnasio1, catalogoPokemones, sc);
+        numBatalla = peleaGimnasio(jugador, gimnasio1, catalogoPokemones, sc, historial, numBatalla);
+        historial.mostrarResumenGimnasio("La Jungla", new int[]{0, 1, 2});
         
         //Gimnasio #2 : El Bunker
         entrenador1 = ae.brayan;
@@ -48,7 +51,8 @@ public class MenuPrueba{
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio2, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 2
-        peleaGimnasio(jugador, gimnasio2, catalogoPokemones, sc);
+        numBatalla = peleaGimnasio(jugador, gimnasio2, catalogoPokemones, sc, historial, numBatalla);
+        historial.mostrarResumenGimnasio("El Bunker", new int[]{3, 4, 5});
 
         //Gimnasio #3 : Los Trigres
         entrenador1 = ae.byron;
@@ -58,9 +62,9 @@ public class MenuPrueba{
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio3, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 3
-        peleaGimnasio(jugador, gimnasio3, catalogoPokemones, sc);
+        numBatalla = peleaGimnasio(jugador, gimnasio3, catalogoPokemones, sc, historial, numBatalla);
+        historial.mostrarResumenGimnasio("Los Tigres", new int[]{6, 7, 8});
 
-        
     }
 
     private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
@@ -137,7 +141,7 @@ public class MenuPrueba{
         return new Jugador(nombre,equipo);
     }
 
-   public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Pokemon[] catalogoPokemones, Scanner sc){
+   public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Pokemon[] catalogoPokemones, Scanner sc, Historial historial, int numBatalla){
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
@@ -160,6 +164,12 @@ public class MenuPrueba{
                             while (intentar == 1){
                                 CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
                                 int resultado = combate.iniciarCombate();
+                                //Creó historial del entrenador
+                                Entrenador rival = gimnasio.entrenadores()[i];
+                                boolean victoria = (resultado == 1);
+                                historial.registrarBatalla(numBatalla, victoria, rival.getNombre(), rival.getEquipo(), jugador);
+                                numBatalla++;
+
                                 gimnasio.entrenadores()[i].reiniciarEstadisticas(); // Esto posee un problema
                                 jugador.reiniciarEstadisticas();
                                 if (resultado == 1) {
@@ -219,12 +229,18 @@ public class MenuPrueba{
             }
         }
         
-        if (gimnasio.getLider().getEstado() && retirarse == 0){
+        if (gimnasio.getLider().getEstado() && retirarse == 0){ // Batalla con el Líder
             if (retirarse == 0) {
                 intentar = 1;
                 while (intentar == 1){
                     CombateLider combate = new CombateLider(jugador, gimnasio.getLider());
                     int resultado = combate.iniciarCombate();
+                    //Historial del líder
+                    Lideres lider = gimnasio.getLider();
+                    boolean victoria = (resultado == 1);
+                    historial.registrarBatalla(numBatalla, victoria, lider.getNombre(), lider.getEquipo(), jugador);
+                    numBatalla++;
+
                     jugador.reiniciarEstadisticas();
                     gimnasio.getLider().reiniciarEstadisticas();
                     if (resultado == 1) {
@@ -252,14 +268,7 @@ public class MenuPrueba{
             }
         }
 
-        if (retirarse == 0 && ganados == 3) {
-            return ganados;
-        } else if (retirarse == 1 && ganados > 0){
-            return ganados;
-        } else {
-            return -1;
-        }
-
+      return numBatalla;
     }
 
     private int verificarEntrenadores(Gimnasio gimnasio){
