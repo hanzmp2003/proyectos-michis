@@ -81,14 +81,14 @@ public class Jugador {
 
     while (cerrar == 0){
         try {
-            System.out.println("Selecciona el número asociado para escoger un pokemon:");
+            System.out.println("Selecciona el número asociado para escoger un pokemon:\n");
             for (int i = 0; i < pokesvivos.length ; i++) {
                 System.out.printf("\n%d) %s", i+1, pokesvivos[i]);
             }
             if (cambiar == 1) {
                 System.out.printf("\n%d) Atrás\n", pokesvivos.length + 1);
             }
-            System.out.println();
+
             opcion = scanner.nextInt();  
 
             if (opcion <= pokesvivos.length && opcion > 0){
@@ -114,5 +114,10 @@ public class Jugador {
 
     return seleccion;
     }
+    //devolver un pokemon del equipo escogido por el jugador
+    public Pokemon getPokemon(int index) {
+    return equipo[index];
+    }
+
 
 }
