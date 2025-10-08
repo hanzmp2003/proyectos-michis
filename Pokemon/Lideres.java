@@ -6,7 +6,7 @@ public class Lideres{
     public String nombre;
     public int nivel;
     public String elemento;
-     private Pokemon[] equipo;
+    private Pokemon[] equipo;
     public Pokemon[] listaPokemones;
     public boolean estado;
 
