@@ -141,11 +141,8 @@ public class MenuPrueba{
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
-        // System.out.println("Sus entrenadores y líderes son los siguientes:\n");
-        // gimnasio.verOponentes();
         int oponente = verificarEntrenadores(gimnasio);
         if (oponente >= 0){
-            oponente = verificarEntrenadores(gimnasio);
             System.out.printf("\nTu siguiente combate es contra %s.\n",gimnasio.entrenadores()[oponente].getNombre());
         } else {
             ganados = 2;
@@ -163,7 +160,6 @@ public class MenuPrueba{
                             while (intentar == 1){
                                 CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
                                 int resultado = combate.iniciarCombate();
-                                jugador.reiniciarEstadisticas(); // Esto posee un problema
                                 gimnasio.entrenadores()[i].reiniciarEstadisticas(); // Esto posee un problema
 
                                 if (resultado == 1) {
@@ -196,7 +192,7 @@ public class MenuPrueba{
                                         }
                                     } 
                                     ganados++;
-                                } else if (resultado == 0) { // System.out.println("\n¡Excelente! Tu rival te reconoce por no rendirte.\n");
+                                } else if (resultado == 0) { 
                                     System.out.println("Has sido derrotado. ¿Deseas volver a intentarlo?");
                                     preguntarContinuar(sc, "Volver a intentarlo");
                                 } else {
