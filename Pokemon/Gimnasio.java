@@ -7,29 +7,31 @@ public class Gimnasio {
 
     // Constructor con parámetros
     public Gimnasio(String nombre, String dificultad) {
-        AgregarLideres objetoLid = new AgregarLideres();
-        AgregarEntrenadores objetoEnt = new AgregarEntrenadores();
-        this.nombre = nombre;
-        this.dificultad = dificultad;
-        this.entrenadores = objetoEnt.getEntrenadores();
+    AgregarLideres objetoLid = new AgregarLideres();
+    AgregarEntrenadores objetoEnt = new AgregarEntrenadores();
+    this.nombre = nombre;
+    this.dificultad = dificultad;
 
-        switch (nombre) {
-            case "La Jungla del Precario":
-                this.lider = objetoLid.juankiloco;
-                break;
-            case "Monte del Porcionzón":
-                this.lider = objetoLid.porcionzon;
-                break;
-            case "Cueva del Chunche":
-                this.lider = objetoLid.chunche;
-                break;
-            default:
-                // Si no hay un líder definido, se crea un líder "genérico" para no ser null
-                this.lider = new Lideres("Líder desconocido", 1, "Normal", new Pokemon[0]);
-                break;
+    switch (nombre) {
+        case "La Jungla del Precario":
+            this.entrenadores = new Entrenador[]{objetoEnt.brittany, objetoEnt.kimberly};
+            this.lider = objetoLid.juankiloco;
+            break;
+        case "Monte del Porcionzón":
+            this.entrenadores = new Entrenador[]{objetoEnt.brayan, objetoEnt.byron};
+            this.lider = objetoLid.porcionzon;
+            break;
+        case "Cueva del Chunche":
+            this.entrenadores = new Entrenador[]{objetoEnt.kevin, objetoEnt.yandel};
+            this.lider = objetoLid.chunche;
+            break;
+        default:
+            this.entrenadores = new Entrenador[0];
+            this.lider = new Lideres("Líder desconocido", 1, "Normal", new Pokemon[0]);
+            break;
         }
+   }
 
-    }
 
     // Getters y setters
     public void setNombre(String nombre) { this.nombre = nombre; }
