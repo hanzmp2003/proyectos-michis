@@ -215,15 +215,14 @@ public class MenuPrueba{
     }
 
     private int verificarEntrenadores(Gimnasio gimnasio){
-        int entrenadorVivo = -1;
-        int salir = 0;
-        for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
-            if (gimnasio.entrenadores()[i].getEstado()) {
-                entrenadorVivo = i;
+    for (int i = 0 ; i < gimnasio.entrenadores().length ; i++){
+        if (gimnasio.entrenadores()[i].getEstado()) {
+            return i; // Devuelve el primero que esté vivo
             }
         }
-        return entrenadorVivo;
+        return -1; // Si ninguno está vivo
     }
+
 
     public void preguntarContinuar(Scanner sc, String opcion){
         int cerrar = 0;
