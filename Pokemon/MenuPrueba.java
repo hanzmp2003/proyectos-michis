@@ -47,7 +47,7 @@ public class MenuPrueba{
         Gimnasio gimnasio2 = ag.elBunker;
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio2, entrenador1, entrenador2, lider);
-        //Inicia batalla gimnasio 1
+        //Inicia batalla gimnasio 2
         peleaGimnasio(jugador, gimnasio2, sc);
 
         //Gimnasio #3 : Los Trigres
@@ -57,7 +57,7 @@ public class MenuPrueba{
         Gimnasio gimnasio3 = ag.LosTigres;
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio3, entrenador1, entrenador2, lider);
-        //Inicia batalla gimnasio 1
+        //Inicia batalla gimnasio 3
         peleaGimnasio(jugador, gimnasio3, sc);
 
         

@@ -1,89 +1,52 @@
 public class Historial {
-    private boolean estadoBatalla; // true = Victoria, false = Derrota
-    private Entrenador entrenador;
-    private Lideres lider;
-    private Jugador jugador;
-
+    private String[][] batalla;
     public Historial(){
-        
+        batalla = new String[31][5]; //31 batallas
 
     }
 
-    public void setHistorialEntrenador(int numBatalla, boolean estadoBatalla, Entrenador entrenador,  Jugador jugador) {
-        String[][] batalla = new String[31][5];  // matriz para almacenar múltiples batallas 5 datos, 31 batallas
-        if (numBatalla != 6 && numBatalla != 7 && numBatalla != 8 && numBatalla != 16 && numBatalla != 17 && numBatalla != 18 && numBatalla != 19 && numBatalla != 27 && numBatalla != 28 && numBatalla != 29 && numBatalla != 30 && numBatalla != 31){
-        //Caso Entrenador 
-         for(int i = 0; i < 5; i++) {
-        if(i == 0) {  // Resultado de la batalla
-            batalla[numBatalla][i] = estadoBatalla ? "Victoria" : "Derrota";
-            System.out.printf("Resultado: %s%n", batalla[numBatalla][i]);
-            
-        } else if(i == 1) {   //Nombre del rival
-            batalla[numBatalla][i] = entrenador.getNombre();
-            System.out.printf("Nombre del Rival: %s%n", entrenador.getNombre());
+    public void registrarBatalla(int numBatalla, boolean victoria, String rival, Pokemon[] equipoRival, Jugador jugador) {
+        batalla[numBatalla][0] = victoria ? "Victoria" : "Derrota";
+        batalla[numBatalla][1] = rival;
 
-        } else if (i == 2) { // Equipo del rival 
-            String equipoStr = ""; //Mausqueramienta para convertir los datos a string de la lista
-            System.out.println("Equipo de Pokémon del Rival:");
-            for (Pokemon pokemon : entrenador.getEquipo()) {
-                System.out.println("- " + pokemon.getNombre());
-                equipoStr += pokemon.getNombre() + " "; //
+        String equipoRivalStr = "";
+        for (Pokemon p : equipoRival) {
+            equipoRivalStr += p.getNombre() + " ";
+        }
+        batalla[numBatalla][2] = equipoRivalStr;
+
+        batalla[numBatalla][3] = jugador.getNombre();
+
+        String equipoJugadorStr = "";
+        for (Pokemon p : jugador.getEquipo()) {
+            equipoJugadorStr += p.getNombre() + " ";
+        }
+        batalla[numBatalla][4] = equipoJugadorStr;
+    }
+
+    public void mostrarResumenGimnasio(String nombreGimnasio, int[] indicesBatalla) {
+        int victorias = 0;
+        int derrotas = 0;
+
+        System.out.printf("\nHistorial del %s:\n", nombreGimnasio);
+        for (int i : indicesBatalla) {
+            if (batalla[i][0] != null) {
+                System.out.printf("\nBatalla %d:\n", i + 1);
+                System.out.println("Resultado: " + batalla[i][0]);
+                System.out.println("Rival: " + batalla[i][1]);
+                System.out.println("Equipo del Rival: " + batalla[i][2]);
+                System.out.println("Jugador: " + batalla[i][3]);
+                System.out.println("Equipo del Jugador: " + batalla[i][4]);
+
+                if (batalla[i][0].equals("Victoria")) victorias++;
+                else if (batalla[i][0].equals("Derrota")) derrotas++;
+            } else {
+                System.out.printf("\nBatalla %d: No registrada\n", i + 1);
             }
-            batalla[numBatalla][i] = equipoStr;
-            
-        } else if(i == 3) { //Nombre del jugador
-            batalla[numBatalla][i] = jugador.getNombre();
-            System.out.printf("Nombre del Jugador: %s%n", jugador.getNombre());
-            
-        } else if(i == 4){ //Equipo del jugador como String
-            String equipoJugadorStr = "";
-            System.out.println("Equipo de Pokémon del Jugador:");
-            for (Pokemon pokemon : jugador.getEquipo()) {
-                System.out.println("- " + pokemon.getNombre());
-                equipoJugadorStr += pokemon.getNombre() + " ";
-            }
-            batalla[numBatalla][i] = equipoJugadorStr;
         }
 
-        }
-
-        }else{ //Ahora si no cumple el if imprime lo mismo pero para los lideres
-            //Caso Líderes 
-        for(int i = 0; i < 5; i++) {
-        if(i == 0) {  // Resultado de la batalla
-            batalla[numBatalla][i] = estadoBatalla ? "Victoria" : "Derrota";
-            System.out.printf("Resultado: %s%n", batalla[numBatalla][i]);
-            
-        } else if(i == 1) {   //Nombre del rival
-            batalla[numBatalla][i] = lider.getNombre();
-            System.out.printf("Nombre del Rival: %s%n", entrenador.getNombre());
-
-        } else if (i == 2) { // Equipo del rival 
-            String equipoStr = ""; //Mausqueramienta para convertir los datos a string de la lista
-            System.out.println("Equipo de Pokémon del Rival:");
-            for (Pokemon pokemon : lider.getEquipo()) {
-                System.out.println("- " + pokemon.getNombre());
-                equipoStr += pokemon.getNombre() + " "; //
-            }
-            batalla[numBatalla][i] = equipoStr;
-            
-        } else if(i == 3) { //Nombre del jugador
-            batalla[numBatalla][i] = jugador.getNombre();
-            System.out.printf("Nombre del Jugador: %s%n", jugador.getNombre());
-            
-        } else if(i == 4){ //Equipo del jugador como String
-            String equipoJugadorStr = "";
-            System.out.println("Equipo de Pokémon del Jugador:");
-            for (Pokemon pokemon : jugador.getEquipo()) {
-                System.out.println("- " + pokemon.getNombre());
-                equipoJugadorStr += pokemon.getNombre() + " ";
-            }
-            batalla[numBatalla][i] = equipoJugadorStr;
-        }
-
-        }
-       }
-
-      }
-    
+        System.out.println("\n Resumen:");
+        System.out.println("Victorias: " + victorias);
+        System.out.println("Derrotas: " + derrotas);
+    }
 }
