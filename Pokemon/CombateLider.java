@@ -276,7 +276,7 @@ public class CombateLider {
             // Quien ataca primero según velocidad
             if (pokemonJugador.getVelocidad() >= pokemonRival.getVelocidad()) {
                 if (inicio < 1) {
-                    System.out.println("Tu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
+                    System.out.println("\nTu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
                     inicio ++;
                 }
                 seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
@@ -297,7 +297,7 @@ public class CombateLider {
 
                 // Lo mismo de arriba pero el rival ataca primero
                 if (inicio < 1){
-                    System.out.println("El pokemon rival es más rápido y ataca primero.");
+                    System.out.println("\nEl pokemon rival es más rápido y ataca primero.");
                 }
 
                 turnoRival(pokemonJugador, pokemonRival);
@@ -340,6 +340,9 @@ public class CombateLider {
         Ataque atk = pokemonRival.getHabilidades()[posAtkRival];
         int ppActual = pokemonRival.getHabilidades()[posAtkRival].getPp();
         pokemonJugador.setHp(pokemonJugador.getHp() - ataque(pokemonRival,pokemonJugador,atk));
+        if (pokemonJugador.getHp() <= 0) {
+            System.out.printf("\n%s ha sido derrotado.\n",pokemonJugador.getNombre());
+        }
         pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);
     }
 
@@ -383,6 +386,9 @@ public class CombateLider {
 
                                 // Realiza el ataque y resta el PP
                                 pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));
+                                if (pokemonRival.getHp() <= 0) {
+                                    System.out.printf("\n%s ha sido derrotado.\n",pokemonRival.getNombre());
+                                }
                                 int ppActual = ataquesdisp[opcionAtaque].getPp();
                                 ataquesdisp[opcionAtaque].setPp(ppActual - 1);
                                 cerrarAtaque = 1;

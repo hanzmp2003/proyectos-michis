@@ -35,6 +35,11 @@ public class Gimnasio {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setNivel(String nivel) { this.dificultad = nivel; }
 
+    public void setRivales(Lideres lider, Entrenador entrenador1, Entrenador entrenador2){
+        this.lider = lider;
+        this.entrenadores = new Entrenador[] {entrenador1, entrenador2};
+    }
+
     public String getNombre() { return nombre; }
     public String getNivel() { return dificultad; } 
 

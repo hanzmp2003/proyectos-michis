@@ -19,7 +19,7 @@ public class Menu {
         // Empezar a registrar datos de jugador
         Jugador jugador = iniciarJugador(catalogoPokemones, sc);
     
-        System.out.println("Presione enter para conti nuar:\n");
+        System.out.println("Presione enter para continuar:\n");
         sc.nextLine(); // Esto hace que salte un scanner que para el programa hasta que se introduzca enter
 
         System.out.printf("\nExcelente, tu primera parada es el gimnasio %s.",gimnasio.getNombre());

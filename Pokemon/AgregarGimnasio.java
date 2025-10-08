@@ -13,7 +13,7 @@ public class AgregarGimnasio {
  // Imprime los nombres de los gimansios
     public void MostrarGimnasio(Gimnasio nombre, Entrenador entrenador1, Entrenador entrenador2, Lideres lider){
     System.out.println("Gimnasio: " + nombre.getNombre() + " | Nivel: " + nombre.getNivel());
-    System.out.println("Rivales: ");
+    System.out.println("Rivales: \n");
     MostrarRivales(entrenador1, entrenador2, lider);
     }
 // Ver información de los rivales que hay en el gimnasio

@@ -23,23 +23,24 @@ public class MenuPrueba{
         // Empezar a registrar datos de jugador
         Jugador jugador = iniciarJugador(catalogoPokemones, sc);
     
-        System.out.println("Presione enter para continuar:\n");
+        System.out.println("\nPresione enter para continuar:");
         sc.nextLine(); // Esto hace que salte un scanner que para el programa hasta que se introduzca enter
 
         //Gimnasio #1
-        System.out.println("\nExcelente, tu primera parada es:" );
+        System.out.println("Excelente, tu primera parada es:" );
         Entrenador entrenador1 = ae.brittany;
         Entrenador entrenador2 = ae.kimberly;
         Lideres lider = al.juankiloco;
-        Gimnasio gimnasio = ag.laJungla;
-        ag.MostrarGimnasio(gimnasio, entrenador1, entrenador2, lider);
+        Gimnasio gimnasio1 = ag.laJungla;
+        gimnasio1.setRivales(lider, entrenador1, entrenador2);
+        ag.MostrarGimnasio(gimnasio1, entrenador1, entrenador2, lider);
 
-        System.out.println("Cuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
+        System.out.println("\nCuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
         System.out.println("te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
 
 
         // Idea para el combate 
-        peleaGimnasio(jugador, gimnasio, sc);
+        peleaGimnasio(jugador, gimnasio1, sc);
        
         
     }
@@ -54,6 +55,7 @@ public class MenuPrueba{
                 nuevoCatalogo = mostrarCatalogo(catalogoPokemones); // Pokemones a mostrar
                 System.out.println();
                 opcion = sc.nextInt();
+                sc.nextLine();
                 if (opcion>0 && opcion <= nuevoCatalogo.length) {
                     System.out.printf("\n¡Excelente! Has elegido a %s\n",nuevoCatalogo[opcion - 1].getNombre());
                     nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones.
@@ -95,9 +97,10 @@ public class MenuPrueba{
     private Jugador iniciarJugador(Pokemon[] catalogoPokemones, Scanner sc){
         String nombre;
         Pokemon[] equipo = new Pokemon[3];
-        System.out.println("POKEMON : AVENTURAS EN EL BARRIO");
-        System.out.println("Introduzca su nombre: ");
+        System.out.println("\nPOKEMON : AVENTURAS EN EL BARRIO");
+        System.out.println("\nIntroduzca su nombre: ");
         nombre = sc.nextLine();
+        System.out.println();
         System.out.printf("Un gusto conocerte %s, estás a punto de partir hacia una nueva aventura por las zonas rojas de Costa Rica :D\n", nombre);
         System.out.println("Ten en cuenta que este viaje es muy peligroso, por lo que tendrás que escoger a tus compañeros de confianza para poder luchar.\n");
 
@@ -121,8 +124,8 @@ public class MenuPrueba{
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
-        System.out.println("Sus entrenadores y líderes son los siguientes:\n");
-        gimnasio.verOponentes();
+        // System.out.println("Sus entrenadores y líderes son los siguientes:\n");
+        // gimnasio.verOponentes();
         int oponente = verificarEntrenadores(gimnasio);
         if (oponente >= 0){
             oponente = verificarEntrenadores(gimnasio);
@@ -138,9 +141,8 @@ public class MenuPrueba{
                 if (opcion == 1){
                     for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
                         if (gimnasio.entrenadores()[i].getEstado()) {
-
+                            reiniciarOpciones();
                             while (intentar == 1){
-                                
                                 CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
                                 int resultado = combate.iniciarCombate();
                                 jugador.reiniciarEstadisticas();
@@ -229,7 +231,7 @@ public class MenuPrueba{
         int cerrar = 0;
         while (cerrar == 0){
             try {
-                System.out.printf("\nIngresa:\n1) %s\n2) Retirarse",opcion);
+                System.out.printf("\nIngresa:\n1) %s\n2) Retirarse\n",opcion);
                 int opcion2 = sc.nextInt();
                 if (opcion2 == 1) {
                     cerrar = 1;
