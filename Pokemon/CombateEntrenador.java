@@ -458,6 +458,14 @@ public class CombateEntrenador {
     }
 
     public void mostrarVida(Pokemon pokemon1, Pokemon pokemon2){
+        int vida1 = pokemon1.getHp();
+        int vida2 = pokemon2.getHp();
+        if(vida1 < 0){
+            vida1 = 0;
+        }
+        if (vida2 < 0){
+            vida2 = 0;
+        }
         if (pokemon1.getVelocidad() >= pokemon2.getVelocidad()){
             System.out.printf("\nHP de %s: %d/%d",pokemon1.getNombre(),pokemon1.getHp(),pokemon1.getHpReset());
             System.out.printf("\nHP de %s: %d/%d\n",pokemon2.getNombre(),pokemon2.getHp(),pokemon2.getHpReset());
