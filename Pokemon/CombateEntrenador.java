@@ -342,6 +342,9 @@ public class CombateEntrenador {
         Ataque atk = pokemonRival.getHabilidades()[posAtkRival];
         int ppActual = pokemonRival.getHabilidades()[posAtkRival].getPp();
         pokemonJugador.setHp(pokemonJugador.getHp() - ataque(pokemonRival,pokemonJugador,atk));
+        if (pokemonJugador.getHp() <= 0){
+        System.out.printf("\n%s ha sido derrotado. \n", pokemonJugador.getNombre());
+        }
         pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);
     }
 
@@ -379,12 +382,17 @@ public class CombateEntrenador {
                             for (int i = 0 ; i < ataquesdisp.length ; i++){
                                 System.out.printf("\n%d) %s (Poder: %d, PP: %d)", i+1, pokemonJugador.getHabilidades()[i].getNombre(), pokemonJugador.getHabilidades()[i].getPoder(), pokemonJugador.getHabilidades()[i].getPp());
                             }
+                            System.out.println();
                             opcionAtaque = scanner.nextInt() - 1;
                             // Verifica que la opción sea válida
                             if (opcionAtaque >= 0 && opcionAtaque < ataquesdisp.length) {
 
                                 // Realiza el ataque y resta el PP
                                 pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));
+                                if (pokemonRival.getHp() <= 0){
+                                System.out.printf("\n%s ha sido derrotado. \n", pokemonRival.getNombre());
+                                }
+
                                 int ppActual = ataquesdisp[opcionAtaque].getPp();
                                 ataquesdisp[opcionAtaque].setPp(ppActual - 1);
                                 cerrarAtaque = 1;
