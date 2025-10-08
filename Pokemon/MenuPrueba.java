@@ -73,7 +73,6 @@ public class MenuPrueba{
                 nuevoCatalogo = mostrarCatalogo(catalogoPokemones); // Pokemones a mostrar
                 System.out.println();
                 opcion = sc.nextInt();
-                sc.nextLine();
                 if (opcion>0 && opcion <= nuevoCatalogo.length) {
                     System.out.printf("\n¡Excelente! Has elegido a %s\n",nuevoCatalogo[opcion - 1].getNombre());
                     nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones.
@@ -164,8 +163,8 @@ public class MenuPrueba{
                             while (intentar == 1){
                                 CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
                                 int resultado = combate.iniciarCombate();
-                                jugador.reiniciarEstadisticas();
-                                gimnasio.entrenadores()[i].reiniciarEstadisticas(); // Se reinician stats, más no estado
+                                jugador.reiniciarEstadisticas(); // Esto posee un problema
+                                gimnasio.entrenadores()[i].reiniciarEstadisticas(); // Esto posee un problema
 
                                 if (resultado == 1) {
                                     System.out.println("¡Enhorabuena! Has ganado el combate");

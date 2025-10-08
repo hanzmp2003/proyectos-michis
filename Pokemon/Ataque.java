@@ -7,10 +7,10 @@ public class Ataque {
     private int ppReset;
 
     public Ataque() {
-        nombre = "";
-        poder = 0;
-        tipo = "";
-        pp = 0;
+        this.nombre = "";
+        this.poder = 0;
+        this.tipo = "";
+        this.pp = 0;
     }
 
     public Ataque(String nombre, int poder, String tipo, int pp) {
@@ -23,10 +23,11 @@ public class Ataque {
 
     // Constructor para copiar ataques
     public Ataque(Ataque ataque) {
-        this.nombre = ataque.getNombre();
-        this.poder = ataque.getPoder();
-        this.tipo = ataque.getTipo();
-        this.pp = ataque.getPp();
+        this.nombre = ataque.nombre;
+        this.poder = ataque.poder;
+        this.tipo = ataque.tipo;
+        this.pp = ataque.pp;
+        this.ppReset = ataque.ppReset;
     }
 
     public void resetPP(){
