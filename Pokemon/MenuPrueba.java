@@ -38,7 +38,7 @@ public class MenuPrueba{
         System.out.println("\nCuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
         System.out.println("te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
         //Inicia batalla gimnasio 1
-        peleaGimnasio(jugador, gimnasio1, sc);
+        peleaGimnasio(jugador, gimnasio1, catalogoPokemones, sc);
         
         //Gimnasio #2 : El Bunker
         entrenador1 = ae.brayan;
@@ -48,7 +48,7 @@ public class MenuPrueba{
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio2, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 2
-        peleaGimnasio(jugador, gimnasio2, sc);
+        peleaGimnasio(jugador, gimnasio2, catalogoPokemones, sc);
 
         //Gimnasio #3 : Los Trigres
         entrenador1 = ae.byron;
@@ -58,7 +58,7 @@ public class MenuPrueba{
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio3, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 3
-        peleaGimnasio(jugador, gimnasio3, sc);
+        peleaGimnasio(jugador, gimnasio3, catalogoPokemones, sc);
 
         
     }
@@ -137,7 +137,7 @@ public class MenuPrueba{
         return new Jugador(nombre,equipo);
     }
 
-   public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Scanner sc){
+   public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Pokemon[] catalogoPokemones, Scanner sc){
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
@@ -165,6 +165,7 @@ public class MenuPrueba{
                                 if (resultado == 1) {
                                     System.out.println("¡Enhorabuena! Has ganado el combate");
                                     gimnasio.verOponentes();
+                                    jugador.subirNiv();
                                     if (i < gimnasio.entrenadores().length - 1){
                                         System.out.printf("\nTu siguiente combate es contra %s",gimnasio.entrenadores()[i+1].getNombre());
                                     } else if (i == gimnasio.entrenadores().length) {
@@ -228,7 +229,17 @@ public class MenuPrueba{
                     gimnasio.getLider().reiniciarEstadisticas();
                     if (resultado == 1) {
                         System.out.printf("\n¡Felicidades! Has derrotado al lider del gimnasio, y con ello obtenido la insignia del gimnasio %s",gimnasio.getNombre());
-                        ganados = 3;
+                        gimnasio.getLider().setEstado(false);
+                        jugador.subirNiv();
+                        System.out.println("\nComo recompensa por tu victoria, puedes elegir uno pokemon adicional para que se una a tu equipo.\n");
+                        Pokemon nuevoPoke = elegirPoke(catalogoPokemones, sc);
+                        jugador.agregarPok(new Pokemon(nuevoPoke));
+                        System.out.println("Excelente. Tu equipo ahora es: ");
+                        for(int i = 0; i < jugador.getEquipo().length; i++){
+                            System.out.printf("\n%d) %s", i+1, jugador.getEquipo()[i].getNombre());
+                        }
+                        System.out.println();
+                        ganados++;
                         intentar = 0;
                     } else if (resultado == 0) {
                         System.out.println("Has sido derrotado.¿Deseas volver a intentarlo?\n");

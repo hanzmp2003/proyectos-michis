@@ -125,4 +125,12 @@ public class Jugador {
         }
     }
 
+    public void agregarPok(Pokemon nuevoPok){
+        Pokemon [] nuevoEquipo = new Pokemon[equipo.length + 1];
+        for (int i = 0 ; i < equipo.length ; i++){
+            nuevoEquipo[i] = equipo[i];
+        }
+        nuevoEquipo[equipo.length] = nuevoPok;
+        this.equipo = nuevoEquipo;
+    }
 }

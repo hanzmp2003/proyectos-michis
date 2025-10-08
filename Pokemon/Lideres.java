@@ -7,7 +7,6 @@ public class Lideres{
     public int nivel;
     public String elemento;
     private Pokemon[] equipo;
-    public Pokemon[] listaPokemones;
     public boolean estado;
 
     public Lideres(String nombre, int nivel, String elemento, Pokemon[] equipo){
@@ -52,7 +51,7 @@ public class Lideres{
 
 
     public void reiniciarEstadisticas(){
-        for (Pokemon i : listaPokemones){
+        for (Pokemon i : equipo){
             i.resetHp();
             i.setEstado(true);
             for (Ataque j : i.getHabilidades()) {
@@ -64,8 +63,8 @@ public class Lideres{
     public int npcElige(){
         int cerrarElegir = 0;
         int seleccionNPC = 0;
-        for (int i = 0 ; i < listaPokemones.length && cerrarElegir < 1 ; i++){
-            if (listaPokemones[i].getEstado()){
+        for (int i = 0 ; i < equipo.length && cerrarElegir < 1 ; i++){
+            if (equipo[i].getEstado()){
                 seleccionNPC = i;
                 cerrarElegir++;
             }
