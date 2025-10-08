@@ -212,32 +212,34 @@ public class CombateLider {
                     break;
                 }
 
-            System.out.println();
-            decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], lider.getEquipo()[seleccionRival]);
-            
-            while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
+            if (salir == 0){ // Si no se ha decidido salir, se procede a la pelea
+                System.out.println();
+                decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], lider.getEquipo()[seleccionRival]);
+                
+                while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
 
-                System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
-                decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], lider.getEquipo()[seleccionRival]);
+                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
+                    decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], lider.getEquipo()[seleccionRival]);
 
-            }
+                }
 
-            //recuenta los pokemones vivos
-            vidasJugador = 0;
-            vidasRival = 0; 
+                //recuenta los pokemones vivos
+                vidasJugador = 0;
+                vidasRival = 0; 
 
-            for (Pokemon pokemon : jugador.getEquipo()) { 
-            if (pokemon.getEstado()) {
-            vidasJugador++;
+                for (Pokemon pokemon : jugador.getEquipo()) { 
+                if (pokemon.getEstado()) {
+                vidasJugador++;
+                    }
+                }
+
+                for (Pokemon pokemon : lider.getEquipo()) {
+                if (pokemon.getEstado()) {
+                vidasRival++;
+                    }
                 }
             }
-
-            for (Pokemon pokemon : lider.getEquipo()) {
-            if (pokemon.getEstado()) {
-            vidasRival++;
-                }
-            }
-        }    
+        }
          //Condicionales para determinar el ganador   
         if (vidasJugador == 0){
             System.out.printf("\n¡Has sido derrotado por %s!\n",lider.getNombre());
@@ -289,7 +291,7 @@ public class CombateLider {
                     salir = 0;
                 }
                 // Ataque del rival si sigue con vida
-                if (pokemonRival.getHp() > 0) {
+                if (pokemonRival.getHp() > 0 && seleccion != -3) {
                     turnoRival(pokemonJugador, pokemonRival);                   
                 }
                 
@@ -309,6 +311,8 @@ public class CombateLider {
                         cambiarPokemon = jugador.elegirPokeJugador(1);
                         if (cambiarPokemon >= 0){
                             salir = 0;
+                            System.out.printf("Has cambiado a %s\n", pokemonJugador.getNombre());
+                            continue;
                         }
                     } else if (seleccion == -3){
                         salir = 0;
@@ -329,7 +333,7 @@ public class CombateLider {
         } else if (seleccion == 2 && cambiarPokemon >= 0){
             return cambiarPokemon;
         } else {
-            return seleccion;
+            return -3;
         }
     }
 

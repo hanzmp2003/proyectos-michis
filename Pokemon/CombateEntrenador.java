@@ -211,30 +211,30 @@ public class CombateEntrenador {
                     System.out.printf("\n%s elige a %s (HP: %d)",entrenador.getNombre(),entrenador.getEquipo()[seleccionRival].getNombre(),entrenador.getEquipo()[seleccionRival].getHp());
                     break;
                 }
-
-            System.out.println();
-            decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
             
-            while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
-
-                System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
-                decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], entrenador.getEquipo()[seleccionRival]);
-
-            }
-
-            //recuenta los pokemones vivos
-            vidasJugador = 0;
-            vidasRival = 0; 
-
-            for (Pokemon pokemon : jugador.getEquipo()) { 
-            if (pokemon.getEstado()) {
-            vidasJugador++;
+            if (salir != -1){
+                System.out.println();
+                decisionPelea = peleaPokemon(jugador.getEquipo()[seleccionJugador], entrenador.getEquipo()[seleccionRival]);
+                
+                while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
+                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
+                    decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], entrenador.getEquipo()[seleccionRival]);
                 }
-            }
 
-            for (Pokemon pokemon : entrenador.getEquipo()) {
-            if (pokemon.getEstado()) {
-            vidasRival++;
+                //recuenta los pokemones vivos
+                vidasJugador = 0;
+                vidasRival = 0; 
+
+                for (Pokemon pokemon : jugador.getEquipo()) { 
+                if (pokemon.getEstado()) {
+                vidasJugador++;
+                    }
+                }
+
+                for (Pokemon pokemon : entrenador.getEquipo()) {
+                if (pokemon.getEstado()) {
+                vidasRival++;
+                    }
                 }
             }
         }    
@@ -275,8 +275,9 @@ public class CombateEntrenador {
 
             // Quien ataca primero según velocidad
             if (pokemonJugador.getVelocidad() >= pokemonRival.getVelocidad()) {
+                
                 if (inicio < 1) {
-                    System.out.println("Tu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
+                    System.out.println("\nTu pokemon es más rápido y ataca primero.");  // Seleccionar ataque va más abajo
                     inicio ++;
                 }
                 seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
@@ -289,7 +290,7 @@ public class CombateEntrenador {
                     salir = 0;
                 }
                 // Ataque del rival si sigue con vida
-                if (pokemonRival.getHp() > 0) {
+                if (pokemonRival.getHp() > 0 && seleccion != -3) {
                     turnoRival(pokemonJugador, pokemonRival);                   
                 }
                 
@@ -297,7 +298,7 @@ public class CombateEntrenador {
 
                 // Lo mismo de arriba pero el rival ataca primero
                 if (inicio < 1){
-                    System.out.println("El pokemon rival es más rápido y ataca primero.");
+                    System.out.println("\nEl pokemon rival es más rápido y ataca primero.");
                 }
 
                 turnoRival(pokemonJugador, pokemonRival);
@@ -331,7 +332,7 @@ public class CombateEntrenador {
         } else if (seleccion == 2 && cambiarPokemon >= 0){
             return cambiarPokemon;
         } else {
-            return seleccion;
+            return -3;
         }
     }
 

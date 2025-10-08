@@ -206,6 +206,7 @@ public class MenuPrueba{
         
         if (gimnasio.getLider().getEstado() && retirarse == 0){
             if (retirarse == 0) {
+                intentar = 1;
                 while (intentar == 1){
                     CombateLider combate = new CombateLider(jugador, gimnasio.getLider());
                     int resultado = combate.iniciarCombate();
