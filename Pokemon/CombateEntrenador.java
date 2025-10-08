@@ -308,7 +308,9 @@ public class CombateEntrenador {
                     if (seleccion == 2){
                         cambiarPokemon = jugador.elegirPokeJugador(1);
                         if (cambiarPokemon >= 0){
-                            salir = 0;
+                            pokemonJugador = jugador.getPokemon(cambiarPokemon);
+                            System.out.printf("Has cambiado a %s\n", pokemonJugador.getNombre());
+                            continue; 
                         }
                     } else if (seleccion == -3){
                         salir = 0;
@@ -340,8 +342,8 @@ public class CombateEntrenador {
         Ataque atk = pokemonRival.getHabilidades()[posAtkRival];
         int ppActual = pokemonRival.getHabilidades()[posAtkRival].getPp();
         pokemonJugador.setHp(pokemonJugador.getHp() - ataque(pokemonRival,pokemonJugador,atk));
-        if (pokemonJugador.getHp() <= 0) {
-            System.out.printf("\n%s ha sido derrotado.\n",pokemonJugador.getNombre());
+        if (pokemonJugador.getHp() <= 0){
+        System.out.printf("\n%s ha sido derrotado. \n", pokemonJugador.getNombre());
         }
         pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);
     }
@@ -387,9 +389,10 @@ public class CombateEntrenador {
 
                                 // Realiza el ataque y resta el PP
                                 pokemonRival.setHp(pokemonRival.getHp() - ataque(pokemonJugador,pokemonRival,ataquesdisp[opcionAtaque]));
-                                if (pokemonRival.getHp() <= 0) {
-                                    System.out.printf("\n%s ha sido derrotado.\n",pokemonRival.getNombre());
+                                if (pokemonRival.getHp() <= 0){
+                                System.out.printf("\n%s ha sido derrotado. \n", pokemonRival.getNombre());
                                 }
+
                                 int ppActual = ataquesdisp[opcionAtaque].getPp();
                                 ataquesdisp[opcionAtaque].setPp(ppActual - 1);
                                 cerrarAtaque = 1;
