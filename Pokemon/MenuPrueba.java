@@ -124,12 +124,8 @@ public class MenuPrueba{
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
-<<<<<<< HEAD
         // System.out.println("Sus entrenadores y líderes son los siguientes:\n");
         // gimnasio.verOponentes();
-=======
-       
->>>>>>> ba25d2a2ed36acae26521c38a14ab46eb3f8bf39
         int oponente = verificarEntrenadores(gimnasio);
         if (oponente >= 0){
             oponente = verificarEntrenadores(gimnasio);
@@ -145,6 +141,7 @@ public class MenuPrueba{
                 if (opcion == 1){
                     for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
                         if (gimnasio.entrenadores()[i].getEstado()) {
+                            // intentar = 1;
                             reiniciarOpciones();
                             while (intentar == 1){
                                 CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
@@ -160,7 +157,27 @@ public class MenuPrueba{
                                     } else if (i == gimnasio.entrenadores().length) {
                                         System.out.printf("\nTu último combate es contra el lider del gimnasio %s.",gimnasio.getLider().getNombre());
                                     }
-                                    preguntarContinuar(sc, "Ir al combate");
+                                    int cerrar = 0;
+                                    while (cerrar == 0){
+                                        try {
+                                            System.out.printf("\nIngresa:\n1) Ir al combate\n2) Retirarse\n",opcion);
+                                            int opcion2 = sc.nextInt();
+                                            if (opcion2 == 1) {
+                                                cerrar = 1;
+                                                intentar = 0;
+                                            } else if (opcion2 == 2) {
+                                                cerrar = 1;
+                                                retirarse = 1;
+                                                intentar = 0;
+                                                salir = 1;
+                                            } else {
+                                                System.out.println("Valor ingresado inválido.");
+                                            }
+                                        } catch (InputMismatchException e){
+                                            System.out.println("Error: Entrada inválida.");
+                                            sc.nextLine();
+                                        }
+                                    } 
                                     ganados++;
                                 } else if (resultado == 0) { // System.out.println("\n¡Excelente! Tu rival te reconoce por no rendirte.\n");
                                     System.out.println("Has sido derrotado. ¿Deseas volver a intentarlo?");
@@ -221,14 +238,15 @@ public class MenuPrueba{
     }
 
     private int verificarEntrenadores(Gimnasio gimnasio){
-    for (int i = 0 ; i < gimnasio.entrenadores().length ; i++){
-        if (gimnasio.entrenadores()[i].getEstado()) {
-            return i; // Devuelve el primero que esté vivo
+        int entrenadorVivo = -1;
+        int salir = 0;
+        for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
+            if (gimnasio.entrenadores()[i].getEstado()) {
+                entrenadorVivo = i;
             }
         }
-        return -1; // Si ninguno está vivo
+        return entrenadorVivo;
     }
-
 
     public void preguntarContinuar(Scanner sc, String opcion){
         int cerrar = 0;
