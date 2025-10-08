@@ -129,6 +129,7 @@ public class Menu {
                                 if (resultado == 1) {
                                     System.out.println("¡Enhorabuena! Has ganado el combate");
                                     gimnasio.verOponentes();
+                                    jugador.subirNiv();
                                     if (i < gimnasio.entrenadores().length - 1){
                                         System.out.printf("\nTu siguiente combate es contra %s",gimnasio.entrenadores()[i+1].getNombre());
                                     } else if (i == gimnasio.entrenadores().length) {
@@ -167,6 +168,8 @@ public class Menu {
                     gimnasio.getLider().reiniciarEstadisticas();
                     if (resultado == 1) {
                         System.out.printf("\n¡Felicidades! Has derrotado al lider del gimnasio, y con ello obtenido la insignia del gimnasio %s",gimnasio.getNombre());
+                        gimnasio.getLider().setEstado(false);
+                        jugador.subirNiv();
                         ganados++;
                         intentar = 0;
                     } else if (resultado == 0) {

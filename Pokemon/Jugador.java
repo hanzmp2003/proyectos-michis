@@ -119,5 +119,10 @@ public class Jugador {
     return equipo[index];
     }
 
+    public void subirNiv(){
+        for (Pokemon i : equipo){
+            i.subirNivel();
+        }
+    }
 
 }
