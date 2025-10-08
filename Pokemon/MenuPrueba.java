@@ -124,8 +124,12 @@ public class MenuPrueba{
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
+<<<<<<< HEAD
         // System.out.println("Sus entrenadores y líderes son los siguientes:\n");
         // gimnasio.verOponentes();
+=======
+       
+>>>>>>> ba25d2a2ed36acae26521c38a14ab46eb3f8bf39
         int oponente = verificarEntrenadores(gimnasio);
         if (oponente >= 0){
             oponente = verificarEntrenadores(gimnasio);
@@ -184,7 +188,7 @@ public class MenuPrueba{
             }
         }
         
-        if (gimnasio.getLider().getEstado()){
+        if (gimnasio.getLider().getEstado() && retirarse == 0){
             if (retirarse == 0) {
                 while (intentar == 1){
                     CombateLider combate = new CombateLider(jugador, gimnasio.getLider());
@@ -217,15 +221,14 @@ public class MenuPrueba{
     }
 
     private int verificarEntrenadores(Gimnasio gimnasio){
-        int entrenadorVivo = -1;
-        int salir = 0;
-        for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
-            if (gimnasio.entrenadores()[i].getEstado()) {
-                entrenadorVivo = i;
+    for (int i = 0 ; i < gimnasio.entrenadores().length ; i++){
+        if (gimnasio.entrenadores()[i].getEstado()) {
+            return i; // Devuelve el primero que esté vivo
             }
         }
-        return entrenadorVivo;
+        return -1; // Si ninguno está vivo
     }
+
 
     public void preguntarContinuar(Scanner sc, String opcion){
         int cerrar = 0;
