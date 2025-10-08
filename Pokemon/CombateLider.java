@@ -218,9 +218,8 @@ public class CombateLider {
                 
                 while (decisionPelea >= 0) { // Este while maneja la posibilidad de que se cambie de pokemon todo el momento
 
-                    System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
+                    // System.out.printf("\nHas elegido a %s (HP: %d)",jugador.getEquipo()[decisionPelea].getNombre(),jugador.getEquipo()[decisionPelea].getHp());
                     decisionPelea = peleaPokemon(jugador.getEquipo()[decisionPelea], lider.getEquipo()[seleccionRival]);
-
                 }
 
                 //recuenta los pokemones vivos
@@ -289,7 +288,6 @@ public class CombateLider {
                         if (cambiarPokemon >= 0){  //Cambio de Pokemon
                             pokemonJugador = jugador.getPokemon(cambiarPokemon);
                             System.out.printf("Has cambiado a %s\n", pokemonJugador.getNombre());
-                            continue; 
                         }
                     }
                 } else if (seleccion == -3){
@@ -310,14 +308,13 @@ public class CombateLider {
                 turnoRival(pokemonJugador, pokemonRival);
 
                 if (pokemonJugador.getHp() > 0) {
-                    System.out.println("Es tu turno.");
+                    System.out.println("\nEs tu turno.");
                     seleccion = turnoJugador(pokemonJugador, pokemonRival, scanner);
                     if (seleccion == 2){
                         cambiarPokemon = jugador.elegirPokeJugador(1);
                         if (cambiarPokemon >= 0){
-                            salir = 0;
-                            System.out.printf("Has cambiado a %s\n", pokemonJugador.getNombre());
-                            continue;
+                            pokemonJugador = jugador.getPokemon(cambiarPokemon);
+                            System.out.printf("\nHas cambiado a %s\n", pokemonJugador.getNombre());
                         }
                     } else if (seleccion == -3){
                         salir = 0;

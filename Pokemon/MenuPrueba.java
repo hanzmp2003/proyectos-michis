@@ -155,13 +155,13 @@ public class MenuPrueba{
                 if (opcion == 1){
                     for (int i = 0 ; i < gimnasio.entrenadores().length && salir < 1 ; i++){
                         if (gimnasio.entrenadores()[i].getEstado()) {
-                            // intentar = 1;
+                            intentar = 1;
                             reiniciarOpciones();
                             while (intentar == 1){
                                 CombateEntrenador combate = new CombateEntrenador(jugador, gimnasio.entrenadores()[i]);
                                 int resultado = combate.iniciarCombate();
                                 gimnasio.entrenadores()[i].reiniciarEstadisticas(); // Esto posee un problema
-
+                                jugador.reiniciarEstadisticas();
                                 if (resultado == 1) {
                                     System.out.println("¡Enhorabuena! Has ganado el combate");
                                     gimnasio.verOponentes();
