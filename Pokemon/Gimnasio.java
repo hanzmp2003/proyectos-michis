@@ -1,15 +1,14 @@
 
-/*
- * Clase que representa un gimnasio en el juego de Pokémon.
- * Un gimnasio tiene un nombre, una dificultad, un conjunto de entrenadores y un líder.
+/**
+ * Clase que representa un gimnasio en el juego de Pokémon. Un gimnasio tiene un nombre, una dificultad, un conjunto de entrenadores y un líder.
  * 
  * @author Hanz Madrigal Porras, C4G754
- * @author Emanuel Sancho Sánchez, C07332
  * @author Chun Ping Liu Li, C5G492
- * @author Jefferson Miranda Sabala, C24874
- * @version 1.0
- *  
- */
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ *
+ * @version 1.0 
+*/
 public class Gimnasio {
     private String nombre;
     private String dificultad;

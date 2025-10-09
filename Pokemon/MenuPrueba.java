@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-/*
+/**
  * Clase principal que, aunque se establezca como "prueba", maneja el menú y la lógica del juego. Es decir, sirve como menu principal.
  * 
  * @author Hanz Madrigal Porras, C4G754
@@ -27,19 +27,22 @@ public class MenuPrueba{
         numBatalla = 0;
         Historial historial = new Historial();
         Scanner sc = new Scanner(System.in);
-        Cronometro cronometroGimnasio = new Cronometro();
+        Cronometro cronometroGimnasio = new Cronometro(); // Cronometro para el tiempo estando en x gimnasio
 
+        // Inicializar todos los pokemones, entrenadores y el catálogo de elección para el jugador
         AgregarPokemon catalogoCompleto = new AgregarPokemon();
         AgregarGimnasio ag = new AgregarGimnasio();
         Pokemon[] catalogoPokemones = catalogoCompleto.catalogoEleccion();
         AgregarEntrenadores ae = new AgregarEntrenadores();
         AgregarLideres al = new AgregarLideres();
        
+        // Empezar a registrar datos de jugador
         Jugador jugador = iniciarJugador(catalogoPokemones, sc);
     
         System.out.println("\nPresione enter para continuar:");
-        sc.nextLine();
+        sc.nextLine(); // Esto hace que salte un scanner que para el programa hasta que se introduzca enter
 
+        //Gimnasio #1 : La Jungla
         System.out.println("Excelente, tu primera parada es:" );
         Entrenador entrenador1 = ae.brittany;
         Entrenador entrenador2 = ae.kimberly;
@@ -49,20 +52,21 @@ public class MenuPrueba{
         ag.MostrarGimnasio(gimnasio1, entrenador1, entrenador2, lider);
         System.out.println("\nCuenta la leyenda que si logras derrotar a todos sus entrenadores y líderes,");
         System.out.println("te será revelado un poder tan antiguo que incluso los Pokémon susurran tu nombre en reverencia");
-
+        //Inicia batalla gimnasio 1
         cronometroGimnasio.iniciar();
         numBatalla = peleaGimnasio(jugador, gimnasio1, catalogoPokemones, sc, historial, numBatalla);
         cronometroGimnasio.detener();
         historial.mostrarResumenGimnasio("La Jungla", new int[]{0, 1, 2});
         System.out.printf("Tiempo en Gimnasio 1: " + cronometroGimnasio.getTiempoFormateado());
-
+        
+        //Gimnasio #2 : El Bunker
         entrenador1 = ae.brayan;
         entrenador2 = ae.kevin;
         lider = al.porcionzon;
         Gimnasio gimnasio2 = ag.elBunker;
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio2, entrenador1, entrenador2, lider);
-
+        //Inicia batalla gimnasio 2
         cronometroGimnasio.reiniciar();
         cronometroGimnasio.iniciar();
         numBatalla = peleaGimnasio(jugador, gimnasio2, catalogoPokemones, sc, historial, numBatalla);
@@ -70,13 +74,14 @@ public class MenuPrueba{
         historial.mostrarResumenGimnasio("El Bunker", new int[]{3, 4, 5});
         System.out.printf("Tiempo en Gimnasio 2: " + cronometroGimnasio.getTiempoFormateado());
 
+        //Gimnasio #3 : Los Trigres
         entrenador1 = ae.byron;
         entrenador2 = ae.yandel;
         lider = al.chunche;
         Gimnasio gimnasio3 = ag.LosTigres;
         gimnasio1.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio3, entrenador1, entrenador2, lider);
-
+        //Inicia batalla gimnasio 3
         cronometroGimnasio.reiniciar();
         cronometroGimnasio.iniciar();
         numBatalla = peleaGimnasio(jugador, gimnasio3, catalogoPokemones, sc, historial, numBatalla);
@@ -93,7 +98,7 @@ public class MenuPrueba{
      * @return El Pokémon seleccionado por el jugador.
      */
     private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
-        Pokemon[] nuevoCatalogo = new Pokemon[0]; 
+        Pokemon[] nuevoCatalogo = new Pokemon[0]; //Inicializa nuevoCatalogo
         int opcion = 0;
         int cerrar = 0;
         while (cerrar == 0){
@@ -104,7 +109,7 @@ public class MenuPrueba{
                 opcion = sc.nextInt();
                 if (opcion>0 && opcion <= nuevoCatalogo.length) {
                     System.out.printf("\n¡Excelente! Has elegido a %s\n",nuevoCatalogo[opcion - 1].getNombre());
-                    nuevoCatalogo[opcion - 1].setMostrar(false);
+                    nuevoCatalogo[opcion - 1].setMostrar(false); // Aquí se modifica también el respectivo en catalogoPokemones.
                     cerrar = 1;
                 } else {
                     System.out.println("Por favor, introduzca un número de los que acompaña a los pokemones.");

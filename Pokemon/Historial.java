@@ -1,5 +1,5 @@
 
-/*
+/**
  * Esta clase tiene una tiene como objetivo registrar, almacenar y resumir los resultados de las batallas del juego (a modo de historial).
  * Actúa como una base de datos simple para las estadísticas del jugador.
  * Cada vez que el jugador completa una batalla, ya sea contra un líder de gimnasio o un NPC, se registra el resultado (victoria o derrota),
