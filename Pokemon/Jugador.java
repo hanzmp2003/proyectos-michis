@@ -1,15 +1,15 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-/*
- * Clase que representa al jugador (y usuario) con sus atributos y métodos.
- * 
+/**  
+ *Clase que representa al jugador (y usuario) con sus atributos y métodos. 
  * @author Hanz Madrigal Porras, C4G754
- * @author Emanuel Sancho Sánchez, C07332
  * @author Chun Ping Liu Li, C5G492
- * @author Jefferson Miranda Sabala, C24874
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ *
  * @version 1.0
  */
+
 public class Jugador {
     String nombre;
     Pokemon[] equipo = new Pokemon[3];
