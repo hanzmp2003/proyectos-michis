@@ -16,7 +16,7 @@ public class Jugador {
     boolean estado;
     Scanner scanner = new Scanner(System.in);
 
-    /*
+    /**
      * Constructor para el jugador con su nombre y equipo de Pokémon.
      * @param nombre El nombre del jugador.
      * @param equipo lista de Pokemones a modo de equipo del jugador.
@@ -26,7 +26,7 @@ public class Jugador {
         this.equipo = equipo;
     }
 
-    /*
+    /**
      * Getter para el nombre del jugador.
      * @return El nombre del jugador.
      */
@@ -34,7 +34,7 @@ public class Jugador {
         return nombre;
     }
 
-    /*
+    /**
      * Setter para el nombre del jugador.
      * @param nombre El nuevo nombre del jugador.
      */
@@ -42,7 +42,7 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    /*
+    /**
      * Getter para el estado del jugador (si está vivo o no). Esta variable es útil, pero terminó siendo tan útil como el estado de los pokemones.
      * @return estado del jugador (boolean).
      */
@@ -50,7 +50,7 @@ public class Jugador {
         return estado;
     }
 
-    /*
+    /**
      * Setter para el estado del jugador (si está vivo o no).
      * @param estado El nuevo estado del jugador.
      */
@@ -58,7 +58,7 @@ public class Jugador {
         this.estado = estado;
     }
 
-    /*
+    /**
      * Getter para el equipo de Pokémon del jugador.
      * @return Una lista de Pokemones y equipo del jugador.
      */
@@ -66,7 +66,7 @@ public class Jugador {
         return equipo;
     }
 
-    /*
+    /**
      * Setter para el equipo de Pokémon del jugador.
      * @param equipo La nueva lista de Pokemones y equipo del jugador.
      */
@@ -74,7 +74,7 @@ public class Jugador {
         this.equipo = equipo;
     }
 
-    /*
+    /**
      * Método para que el jugador elija su entrenador (el nombre).
      * No fue de mucha utilidad, pero se implementó con la idea de que el jugador pudiera elegir entre varios entrenadores,
      * aunque al final no se implementó esa funcionalidad.
@@ -87,7 +87,7 @@ public class Jugador {
         return entrenador;
     }
 
-    /*
+    /**
      * Método para que el jugador elija su nombre.
      * 
      * @return El nombre del jugador.
@@ -98,7 +98,7 @@ public class Jugador {
         return nombre;
     }
 
-    /*
+    /**
      * Este método reinicia las estadísticas de todos los pokemones del equipo del jugador.
      * Restaura los puntos de vida al valor inicial, establece el estado a vivo (true) y
      * resetea los PP de todos los ataques de cada Pokémon (ésta última parte está en Ataque.java).
@@ -114,7 +114,7 @@ public class Jugador {
         }
     }
 
-    /*
+    /**
      * Este método permite al jugador elegir uno de sus pokemones que esté vivo (estado true).
      * Muestra sólo los pokemones que están vivos y permite al jugador seleccionar uno.
      * Si el parámetro cambiar es 1, se añade una opción para regresar (útil en combate).
@@ -182,7 +182,7 @@ public class Jugador {
         return seleccion;
     }
 
-    /*
+    /**
      * Este método devuelve un Pokémon específico del equipo del jugador basado en el índice proporcionado.
      * 
      * @param index El índice del Pokémon en el equipo del jugador.
@@ -192,7 +192,7 @@ public class Jugador {
         return equipo[index];
     }
 
-    /*
+    /**
      * Este método sube de nivel a todos los pokemones del equipo del jugador.
      * Llama al método subirNivel() de cada Pokémon en el equipo.
      */
@@ -202,7 +202,7 @@ public class Jugador {
         }
     }
 
-    /*
+    /**
      * Este método sirve como lista dinámica que agrega un nuevo Pokémon al equipo del jugador.
      * Crea una nueva lista con espacio adicional, copia los pokemones existentes y añade el nuevo al final.
      * Este método es útil cuando el jugador derrota a un líder de gimnasio y gana un nuevo Pokémon. Esto,

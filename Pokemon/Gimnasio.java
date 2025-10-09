@@ -15,7 +15,7 @@ public class Gimnasio {
     private Entrenador[] entrenadores;
     private Lideres lider;
 
-    /*
+    /**
      * Constructor para el gimnasio con su nombre, dificultad, entrenadores y líder.
      * A partir del nombre del gimnasio, se asignan automáticamente los entrenadores y el líder correspondientes.
      * 
@@ -48,21 +48,21 @@ public class Gimnasio {
         }
     }
 
-    /*
+    /**
      * Setter para el nombre del gimnasio.
      * 
      * @param nombre El nuevo nombre del gimnasio.
      */
     public void setNombre(String nombre) { this.nombre = nombre; }
 
-    /*
+    /**
      * Setter para la dificultad del gimnasio.
      * 
      * @param nivel La nueva dificultad del gimnasio (fácil, intermedio, difícil).
      */
     public void setNivel(String nivel) { this.dificultad = nivel; }
 
-    /*
+    /**
      * Setter para los rivales del gimnasio (entrenadores y líder).
      * 
      * @param lider El nuevo líder del gimnasio.
@@ -74,21 +74,21 @@ public class Gimnasio {
         this.entrenadores = new Entrenador[] {entrenador1, entrenador2};
     }
 
-    /*
+    /**
      * Getter para el nombre del gimnasio.
      * 
      * @return El nombre del gimnasio (String).
      */
     public String getNombre() { return nombre; }
 
-    /*
+    /**
      * Getter para la dificultad del gimnasio.
      * 
      * @return La dificultad del gimnasio (String).
      */
     public String getNivel() { return dificultad; } 
 
-    /*
+    /**
      * Getter para el lider del gimnasio.
      * 
      * @return El líder del gimnasio.
@@ -97,7 +97,7 @@ public class Gimnasio {
         return lider;
     }
 
-    /*
+    /**
      * Getter para los entrenadores del gimnasio.
      * 
      * @return Una lista de los entrenadores del gimnasio.
@@ -106,7 +106,7 @@ public class Gimnasio {
         return entrenadores;
     }
     
-    /*
+    /**
      * Método para ver los oponentes del gimnasio (entrenadores y líder).
      * Muestra una lista numerada de los entrenadores y el líder, indicando, además, si han sido derrotados; en caso de que lo hayan sido.
      * Muestra los primeros dos entrenadores, y luego el líder al final.

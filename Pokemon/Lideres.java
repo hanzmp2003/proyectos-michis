@@ -19,7 +19,7 @@ public class Lideres{
     private Pokemon[] equipo;
     public boolean estado;
 
-    /*
+    /**
      * Constructor para los líderes de gimnasio con su nombre, nivel, elemento y equipo de Pokémon.
      * @param nombre El nombre del líder de gimnasio.
      * @param nivel El nivel del líder de gimnasio.
@@ -34,7 +34,7 @@ public class Lideres{
         this.estado = true;
     }
     
-    /*
+    /**
      * Setter para el nombre del líder de gimnasio.
      * @param nombre El nuevo nombre del líder de gimnasio.
      */
@@ -42,7 +42,7 @@ public class Lideres{
         this.nombre = nombre;
     }
 
-    /*
+    /**
      * Getter para el nombre del líder de gimnasio.
      * @return El nombre del líder de gimnasio.
      */
@@ -50,7 +50,7 @@ public class Lideres{
         return nombre;
     }
 
-    /*
+    /**
      * Setter para el nivel del líder de gimnasio.
      * @param nivel El nuevo nivel del líder de gimnasio.
      */
@@ -58,7 +58,7 @@ public class Lideres{
         this.nivel = nivel;
     }
 
-    /*
+    /**
      * Getter para el nivel del líder de gimnasio.
      * @return El nivel del líder de gimnasio.
      */
@@ -66,7 +66,7 @@ public class Lideres{
         return nivel;
     }
 
-    /*
+    /**
      * Setter para el estado del líder de gimnasio (si está activo o no, es decir, vivo o no).
      * @param estado El nuevo estado del líder de gimnasio.
      */
@@ -74,7 +74,7 @@ public class Lideres{
         this.estado = estado;
     }
 
-    /*
+    /**
      * Getter para el estado del líder de gimnasio.
      * @return El estado del líder de gimnasio.
      */
@@ -82,7 +82,7 @@ public class Lideres{
         return estado;
     }
 
-    /*
+    /**
      * Setter para el tipo de elemento del líder de gimnasio.
      * @param elemento El nuevo tipo de elemento del líder de gimnasio.
      */
@@ -90,7 +90,7 @@ public class Lideres{
         this.elemento = elemento;
     }
 
-    /*
+    /**
      * Getter para el tipo de elemento del líder de gimnasio.
      * @return El tipo de elemento del líder de gimnasio.
      */
@@ -99,7 +99,7 @@ public class Lideres{
     }
 
 
-    /*
+    /**
      * Método para reiniciar las estadísticas de los pokemones del líder de gimnasio.
      * Restaura los puntos de vida y PP de los pokemones a sus valores iniciales y establece su
      * estado a vivo, luego de una batalla. Esto en caso de que el jugador quiera intentar nuevamente.
@@ -114,7 +114,7 @@ public class Lideres{
         }
     }
 
-    /*
+    /**
      * Este getter devuelve el índice del primer Pokémon en el equipo del líder de gimnasio que aún está vivo (estado true).
      * Sirve para que el líder de gimnasio elija su próximo Pokémon en combate. Para el caso en el que no hay pokemones vivos,
      * devuelve 0, pero esto no debería ocurrir en la lógica del combate, pues el método que llama a este se detiene si no hay
@@ -134,7 +134,7 @@ public class Lideres{
         return seleccionNPC;
     }
 
-    /*
+    /**
      * Este método permite al líder de gimnasio seleccionar un ataque aleatorio de su Pokémon actual que tenga PP disponible.
      * Si no hay ataques con PP disponible, devuelve -1.
      * Este método define un poco de la IA que se espera del "NPC".
@@ -176,7 +176,7 @@ public class Lideres{
         }  
     }
 
-    /*
+    /**
      * Getter para el equipo de Pokémon del líder de gimnasio.
      * @return El equipo de Pokémon del líder de gimnasio.
      */
@@ -184,7 +184,7 @@ public class Lideres{
         return equipo; 
         }
 
-    /*
+    /**
      * Setter para el equipo de Pokémon del líder de gimnasio.
      * @param equipo El nuevo equipo de Pokémon del líder de gimnasio.
      */

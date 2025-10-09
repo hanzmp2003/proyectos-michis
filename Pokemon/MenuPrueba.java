@@ -20,7 +20,7 @@ public class MenuPrueba{
     private int intentar;
     private int salir;
 
-    /*
+    /**
      * Este es el constructor de la clase MenuPrueba, que inicializa los componentes necesarios para el juego y gestiona el flujo principal del mismo.
      */
     public MenuPrueba(){
@@ -91,7 +91,7 @@ public class MenuPrueba{
 
     }
 
-    /*
+    /**
      * Este método permite al jugador elegir un Pokémon del catálogo disponible, manejando la entrada del usuario y validando la selección.
      * @param catalogoPokemones El catálogo de los pokemones disponibles para elegir.
      * @param sc El objeto Scanner para leer la entrada del usuario (para no crerar múltiples scanners).
@@ -122,7 +122,7 @@ public class MenuPrueba{
         return nuevoCatalogo[opcion - 1];
     }
 
-    /*
+    /**
     * Este método muestra el catálogo de pokemones disponibles para que el jugador elija, filtrando aquellos que ya han sido seleccionados.
     * @param nuevoCatalogo El catálogo completo de pokemones.
     * @return Lista de pokemones que aún están disponibles para elegir.
@@ -150,7 +150,7 @@ public class MenuPrueba{
         return nuevoCatalogoEleccion; 
     }
 
-    /*
+    /**
      * Este método inicializa un nuevo jugador, solicitando su nombre y permitiéndole seleccionar su equipo inicial de pokemones.
      * @param catalogoPokemones El catálogo de pokemones disponibles para elegir.
      * @param sc El objeto Scanner para leer la entrada del usuario.
@@ -182,7 +182,7 @@ public class MenuPrueba{
         return new Jugador(nombre,equipo);
     }
 
-    /*
+    /**
      * Este método gestiona el proceso de combate en un gimnasio, permitiendo al jugador enfrentarse a los entrenadores y al líder del gimnasio.
      * Además, retorna el número de batallas actualizado, sin importar si el jugador gana o pierde.
      * 
@@ -324,7 +324,7 @@ public class MenuPrueba{
       return numBatalla;
     }
 
-    /*
+    /**
      * Este método verifica si hay entrenadores vivos en el gimnasio, y si hay, devuelve el índice del primer entrenador vivo encontrado.
      * @param gimnasio El gimnasio que contiene los entrenadores a verificar.
      * @return El índice del primer entrenador vivo encontrado, o -1 si no hay entrenadores vivos.
@@ -340,7 +340,7 @@ public class MenuPrueba{
         return entrenadorVivo;
     }
 
-    /*
+    /**
      * Este método pregunta al jugador si desea continuar con una acción específica (como intentar un combate nuevamente) o retirarse.
      * Este método modifica las variables de la clase para entrar o salir de los bucles correspondientes. Esto, para evitar repeticiones
      * de bloques de código en el método peleaGimnasio.
@@ -371,7 +371,7 @@ public class MenuPrueba{
         }                                                                      
     }
 
-    /*
+    /**
      * Este método reinicia las variables para la gestión de la salida y entradad de los bucles de peleaGimnasio().
      * Controla las opciones de retirarse, intentar y salir, para controlar, además, lo que hace el método de preguntaContinuar().
      * Esto es útil para preparar el estado del menú antes de iniciar un nuevo combate.
