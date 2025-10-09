@@ -1,11 +1,26 @@
-// Clase Entrenador que representa a un entrenador con su nombre, si es jugador o no, y su equipo de Pokémon
+/**  
+ * Clase Entrenador que representa a un entrenador con su nombre, si es jugador o no, y su equipo de Pokémon
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ * 
+ * @version 1.0
+
+*/
 import java.util.Random;
+
 public class Entrenador {
     private String nombre;
     private boolean esJugador;
     private Pokemon[] equipo;
     private boolean estado;
-
+/**
+ * Inicializador
+ * @param nombre del entrenador 
+ * @param esJugador 
+ * @param equipo arreglo de pokemon 
+ */
     public Entrenador(String nombre, boolean esJugador, Pokemon[] equipo) {
         this.nombre = nombre;
         this.esJugador = esJugador;
@@ -13,10 +28,18 @@ public class Entrenador {
         this.estado = true;
     }
 
-    // Getters y setters
+    /**
+     * Getter
+     * @return nombre 
+     */ 
     public String getNombre() { 
         return nombre; 
         }
+
+    /**
+     * Setter
+     * @param nombre 
+     */
 
     public void setNombre(String nombre) { 
         this.nombre = nombre; 
@@ -25,10 +48,16 @@ public class Entrenador {
     public boolean isEsJugador() { 
         return esJugador; 
         }
+
+    /**
+     *@param esjugador
+     */
     public void setEsJugador(boolean esJugador) { 
         this.esJugador = esJugador; 
         }
-
+    /**
+     * @return equipo 
+     */
     public Pokemon[] getEquipo() { 
         return equipo; 
         }
@@ -41,7 +70,8 @@ public class Entrenador {
         return estado;
     }
 
-    // Reiniciar estadísticas de entrenadores y jugador luego de cada combate
+    /**Reiniciar estadísticas de entrenadores y jugador luego de cada combate
+     */ 
     public void reiniciarEstadisticas(){
         for (Pokemon i : equipo){
             i.resetHp();
@@ -52,7 +82,12 @@ public class Entrenador {
         }
     }
 
-    // Pokemon aleatorio del NPC (PUEDE ELIMIRARSE)
+    
+    /**
+     * Selecciona aleatoriamente un Pokémon 
+     * 
+     * @return Pokémon seleccionado
+     */
     public Pokemon elegirPokeNPC(){
         Random rand = new Random();
         int posicion = 0;
@@ -76,6 +111,11 @@ public class Entrenador {
             return null;
         }
     }
+    /**
+     * Devuelve el índice del primer Pokémon disponible.
+     * 
+     * @return índice del Pokémon disponible 
+     */
 
     public int npcElige(){
         int cerrarElegir = 0;
@@ -89,7 +129,13 @@ public class Entrenador {
         return seleccionNPC;
     }
     
-    // Ataque aleatorio del NPC
+    
+    /**
+     * Ataque aleatorio del NPC
+     * 
+     * @param pokemon 
+     * @return índice del ataque seleccionado 
+     */
     public int ataqueNPC(Pokemon pokemon){
         int seleccion = 0; 
         Random rand = new Random();
@@ -122,6 +168,11 @@ public class Entrenador {
             return -1;
         }  
     }
+    /**
+     * Cambia el estado general del entrenador.
+     * 
+     * @param estado, si el pokemon esta derrotado o no 
+     */ 
 
     public void setEstado(boolean estado){
         this.estado = estado;
