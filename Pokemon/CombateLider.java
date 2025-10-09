@@ -2,7 +2,16 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-// Clase para manejar el combate entre un jugador y un entrenador
+/**  
+ * Clase CombateLider: contiene la misma lógica de batalla que CombateEntrenador pero se dividió en dos clases para mantener el orden de casos
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ *
+ * @version 1.0 
+*/
 public class CombateLider {
     private Jugador jugador;
     private Lideres lider;
@@ -10,11 +19,16 @@ public class CombateLider {
     private int vidasJugador; 
     private int vidasRival;
 
+    /**
+     * Constructor que inicializa el combate entre un jugador y un líder
+     */
     public CombateLider(Jugador jugador, Lideres entrenador) {
         this.jugador = jugador;
         this.lider = entrenador;
     }
-
+    /**
+     * Getters y Setters
+     */
     public Jugador getJugador() {
         return jugador;
     }
@@ -31,9 +45,15 @@ public class CombateLider {
         this.lider = entrenador;
     }
 
-    // Método para calcular la efectividad del ataque basado en tipos
-    // Incluye STAB (Same Type Attack Bonus), tal como en los juegos oficiales de Pokémon
-    // Tabla de tipos basada en los juegos oficiales de Pokémon
+    /**
+     * Método para calcular la efectividad del ataque basado en tipos.
+     * Incluye STAB (Same Type Attack Bonus), tal como en los juegos oficiales de Pokémon.
+     * Tabla de tipos basada en los juegos oficiales de Pokémon.
+     * @param atacante El Pokémon que realiza el ataque
+     * @param defensor El Pokémon que recibe el ataque
+     * @param ataque El ataque que se está utilizando
+     * @return efectividad, un valor double que representa la efectividad del ataque
+     */
     public double calcularEfectividad(Pokemon atacante, Pokemon defensor, Ataque ataque) {
         String tipoAtacante = atacante.getTipo().toLowerCase();
         String tipoAtaque = ataque.getTipo().toLowerCase();
@@ -126,7 +146,9 @@ public class CombateLider {
 
         return efectividad;
     }
-
+    /**
+     * Método para imprimir la categoría de daño por la efectividad, recibe el parámetro efectividad y según el caso imprime mensajes del impacto
+     */
     public void imprimirCategoriaDanio(double efectividad){
         if (efectividad >= 2) {
             System.out.println("¡Es súper efectivo!");
@@ -139,6 +161,12 @@ public class CombateLider {
         }
     }
 
+    /**
+     * Genera un número aleatorio entre 0 y 99. Si el número es menor que 10,
+    * Se considera un golpe crítico y se devuelve un multiplicador de daño de 2.0
+    * En caso contrario, se devuelve 1.0 como daño normal.
+    * @return multiplicador de daño: 2.0 si es crítico, 1.0 si es normal
+     */
     public double calcularProbabilidadCritico() {
         Random random = new Random();
         int probabilidad = random.nextInt(100);
@@ -148,20 +176,28 @@ public class CombateLider {
             return 1.0; // Daño normal
         }
     }
-
+    /**
+    * Imprime un mensaje en consola si el ataque fue crítico.
+    *
+    * @param probabilidadCritico el multiplicador de daño obtenido del método probabilidadCritico()
+    */
     public void imprimirProbabilidadCritico(double probabilidadCritico) {
         if (probabilidadCritico == 2.0) {
             System.out.println("¡Golpe crítico!");
         } 
     }
     
-    // Cuando se termine de realizar toda la lógica del combate, se debe crear un método para determinar el daño final basado en una fórmula
-    // Ya tenemos efectividad y probabilidad de crítico, falta la fórmula completa que incluya lo anterior, nivel, poder del ataque, etc.
-    // Aún no se ha implementado la fórmula de daño completa porque no se ha definido cómo se seleccionarán los ataques ni cómo se manejarán los turnos en el combate.
-    // Una vez que se defina esa lógica, se podrá implementar la fórmula de daño completa, pero está casi lista.
-
-
-    // Método para iniciar el combate. Tiene un return para saber en el menú principal si el jugador ganó o perdió.
+    /**
+     *
+    * Inicia el combate entre el jugador y el lider 
+    * 
+    * El método gestiona la lógica completa del combate, incluyendo la selección de Pokémon,
+    * el desarrollo de los turnos, el conteo de vidas y la determinación del resultado.
+    * Se utilizan valores negativos en decisionPelea para representar acciones especiales
+    * como cambio de Pokémon o retirada.
+    *
+    * @return devuelve 0 si el jugador pierde, 1 si gana, -1 si se retira del combate
+    */
 
     public int iniciarCombate() {
         int salir = 0;
@@ -252,7 +288,13 @@ public class CombateLider {
         }    
     }
 
-    // Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
+    /**
+     * Ejecuta el ataque con mensajes y devuelve el daño total, para ser restado a la vida del que recibe
+     * @param ofensivo El Pokémon que realiza el ataque
+     * @param defensivo El Pokémon que recibe el ataque
+     * @param ataque El ataque que se está utilizando
+     * @return daniototal, un valor int que representa el daño total causado por el ataque
+     */
     public int ataque(Pokemon ofensivo, Pokemon defensivo, Ataque ataque){
         double critico = calcularProbabilidadCritico();
         double efectiv = calcularEfectividad(ofensivo, defensivo, ataque);
@@ -265,6 +307,25 @@ public class CombateLider {
         return daniototal;
     }
 
+    /**
+    * Ejecuta una pelea entre dos Pokémon, uno del jugador y otro del rival.
+    *
+    * La pelea se desarrolla por turnos, considerando la velocidad de cada Pokémon
+    * para determinar quién ataca primero. El jugador puede decidir atacar, cambiar de Pokémon
+    * o retirarse. El combate continúa hasta que uno de los Pokémon queda sin vida o el jugador se retira.
+    * 
+    * Este método también permite cambiar de Pokémon durante el combate, siempre que el nuevo Pokémon
+    * no sea el mismo que el actual. Si el jugador se retira, el combate termina inmediatamente.
+    *
+    * @param pokemonJugador el Pokémon seleccionado por el jugador
+    * @param pokemonRival el Pokémon seleccionado por el entrenador rival
+    * @return un valor entero que indica el resultado de la pelea:
+    *    -2 si el Pokémon del jugador ha sido derrotado
+    *    -1 si el Pokémon del rival ha sido derrotado
+    *    si el jugador ha cambiado de Pokémon devuelve el valor que representa la posición del nuevo Pokémon
+    *    -3 si el jugador se retira del combate
+    * 
+    */
     public int peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
         int inicio = 0;
         int cambiarPokemon = -1;
@@ -364,6 +425,11 @@ public class CombateLider {
         }
     }
 
+    /**
+     * Método para manejar el turno del rival
+     * @param pokemonJugador El pokémon del jugador
+     * @param pokemonRival El pokémon del rival
+     */
     private void turnoRival(Pokemon pokemonJugador, Pokemon pokemonRival){
         mostrarVida(pokemonJugador, pokemonRival);
         System.out.printf("\nEs el turno de %s...",lider.getNombre());
@@ -376,7 +442,14 @@ public class CombateLider {
         }
         pokemonRival.getHabilidades()[posAtkRival].setPp(ppActual - 1);
     }
-
+    
+    /**
+     * Método para manejar el turno del jugador
+     * @param pokemonJugador El pokémon del jugador
+     * @param pokemonRival El pokémon del rival
+     * @param scanner Scanner para leer la entrada del usuario
+     * @return decision, un valor int que representa la decisión del jugador
+     */
     private int turnoJugador(Pokemon pokemonJugador, Pokemon pokemonRival, Scanner scanner){
         int decision = 0;
         int turno = 0;
@@ -454,7 +527,11 @@ public class CombateLider {
         }
         return decision;
     }
-
+    /**
+     * Método para mostrar la vida actual de ambos pokémon
+     * @param pokemon1 El primer pokémon
+     * @param pokemon2 El segundo pokémon
+     */
      public void mostrarVida(Pokemon pokemon1, Pokemon pokemon2){
         int vida1 = pokemon1.getHp();
         int vida2 = pokemon2.getHp();

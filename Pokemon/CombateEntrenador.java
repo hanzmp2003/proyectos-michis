@@ -149,7 +149,7 @@ public class CombateEntrenador {
     }
 
     /**
-     * Método para manejar el turno del jugador
+     * Método para imprimir la categoría de daño por la efectividad, recibe el parámetro efectividad y según el caso imprime mensajes del impacto
      */
     public void imprimirCategoriaDanio(double efectividad){
         if (efectividad >= 2) {
@@ -164,7 +164,10 @@ public class CombateEntrenador {
     }
 
     /**
-     * Método para mostrar la vida actual de ambos pokémon
+     * Genera un número aleatorio entre 0 y 99. Si el número es menor que 10,
+    * Se considera un golpe crítico y se devuelve un multiplicador de daño de 2.0
+    * En caso contrario, se devuelve 1.0 como daño normal.
+    * @return multiplicador de daño: 2.0 si es crítico, 1.0 si es normal
      */
     public double calcularProbabilidadCritico() {
         Random random = new Random();
@@ -177,8 +180,10 @@ public class CombateEntrenador {
     }
 
     /**
-     * Método para mostrar la vida actual de ambos pokémon
-     */
+    * Imprime un mensaje en consola si el ataque fue crítico.
+    *
+    * @param probabilidadCritico el multiplicador de daño obtenido del método probabilidadCritico()
+    */
     public void imprimirProbabilidadCritico(double probabilidadCritico) {
         if (probabilidadCritico == 2.0) {
             System.out.println("¡Golpe crítico!");
@@ -186,9 +191,16 @@ public class CombateEntrenador {
     }
 
     /**
-     * Metodo para iniciar el combate. 
-     * @return 0 si el jugador pierde, 1 si gana, -1 si se retira
-     */
+     *
+    * Inicia el combate entre el jugador y el entrenador rival.
+    * 
+    * El método gestiona la lógica completa del combate, incluyendo la selección de Pokémon,
+    * el desarrollo de los turnos, el conteo de vidas y la determinación del resultado.
+    * Se utilizan valores negativos en decisionPelea para representar acciones especiales
+    * como cambio de Pokémon o retirada.
+    *
+    * @return devuelve 0 si el jugador pierde, 1 si gana, -1 si se retira del combate
+    */
     public int iniciarCombate() {
         int salir = 0;
         int seleccionJugador = 0;
@@ -296,13 +308,26 @@ public class CombateEntrenador {
         return daniototal;
     }
 
-    /**
-     * Método que maneja el combate entre dos pokémones y retorna el resultado del combate
-     * @param pokemonJugador El pokémon del jugador
-     * @param pokemonRival El pokémon del rival
-     * @return -2 si el pokémon del jugador es derrotado, -1 si el pokémon del rival es derrotado,
-     * el índice del nuevo pokémon si el jugador decide cambiar, -3 si el jugador decide retirarse
-     */
+   /**
+    * Ejecuta una pelea entre dos Pokémon, uno del jugador y otro del rival.
+    *
+    * La pelea se desarrolla por turnos, considerando la velocidad de cada Pokémon
+    * para determinar quién ataca primero. El jugador puede decidir atacar, cambiar de Pokémon
+    * o retirarse. El combate continúa hasta que uno de los Pokémon queda sin vida o el jugador se retira.
+    * 
+    * Este método también permite cambiar de Pokémon durante el combate, siempre que el nuevo Pokémon
+    * no sea el mismo que el actual. Si el jugador se retira, el combate termina inmediatamente.
+    *
+    * @param pokemonJugador el Pokémon seleccionado por el jugador
+    * @param pokemonRival el Pokémon seleccionado por el entrenador rival
+    * @return un valor entero que indica el resultado de la pelea:
+    *    -2 si el Pokémon del jugador ha sido derrotado
+    *    -1 si el Pokémon del rival ha sido derrotado
+    *    si el jugador ha cambiado de Pokémon devuelve el valor que representa la posición del nuevo Pokémon
+    *    -3 si el jugador se retira del combate
+    * 
+    */
+
     public int peleaPokemon(Pokemon pokemonJugador, Pokemon pokemonRival){
         int inicio = 0;
         int cambiarPokemon = -1;
@@ -391,11 +416,11 @@ public class CombateEntrenador {
         if (pokemonJugador.getHp() <= 0) {
             pokemonJugador.setEstado(false);
             return -2;
-            // System.out.printf("\nTu pokemon %s ha sido derrotado.\n", pokemonJugador.getNombre());
+            
         } else if (pokemonRival.getHp() <= 0){
             pokemonRival.setEstado(false);
             return -1;
-            // System.out.printf("\nEl pokemon rival %s ha sido derrotado.\n", pokemonRival.getNombre());
+           
         } else if (seleccion == 2 && cambiarPokemon >= 0){
             return cambiarPokemon;
         } else {
