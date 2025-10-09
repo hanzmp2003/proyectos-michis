@@ -5,10 +5,10 @@ import java.util.Scanner;
 /*
  * Clase principal que maneja el menú y la lógica del juego.
  * 
- * @author Hanz Madrigal Porras
- * @author Emanuel Sancho Sánchez
- * @author Chun Ping Liu Li
- * @author Jefferson Miranda Sabala
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Chun Ping Liu Li, C5G492
+ * @author Jefferson Miranda Sabala, C24874
  * @version 1.0
  */
 public class MenuPrueba{ //Al final termino siendo el Menu principal xd

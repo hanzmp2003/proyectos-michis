@@ -2,10 +2,10 @@
 /**
  * Esta es la clase principal que inicia el programa y crea una instancia del menú de prueba.
  * 
- * @author Hanz Madrigal Porras
- * @author Emanuel Sancho Sánchez
- * @author Chun Ping Liu Li
- * @author Jefferson Miranda Sabala
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Chun Ping Liu Li, C5G492
+ * @author Jefferson Miranda Sabala, C24874
  * 
  * @version 1.0
  *  
