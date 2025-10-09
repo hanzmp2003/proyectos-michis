@@ -8,9 +8,9 @@
  * @version 1.0
  *  
  */
-public class Pokemon {    //Método modelo para Pokemon
+public class Pokemon {
     private String nombre;
-    private boolean mostrar; // Solo funciona para mostrar catalogo inicial
+    private boolean mostrar;
     private int nivel;
     private int hp;
     private int atq;
