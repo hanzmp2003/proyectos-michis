@@ -1,4 +1,18 @@
-// Clase AgregarEntrenadores que inicializa todos los entrenadores con sus equipos de Pokémon
+/** 
+ *  Clase AgregarEntrenadores que inicializa todos los entrenadores con sus equipos de Pokémon
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+   @author Chun Ping Liu Li, C5G492
+   @author Emanuel Sancho Sánchez, C07332
+   @author Jefferson Emanuel Miranda Sabala, C24874
+ 
+ * @version 1.0
+ */
+
+/**
+ * En esta clase se declaran cada uno de los entrenadores que habrán en el gimnasio pokemon 
+ */
+
 public class AgregarEntrenadores {
     public Entrenador brittany;
     public Entrenador kimberly;
@@ -6,7 +20,11 @@ public class AgregarEntrenadores {
     public Entrenador kevin;
     public Entrenador byron;
     public Entrenador yandel;
-    // Constructor que inicializa todos los entrenadores con sus respectivos equipos de Pokémon
+
+    /**Constructor que inicializa todos los entrenadores con sus respectivos equipos de Pokémon
+     * se crean los pokemones y se les asigna un entreandor
+     * se almacenan para dar acceso 
+     */ 
     Entrenador[] entrenadores = new Entrenador[6];
     public AgregarEntrenadores() {
         AgregarPokemon ap = new AgregarPokemon();
@@ -27,7 +45,10 @@ public class AgregarEntrenadores {
         entrenadores = new Entrenador[] {brittany,kimberly,brayan,byron,kevin,yandel};
 
     }
-
+/**
+ * Acá se retornará un areglos con los entrenadores
+ * @return entrenadores, un arreglo 
+ */
     public Entrenador[] getEntrenadores(){
         return entrenadores;
     }

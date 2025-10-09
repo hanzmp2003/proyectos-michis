@@ -1,6 +1,20 @@
-// Clase AgregarAtaque que inicializa todos los ataques disponibles en el juego
+
+/**  
+ * Clase AgregarAtaque que inicializa todos los ataques disponibles en el juego
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+   @author Chun Ping Liu Li, C5G492
+   @author Emanuel Sancho Sánchez, C07332
+   @author Jefferson Emanuel Miranda Sabala, C24874
+
+   @version 1.0 
+*/
+
 public class AgregarAtaque {
 
+/**
+ * Se almacenan los ataques de cada uno de los pokemones y su valor de ataque 
+ */
     public static Ataque asadoArdiente = new Ataque("Asado Ardiente", 40, "Fuego", 15);
     public static Ataque patadaCallejera = new Ataque("Patada Callejera", 35, "Lucha", 20);
     public static Ataque ladridoBravo = new Ataque("Ladrido Bravo", 30, "Normal", 25);
