@@ -1,4 +1,14 @@
-// Clase AgregarPokemon que inicializa todos los Pokémon disponibles en el juego
+/**  
+ * Clase AgregarPokemon que inicializa todos los Pokémon disponibles en el juego.
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+   @author Chun Ping Liu Li, C5G492
+   @author Emanuel Sancho Sánchez, C07332
+   @author Jefferson Emanuel Miranda Sabala, C24874
+
+   @version 1.0 
+*/
+
 import java.util.Random;
 public class AgregarPokemon {
 
@@ -27,8 +37,9 @@ public class AgregarPokemon {
     public Pokemon[] catalogo;
     public Pokemon[] catalogoEleccion;
 
-    // Constructor que inicializa todos los Pokémon con sus características, stats y ataques
-
+/**
+ * Constructor que inicializa todos los Pokémon con sus respectivas características, estadísticas y habilidades.
+ */
     public AgregarPokemon() {
 
         choripan = new Pokemon();
@@ -281,7 +292,10 @@ public class AgregarPokemon {
             coronavirus, kamakahai
         };
     }
-
+/**
+ * Método que genera un catálogo aleatorio de 7 pokemones para elegir
+ * @return nuevoCatalogo, un arreglo con 7 pokemones aleatorios
+ */
     public Pokemon[] catalogoEleccion(){
         int iteracion = 0;
         Random rand = new Random();
