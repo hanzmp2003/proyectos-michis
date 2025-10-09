@@ -1,6 +1,16 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/*
+ * Clase principal que maneja el menú y la lógica del juego.
+ * 
+ * @author Hanz Madrigal Porras
+ * @author Emanuel Sancho Sánchez
+ * @author Chun Ping Liu Li
+ * @author Jefferson Miranda Sabala
+ * @version 1.0
+ */
 public class MenuPrueba{ //Al final termino siendo el Menu principal xd
     Entrenador entrenador1; // Creo variables para no escribir tantos entrenadores y arpovechar las funciones
     Entrenador entrenador2;
@@ -10,6 +20,9 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
     private int intentar;
     private int salir;
 
+    /*
+     * Este es el constructor de la clase MenuPrueba, que inicializa los componentes necesarios para el juego y gestiona el flujo principal del mismo.
+     */
     public MenuPrueba(){
         numBatalla = 0;
         Historial historial = new Historial();
@@ -78,6 +91,12 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
 
     }
 
+    /*
+     * Este método permite al jugador elegir un Pokémon del catálogo disponible, manejando la entrada del usuario y validando la selección.
+     * @param catalogoPokemones El catálogo de los pokemones disponibles para elegir.
+     * @param sc El objeto Scanner para leer la entrada del usuario (para no crerar múltiples scanners).
+     * @return El Pokémon seleccionado por el jugador.
+     */
     private Pokemon elegirPoke(Pokemon[] catalogoPokemones, Scanner sc){
         Pokemon[] nuevoCatalogo = new Pokemon[0]; //Inicializa nuevoCatalogo
         int opcion = 0;
@@ -103,6 +122,11 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
         return nuevoCatalogo[opcion - 1];
     }
 
+    /*
+    * Este método muestra el catálogo de pokemones disponibles para que el jugador elija, filtrando aquellos que ya han sido seleccionados.
+    * @param nuevoCatalogo El catálogo completo de pokemones.
+    * @return Lista de pokemones que aún están disponibles para elegir.
+    */
     public Pokemon[] mostrarCatalogo(Pokemon[] nuevoCatalogo){  //Mostrar Catalogo de Pokemones a lo random
         int pokemonesMostrar = 0;
         int posicion = 0;
@@ -126,6 +150,12 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
         return nuevoCatalogoEleccion; 
     }
 
+    /*
+     * Este método inicializa un nuevo jugador, solicitando su nombre y permitiéndole seleccionar su equipo inicial de pokemones.
+     * @param catalogoPokemones El catálogo de pokemones disponibles para elegir.
+     * @param sc El objeto Scanner para leer la entrada del usuario.
+     * @return Un objeto Jugador con el nombre y equipo seleccionado (el jugador).
+     */
     private Jugador iniciarJugador(Pokemon[] catalogoPokemones, Scanner sc){
         String nombre;
         Pokemon[] equipo = new Pokemon[3];
@@ -152,7 +182,19 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
         return new Jugador(nombre,equipo);
     }
 
-   public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Pokemon[] catalogoPokemones, Scanner sc, Historial historial, int numBatalla){
+    /*
+     * Este método gestiona el proceso de combate en un gimnasio, permitiendo al jugador enfrentarse a los entrenadores y al líder del gimnasio.
+     * Además, retorna el número de batallas actualizado, sin importar si el jugador gana o pierde.
+     * 
+     * @param jugador El jugador que participará en el combate.
+     * @param gimnasio El gimnasio donde se llevará a cabo el combate.
+     * @param catalogoPokemones El catálogo de pokemones disponibles para elegir (en caso de ganar y poder elegir uno nuevo).
+     * @param sc El objeto Scanner para leer la entrada del usuario.
+     * @param historial El historial de combates para registrar los resultados.
+     * @param numBatalla El número de batalla actual, utilizado para registrar en el historial.
+     * @return El número de batalla actualizado después de completar los combates en el gimnasio.
+     */
+    public int peleaGimnasio(Jugador jugador, Gimnasio gimnasio, Pokemon[] catalogoPokemones, Scanner sc, Historial historial, int numBatalla){
         reiniciarOpciones();
         int ganados = 0;
         System.out.printf("\n¡Bievenido al gimnasio %s!\n",gimnasio.getNombre());
@@ -282,6 +324,11 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
       return numBatalla;
     }
 
+    /*
+     * Este método verifica si hay entrenadores vivos en el gimnasio, y si hay, devuelve el índice del primer entrenador vivo encontrado.
+     * @param gimnasio El gimnasio que contiene los entrenadores a verificar.
+     * @return El índice del primer entrenador vivo encontrado, o -1 si no hay entrenadores vivos.
+     */
     private int verificarEntrenadores(Gimnasio gimnasio){
         int entrenadorVivo = -1;
         int salir = 0;
@@ -293,6 +340,14 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
         return entrenadorVivo;
     }
 
+    /*
+     * Este método pregunta al jugador si desea continuar con una acción específica (como intentar un combate nuevamente) o retirarse.
+     * Este método modifica las variables de la clase para entrar o salir de los bucles correspondientes. Esto, para evitar repeticiones
+     * de bloques de código en el método peleaGimnasio.
+     * 
+     * @param sc El objeto Scanner para leer la entrada del usuario.
+     * @param opcion el nombre de la primera acción específica que el jugador puede elegir (por ejemplo, 1) "Volver a intentarlo" (opcion)).
+     */
     public void preguntarContinuar(Scanner sc, String opcion){
         int cerrar = 0;
         while (cerrar == 0){
@@ -316,6 +371,11 @@ public class MenuPrueba{ //Al final termino siendo el Menu principal xd
         }                                                                      
     }
 
+    /*
+     * Este método reinicia las variables para la gestión de la salida y entradad de los bucles de peleaGimnasio().
+     * Controla las opciones de retirarse, intentar y salir, para controlar, además, lo que hace el método de preguntaContinuar().
+     * Esto es útil para preparar el estado del menú antes de iniciar un nuevo combate.
+     */
     public void reiniciarOpciones(){
         retirarse = 0;
         intentar = 1;
