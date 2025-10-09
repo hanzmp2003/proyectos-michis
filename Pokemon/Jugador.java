@@ -1,8 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Clase Jugador que representa a un jugador con su nombre, equipo de Pokémon y estado (actualmente en combate o no)
-
 /*
  * Clase que representa al jugador (y usuario) con sus atributos y métodos.
  * 
@@ -27,8 +25,6 @@ public class Jugador {
         this.nombre = nombre;
         this.equipo = equipo;
     }
-
-    // Getters y setters
 
     /*
      * Getter para el nombre del jugador.
