@@ -1,16 +1,16 @@
 /**
  * Esta clase crea y representa pokemones con sus características, stats y habilidades.
  * 
- * @author Hanz Madrigal Porras
- * @author Emanuel Sancho Sánchez
- * @author Chun Ping Liu Li
- * @author Jefferson Miranda Sabala
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Chun Ping Liu Li, C5G492
+ * @author Jefferson Miranda Sabala, C24874
  * @version 1.0
  *  
  */
-public class Pokemon {    //Método modelo para Pokemon
+public class Pokemon {
     private String nombre;
-    private boolean mostrar; // Solo funciona para mostrar catalogo inicial
+    private boolean mostrar;
     private int nivel;
     private int hp;
     private int atq;
