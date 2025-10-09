@@ -6,8 +6,8 @@
  * @author Chun Ping Liu Li, C5G492
  * @author Emanuel Sancho Sánchez, C07332
  * @author Jefferson Emanuel Miranda Sabala, C24874
-
-   @version 1.0 
+ *
+ * @version 1.0 
 */
 
 public class AgregarAtaque {
