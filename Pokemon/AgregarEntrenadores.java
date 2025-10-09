@@ -2,9 +2,9 @@
  *  Clase AgregarEntrenadores que inicializa todos los entrenadores con sus equipos de Pokémon
  * 
  * @author Hanz Madrigal Porras, C4G754
-   @author Chun Ping Liu Li, C5G492
-   @author Emanuel Sancho Sánchez, C07332
-   @author Jefferson Emanuel Miranda Sabala, C24874
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
  
  * @version 1.0
  */

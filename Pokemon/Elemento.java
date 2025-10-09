@@ -2,9 +2,9 @@
 /** 
  * Clase Elemento que representa un elemento con su nombre, permite acceder 
  * @author Hanz Madrigal Porras, C4G754
-   @author Chun Ping Liu Li, C5G492
-   @author Emanuel Sancho Sánchez, C07332
-   @author Jefferson Emanuel Miranda Sabala, C24874
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
  
  * @version 1.0
  */

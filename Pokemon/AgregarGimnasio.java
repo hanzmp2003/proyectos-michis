@@ -1,22 +1,53 @@
+
+/**
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ 
+ * @version 1.0
+ */
+
+/**
+ * Se declaran los gimnacsion en el orden de dificultad que van a tener 
+ */
 public class AgregarGimnasio {
     Gimnasio laJungla;
     Gimnasio elBunker;
     Gimnasio LosTigres; 
 
+
+/**
+ * Constructor donde se inicializan los gimnasion con el respectivo nivel de dificultad 
+ * Instancias de gimnasios bien chatas
+ * Gimnasio la jungla es el fácil 
+ * Gimnasio el bunker es el intermedio 
+ * Gimnasio los tigres es el difícil
+ */
     public AgregarGimnasio() {
-        // Instancias de gimnasios bien chatas
         laJungla = new Gimnasio("La Jungla del Precario", "Fácil");
         elBunker = new Gimnasio("El Búnker de los Chatas", "Intermedio");
         LosTigres = new Gimnasio("Los Tigres del Guarco", "Difícil");
     }
 
- // Imprime los nombres de los gimansios
+ /**  
+  * Imprime los nombres de los gimnasios
+  * @param nombre 
+  * @param entrenador1 rival uno 
+  * @param entrenador2 rival dos 
+  * @param lider rival final 
+  */ 
     public void MostrarGimnasio(Gimnasio nombre, Entrenador entrenador1, Entrenador entrenador2, Lideres lider){
     System.out.println("Gimnasio: " + nombre.getNombre() + " | Nivel: " + nombre.getNivel());
     System.out.println("Rivales: \n");
     MostrarRivales(entrenador1, entrenador2, lider);
     }
-// Ver información de los rivales que hay en el gimnasio
+/**
+ * muestra la  información de los rivales que hay en el gimnasio
+ * @param entrenador1 rival uno 
+ * @param entrenador2 rival dos 
+ * @param lider rival final 
+ */
     public void MostrarRivales(Entrenador entrenador1, Entrenador entrenador2, Lideres lider ){
         for (int i = 0; i < 3; i++) {
         System.out.printf("%d) ", i + 1);
@@ -33,6 +64,11 @@ public class AgregarGimnasio {
 
         }
     }
+
+    /**
+     * 
+     * @param  arreglo pokemones de equipos 
+     */
     public void mostrarEquipo(Pokemon[] equipo) {
     for (Pokemon p : equipo) {
         System.out.println("   - " + p.getNombre());
