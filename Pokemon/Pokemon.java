@@ -1,7 +1,10 @@
 /**
  * Esta clase crea y representa pokemones con sus características, stats y habilidades.
  * 
- * @author Hanz Madrigal Porras, Emanuel Sancho Sánchez, Chun Ping Liu Li, Jefferson Miranda Sabala
+ * @author Hanz Madrigal Porras
+ * @author Emanuel Sancho Sánchez
+ * @author Chun Ping Liu Li
+ * @author Jefferson Miranda Sabala
  * @version 1.0
  *  
  */
