@@ -150,6 +150,8 @@ public class CombateEntrenador {
 
     /**
      * Método para imprimir la categoría de daño por la efectividad, recibe el parámetro efectividad y según el caso imprime mensajes del impacto
+     * @param efectividad el valor numérico double que representa la efectividad del ataque.
+     *
      */
     public void imprimirCategoriaDanio(double efectividad){
         if (efectividad >= 2) {
