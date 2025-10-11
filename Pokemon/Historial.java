@@ -21,7 +21,7 @@ public class Historial {
         batalla = new String[31][5]; //31 batallas
     }
 
-    /*
+    /**
      * Este método se encarga de guardar los datos de una batalla terminada en la matriz.
      * Toma todos los datos clave de un combate (quién peleó, qué equipos usaron y quién ganó) y
      * los guarda en la fila de la matriz correspondiente al número de batalla.
@@ -51,7 +51,7 @@ public class Historial {
         batalla[numBatalla][4] = equipoJugadorStr;
     }
 
-    /*
+    /**
      * Este método muestra un resumen de todas las batallas registradas en el historial.
      * Muestra los detalles de cada batalla (resultado, rival, equipos) y un conteo total
      * de victorias y derrotas.

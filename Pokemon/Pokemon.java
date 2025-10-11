@@ -24,7 +24,6 @@ public class Pokemon {
     
     /**
      * Constructor para los pokemones y sus características.
-     * 
      */
 
     public Pokemon() {
@@ -71,7 +70,7 @@ public class Pokemon {
         this.tipo = tipo;
     }
     
-    /*
+    /**
      * Getter del nombre del pokemon
      * @return nombre del pokemon
      */
@@ -79,7 +78,7 @@ public class Pokemon {
         return nombre;
     }
     
-    /*
+    /**
      * Getter del tipo del pokemon
      * @return tipo del pokemon
      */
@@ -87,7 +86,7 @@ public class Pokemon {
         return tipo;
     }
     
-    /*
+    /**
      * Setter para las stats básicas del pokemon
      * @param nivel nivel del pokemon
      * @param hp puntos de vida del pokemon
@@ -104,7 +103,7 @@ public class Pokemon {
         this.hpReset = hp;
     }
     
-    /*
+    /**
      * Setter para el poder de ataque del pokemon (esta es una versión alternativa; podría no usarse luego),
      * calculado como el promedio de los poderes de sus habilidades.
      */
@@ -116,7 +115,7 @@ public class Pokemon {
         this.ataque = (int) Math.round(suma / habilidades.length); // Devuelve el entero más grande menor que el promedio
     }
 
-    /*
+    /**
      * Getter para el poder de ataque del pokemon
      * @return poder de ataque del pokemon
      */
@@ -124,7 +123,7 @@ public class Pokemon {
         return ataque;
     }
 
-    /*
+    /**
      * Setter para los puntos de vida del pokemon
      * @param hp puntos de vida a asignar al pokemon
      */
@@ -132,7 +131,7 @@ public class Pokemon {
         this.hp = hp;
     }
 
-    /*
+    /**
      * Getter para el nivel del pokemon
      * @return nivel del pokemon
      */
@@ -140,7 +139,7 @@ public class Pokemon {
         return nivel;
     }
     
-    /*
+    /**
      * Getter para los puntos de vida del pokemon
      * @return puntos de vida del pokemon
      */
@@ -148,7 +147,7 @@ public class Pokemon {
         return hp;
     }
 
-    /*
+    /**
      * Este es un getter de la vida máxima, inicial o base del pokemon
      * @return puntos de vida iniciales del pokemon
      */
@@ -156,7 +155,7 @@ public class Pokemon {
         return hpReset;
     }
 
-    /*
+    /**
      * Getter de puntos de ataque del pokemon
      * @return puntos de ataque del pokemon
      */
@@ -164,7 +163,7 @@ public class Pokemon {
         return atq;
     }
     
-    /*
+    /**
      * Getter de puntos de defensa del pokemon
      * @return puntos de defensa del pokemon
      */
@@ -172,7 +171,7 @@ public class Pokemon {
         return def;
     }
     
-    /*
+    /**
      * Getter de puntos de velocidad del pokemon
      * @return puntos de velocidad del pokemon
      */
@@ -180,7 +179,7 @@ public class Pokemon {
         return velocidad;
     }
     
-    /*
+    /**
      * Setter de las Habilidades y ataques del pokemon
      * @param habilidad1 primer ataque del pokemon
      * @param habilidad2 segundo ataque del pokemon
@@ -195,7 +194,7 @@ public class Pokemon {
         habilidades [3] = habilidad4;
     }
 
-    /*
+    /**
      * Getter para las habilidades del pokemon
      * @return lista de habilidades y ataques del pokemon
      */
@@ -203,7 +202,7 @@ public class Pokemon {
         return habilidades;
     }
    
-    /*
+    /**
      * Setter para estado (vivo o no) del pokemon
      * @param estado estado a asignar (true: vivo, false: no vivo)
      */
@@ -211,7 +210,7 @@ public class Pokemon {
         this.estado = estado;
     }
      
-    /*
+    /**
      * Getter para estado (vivo o no) del pokemon
      * @return estado del pokemon (true: vivo, false: no vivo)
      */
@@ -219,14 +218,14 @@ public class Pokemon {
         return estado;
     }
 
-    /*
+    /**
      * Esta función reinicia los puntos de vida del pokemon a su valor inicial (hpReset).
      */
     public void resetHp(){
         this.hp = this.hpReset;
     }
    
-    /*
+    /**
      * Esta función incrementa el nivel del pokemon en 1 y mejora sus stats (en principio, por combate ganado).
      */
     public void subirNivel() {
@@ -240,7 +239,7 @@ public class Pokemon {
     System.out.println(nombre + " ha subido al nivel " + this.nivel + "!");
   }
 
-    /*
+    /**
      * Getter para saber si el pokemon debe mostrarse en el catálogo inicial (sólo funciona para este fin)
      * @return true si el pokemon debe mostrarse, false si ya fue elegido
      */
@@ -248,7 +247,7 @@ public class Pokemon {
         return mostrar;
     }
 
-    /*
+    /***
      * Setter para modificar si el pokemon debe mostrarse en el catálogo inicial (sólo funciona para este fin)
      * @param mostrar true si el pokemon debe mostrarse, false si ya fue elegido
      */
@@ -256,7 +255,7 @@ public class Pokemon {
         this.mostrar = mostrar;
     }
 
-    /*
+    /**
      * Este método devuelve una representación en forma de cadena de texto del objeto Pokemon, incluyendo su nombre, tipo, nivel y stats principales.
      * El objetivo es convertir a texto el objeto para mostrarlo en el catálogo.
      * @return Una cadena de texto que representa al objeto Pokemon con sus características principales.
