@@ -8,7 +8,7 @@
  * @author Jefferson Emanuel Miranda Sabala, C24874
  *
  * @version 1.0 
-*/
+ */
 public class Gimnasio {
     private String nombre;
     private String dificultad;

@@ -64,7 +64,7 @@ public class MenuPrueba{
         entrenador2 = ae.kevin;
         lider = al.porcionzon;
         Gimnasio gimnasio2 = ag.elBunker;
-        gimnasio1.setRivales(lider, entrenador1, entrenador2);
+        gimnasio2.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio2, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 2
         cronometroGimnasio.reiniciar();
@@ -79,7 +79,7 @@ public class MenuPrueba{
         entrenador2 = ae.yandel;
         lider = al.chunche;
         Gimnasio gimnasio3 = ag.LosTigres;
-        gimnasio1.setRivales(lider, entrenador1, entrenador2);
+        gimnasio3.setRivales(lider, entrenador1, entrenador2);
         ag.MostrarGimnasio(gimnasio3, entrenador1, entrenador2, lider);
         //Inicia batalla gimnasio 3
         cronometroGimnasio.reiniciar();
