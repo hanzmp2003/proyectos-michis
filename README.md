@@ -11,8 +11,8 @@ Cada carpeta dentro del repositorio corresponde a una tarea o proyecto independi
 Los proyectos aplican los fundamentos de la **Programación Orientada a Objetos (POO)** en Java, y abarcan desde programas de consola hasta simulaciones más complejas.  
 
 ## Estructura del Repositorio
-- `tarea-1-michis/` → Simulador básico de batallas de gimnasio inspirado en Pokémon.  
-- `tarea-2-tetris/` → Implementación del clásico juego Tetris en consola. 
+- `Proyecto-1-pokemon/` → Simulador básico de batallas de gimnasio inspirado en Pokémon.  
+- `Proyecto-2-tetris/` → Implementación del clásico juego Tetris en consola. 
 - *(Se agregarán más carpetas conforme avance el curso.)*  
 
 ## Integrantes
