@@ -1,4 +1,26 @@
-public class Piezas {
+
+public class Piezas { 
+    //Los declaro como atributos para luego usarlos en otras clases con los datos guardados
+    public boolean[][] piezaI;
+    public String[][] piezaColorI;
+
+    public boolean[][] piezaO;
+    public String[][] piezaColorO;
+
+    public boolean[][] piezaS;
+    public String[][] piezaColorS;
+
+    public boolean[][] piezaJ;
+    public String[][] piezaColorJ;
+
+    public boolean[][] piezaL;
+    public String[][] piezaColorL;
+
+    public boolean[][] piezaZ;
+    public String[][] piezaColorZ;
+
+    public boolean[][] piezaT;
+    public String[][] piezaColorT;
 
     //Colores usando ANSI
         public static final String RESET = "\u001B[0m"; //para reiniciar cada que se crea una pieza
@@ -14,25 +36,61 @@ public class Piezas {
         };
 
     public Piezas(){
-    boolean [][] piezaI = new boolean[4][1];      //Pieza I
-        for (int i = 0; i < piezaI.length; i++) {
-        for (int j = 0; j < piezaI[i].length; j++) {
-        piezaI[i][j] = true;
-    }    
+    //Pieza I
+    piezaI = new boolean[4][1];      
+    piezaI = CasillaFullTrue(piezaI);
+        piezaColorI = CrearPieza(piezaI, 4, 1);
+
+    //Pieza O
+    piezaO = new boolean[2][2];      
+    piezaO = CasillaFullTrue(piezaI);
+        piezaColorO = CrearPieza(piezaO, 2, 2);
+
+    //Pieza S
+    piezaS = new boolean[2][3];  
+    piezaS [0][1] = true;
+    piezaS [0][2] = true;
+    piezaS [1][0] = true;
+    piezaS [1][1] = true;
+
+    piezaColorS = CrearPieza(piezaS, 2, 3);
+
+    //Pieza J
+    piezaJ = new boolean[3][2];   
+    piezaJ [0][1] = true;
+    piezaJ [1][1] = true;
+    piezaJ [2][0] = true;
+    piezaJ [2][1] = true;
+
+    piezaColorJ = CrearPieza(piezaJ, 3, 2);
+    
+    //Pieza L
+    piezaL = new boolean[3][2];    
+    piezaL [0][0] = true;
+    piezaL [1][0] = true;
+    piezaL [2][0] = true;
+    piezaL [2][1] = true;
+
+    piezaColorL = CrearPieza(piezaL, 3, 2);
 
 
+    //Pieza Z
+    piezaZ = new boolean[2][3]; 
+    piezaZ [0][0] = true;
+    piezaZ [0][1] = true;
+    piezaZ [1][1] = true;
+    piezaZ [1][2] = true;
+    piezaColorZ = CrearPieza(piezaZ, 2, 3);
 
-    String [][] piezaO = new String[2][4];      //Pieza O
-    String [][] piezaS = new String[2][3];      //Pieza S
-    String [][] piezaJ = new String[3][2];      //Pieza J
-    String [][] piezaL = new String[3][2];      //Pieza L
-    String [][] piezaZ = new String[2][3];      //Pieza Z
-    String [][] piezaT = new String[2][3];      //Pieza T
-
-
-
+    //Pieza T
+    piezaT = new boolean[2][3];
+    piezaT [0][0] = true;
+    piezaT [0][1] = true;
+    piezaT [1][1] = true;
+    piezaT [1][2] = true;
+    piezaColorT = CrearPieza(piezaT, 2, 3);
+        
     }
-  }
 
 
     public String[][] CrearPieza(boolean[][] pieza, int filaPieza, int columnaPieza){
@@ -41,11 +99,11 @@ public class Piezas {
          for (int i = 0; i < pieza.length; i++) {
          for (int j = 0; j < pieza[i].length; j++) {
             if(pieza[i][j]){   //Si la pieza es verdadera, entonces obtiene un bloque de color
-                piezaColor[i][j] = COLORES[1] + "██" + RESET;
-                System.out.print(COLORES[1] + "██" + RESET);  //Asigno un color por defecto, luego lo cambio con un random
-
-                }else{
-
+                piezaColor[i][j] = COLORES[1] + "██" + RESET; //Asigno un color por defecto, luego lo cambio con un random
+                System.out.print(piezaColor[i][j]);
+            } else {
+                piezaColor[i][j] = "  ";
+                System.out.print("  ");
 
                 }
 
@@ -57,5 +115,18 @@ public class Piezas {
            return piezaColor;   
         }
 
-    
+    public boolean[][] CasillaFullTrue(boolean[][] pieza){
+        for (int i = 0; i < pieza.length; i++) {
+        for (int j = 0; j < pieza[i].length; j++) {
+        pieza[i][j] = true;
+            }    
+        }
+        return pieza;
+
+
+    }
+
+
 }
+
+
