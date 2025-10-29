@@ -92,7 +92,6 @@ public class Piezas {
         
     }
 
-
     public String[][] CrearPieza(boolean[][] pieza, int filaPieza, int columnaPieza){
     String[][] piezaColor = new String[filaPieza][columnaPieza];
 
@@ -102,7 +101,7 @@ public class Piezas {
                 piezaColor[i][j] = COLORES[1] + "██" + RESET; //Asigno un color por defecto, luego lo cambio con un random
                 System.out.print(piezaColor[i][j]);
             } else {
-                piezaColor[i][j] = "  ";
+                piezaColor[i][j] = "  ";  //Si es falso, se le asigna un espacio
                 System.out.print("  ");
 
                 }
@@ -115,6 +114,8 @@ public class Piezas {
            return piezaColor;   
         }
 
+
+    //Esto lo cree porque me daba hueva ir uno por uno diciendo qe es true    
     public boolean[][] CasillaFullTrue(boolean[][] pieza){
         for (int i = 0; i < pieza.length; i++) {
         for (int j = 0; j < pieza[i].length; j++) {
