@@ -1,3 +1,4 @@
+package Tetris;
 
 public class CrearPiezas { //se encarga de construir todas las formas y asignarles colores.
 
