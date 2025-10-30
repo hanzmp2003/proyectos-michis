@@ -1,25 +1,28 @@
 package Tetris;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Tabla{
-    public static void main(String[] args) {
-        String[][] pieza = new String[][]{{"██","██"},
-                                          {"  ","██"},
-                                          {"  ","██"}};
-        String[][] tablero = new String[20][10];
-        for (int i = 0 ; i < tablero.length ; i++){
-            tablero[i] = new String[]{"  ","  ","  ","  ","  ","  ","  ","  ","  ","  "};
-        }
-        tablero[0][3] = pieza[0][0];
-        tablero[0][4] = pieza[0][1];
-        tablero[1][3] = pieza[1][0];
-        tablero[1][4] = pieza[1][1];
-        tablero[2][3] = pieza[2][0];
-        tablero[2][4] = pieza[2][1];
-        for (String[] i : tablero){
-            for (String j : i){
-                System.out.print(j);
+    private Piezas piezas = new Piezas();
+    private String[][] tab;
+    private boolean[][] tabDiscreto;
+    public Tabla() {
+        this.tab = new String[20][10];
+        this.tabDiscreto = new boolean[20][10];
+        for (int i = 0 ; i < tab.length ; i++){
+            tab[i] = new String[]{"  ","  ","  ","  ","  ","  ","  ","  ","  ","  "};
+            for (int j = 0 ; j < 10 ; j++){
+                tabDiscreto[i][j] = false;
             }
-            System.out.println();
-        }                                               
+        }
     }
+
+    public void dibujarPieza(){
+
+    }
+
+    public String[][] generarPiezaAl(){
+        ArrayList<String[][]> piezasLista = new ArrayList<>(piezas.piezaI,piezas.piezaJ);
+    }
+
 }

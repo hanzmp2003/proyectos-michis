@@ -1,3 +1,4 @@
+package Tetris;
 
 public class Piezas { 
     //Los declaro como atributos para luego usarlos en otras clases con los datos guardados
