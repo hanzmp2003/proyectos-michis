@@ -1,5 +1,6 @@
 package Tetris;
 import java.util.Random;
+import java.util.Scanner;
 
 // La transformación de las piezas al tablero será sumarle 3 a las columnas.
 
@@ -8,14 +9,22 @@ public class Tabla{
     private CrearPiezas piezas = new CrearPiezas();
     private String[][] tab = new String[20][10];
     public Tabla() {
+        Scanner input = new Scanner(System.in);
         iniciarTabla();
         Piezas pieza = piezas.getPiezaAleatoria();
-        pieza.moverPieza("s");
-        dibujarPieza(pieza, tab);
-        imprimirTab(tab);
-        pieza.moverPieza("w");
-        dibujarPieza(pieza, tab);
-        imprimirTab(tab);
+        // pieza.moverPieza("s");
+        // dibujarPieza(pieza, tab);
+        // imprimirTab(tab);
+        // pieza.moverPieza("w");
+        // dibujarPieza(pieza, tab);
+        // imprimirTab(tab);
+        String opcion = "";
+        while (!opcion.equals("salir")) {
+            dibujarPieza(pieza, tab);
+            imprimirTab(tab);
+            opcion = input.nextLine();
+            pieza.moverPieza(opcion);
+        }
     }
 
     public void dibujarPieza(Piezas pieza, String[][] tab){ // arraycopy
@@ -42,19 +51,19 @@ public class Tabla{
         }
     }
 
-    public void moverPieza(String s, Piezas pieza, String[][] tab){
-        if (s.equals("s")){
-            for (int i = pieza.posPieza.length - 1; i >= 0; i--){
-                for (int j = pieza.posPieza[0].length - 1; j >= 0; j--){
-                    if (pieza.posPieza[i][j]){
-                        pieza.posPieza[i+1][j] = pieza.posPieza[i][j];
-                        pieza.posPieza[i][j] = false;
-                        tab[i+1][j] = tab[i][j];
-                        tab[i][j] = "  ";
-                    }
-                }
-            }
-        }
-    }
+    // public void moverPieza(String s, Piezas pieza, String[][] tab){
+    //     if (s.equals("s")){
+    //         for (int i = pieza.posPieza.length - 1; i >= 0; i--){
+    //             for (int j = pieza.posPieza[0].length - 1; j >= 0; j--){
+    //                 if (pieza.posPieza[i][j]){
+    //                     pieza.posPieza[i+1][j] = pieza.posPieza[i][j];
+    //                     pieza.posPieza[i][j] = false;
+    //                     tab[i+1][j] = tab[i][j];
+    //                     tab[i][j] = "  ";
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
 }

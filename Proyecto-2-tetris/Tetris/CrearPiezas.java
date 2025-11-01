@@ -52,7 +52,8 @@ public class CrearPiezas { //se encarga de construir todas las formas y asignarl
     private boolean[][] crearS() {
         return new boolean[][] {
             {false, true, true},
-            {true,  true, false}
+            {true,  true, false},
+            {false, false,false}
         };
     }
     
