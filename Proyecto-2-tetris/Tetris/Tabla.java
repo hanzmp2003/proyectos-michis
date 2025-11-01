@@ -6,21 +6,39 @@ import java.util.Random;
 public class Tabla{
     private Random rand;
     private CrearPiezas piezas = new CrearPiezas();
-    private String[][] tab;
+    private String[][] tab = new String[20][10];
     public Tabla() {
-        iniciarTablas();
+        iniciarTabla();
         Piezas pieza = piezas.getPiezaAleatoria();
+        pieza.moverPieza("s");
         dibujarPieza(pieza, tab);
-        moverPieza("s",pieza,tab);
+        imprimirTab(tab);
+        pieza.moverPieza("w");
+        dibujarPieza(pieza, tab);
         imprimirTab(tab);
     }
 
-    public void dibujarPieza(Piezas pieza, String[][] tab){
+    public void dibujarPieza(Piezas pieza, String[][] tab){ // arraycopy
+        iniciarTabla();
         for (int i = 0 ; i < pieza.formaVisib.length ; i++) {
             for (int j = 0 ; j < pieza.formaVisib[0].length ; j++){
-                tab[i][j+3] = pieza.formaVisib[i][j];
-                pieza.posPieza[i][j+3] = pieza.forma[i][j];
+                tab[i + pieza.posF][j + pieza.posC] = pieza.formaVisib[i][j];
             }
+        }
+    }
+
+    public void imprimirTab(String[][] tab){
+        for (String[] i : tab){
+            for (String j : i) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+
+    public void iniciarTabla(){
+        for (int i = 0 ; i < tab.length ; i++){
+            tab[i] = new String[]{"  ","  ","  ","  ","  ","  ","  ","  ","  ","  "};
         }
     }
 
@@ -36,22 +54,6 @@ public class Tabla{
                     }
                 }
             }
-        }
-    }
-
-    public void imprimirTab(String[][] tab){
-        for (String[] i : tab){
-            for (String j : i) {
-                System.out.print(j);
-            }
-            System.out.println();
-        }
-    }
-
-    public void iniciarTablas(){
-        this.tab = new String[20][10];
-        for (int i = 0 ; i < tab.length ; i++){
-            tab[i] = new String[]{"  ","  ","  ","  ","  ","  ","  ","  ","  ","  "};
         }
     }
 

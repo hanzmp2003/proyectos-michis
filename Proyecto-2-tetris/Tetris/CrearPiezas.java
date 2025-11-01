@@ -33,10 +33,10 @@ public class CrearPiezas { //se encarga de construir todas las formas y asignarl
     //Pieza I : 0
     private boolean[][] crearI() {
         return new boolean[][] {
-            {true},
-            {true},
-            {true},
-            {true}
+            {false,false,false,false},
+            {true , true, true,true },
+            {false,false,false,false},
+            {false,false,false,false}
         };
     }
 
@@ -60,33 +60,35 @@ public class CrearPiezas { //se encarga de construir todas las formas y asignarl
     private boolean[][] crearZ() {
         return new boolean[][] {
             {true,  true, false},
-            {false, true, true}
+            {false, true, true},
+            {false,false,false}
         };
     }
 
     //Pieza L : 4
     private boolean[][] crearL() {
         return new boolean[][] {
-            {true, false},
-            {true, false},
-            {true, true}
+            {true, false,false},
+            {true, true, true},
+            {false,false,false}
         };
     }
 
     //Pieza J : 5
     private boolean[][] crearJ() {
         return new boolean[][] {
-            {false, true},
-            {false, true},
-            {true,  true}
+            {false, false,true},
+            {true, true, true},
+            {false,false,false}
         };
     }
 
     //Pieza T : 6
     private boolean[][] crearT() {
         return new boolean[][] {
+            {false, true, false},
             {true, true, true},
-            {false, true, false}
+            {false,false,false}
         };
     }
 
