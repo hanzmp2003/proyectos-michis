@@ -71,11 +71,28 @@ public class Tabla{
     // Dibuja frame: primero coloca el fijo sobre el tablero, luego la pieza encima.
     public void dibujarPieza(Piezas pieza, String[][] tab){
         iniciarTabla(); 
+        //Copiar tablero fijo
         for (int i = 0 ; i < fijoVisib.length ; i++) {
             for (int j = 0 ; j < fijoVisib[0].length ; j++) {
                 tab[i][j] = fijoVisib[i][j];
             }
         }
+
+        // calcular la pieza donde podría caer (El Ghost piece lo tuve que buscar para programarlo)
+        int sombraF = calcularAlturaCaida(pieza);
+
+        // dibujar la sombra
+        for (int i = 0 ; i < pieza.formaVisib.length ; i++) {
+            for (int j = 0 ; j < pieza.formaVisib[0].length ; j++){
+                if (!pieza.forma[i][j]) continue;
+                int fila = sombraF + i;
+                int col  = pieza.posC + j;
+                if (fila >= 0 && fila < tab.length && col >= 0 && col < tab[0].length) {
+                tab[fila][col] = "\u001B[37m░░\u001B[0m"; 
+                }
+            }
+        }
+
         // superponer la pieza actual
         for (int i = 0 ; i < pieza.formaVisib.length ; i++) {
             for (int j = 0 ; j < pieza.formaVisib[0].length ; j++){
@@ -183,6 +200,18 @@ public class Tabla{
         nueva.posC = 3;  //posición 3 para manterner incialmente la pieza centrada
         return nueva;
     }
+
+
+    private int calcularAlturaCaida(Piezas pieza) {
+        int fila = pieza.posF;
+        //verifica si la pieza puede moverse una fila más abajo sin chocar con el fondo o con otras piezas ya fijadas
+        while (puedeColocar(pieza, fila + 1, pieza.posC)) {
+        fila++;
+        }
+        return fila;
+    }
+
+
 
 
     // public void moverPieza(String s, Piezas pieza, String[][] tab){
