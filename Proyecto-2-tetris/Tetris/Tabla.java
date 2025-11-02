@@ -10,12 +10,14 @@ public class Tabla{
     private String[][] tab = new String[20][10];
     private boolean[][] fijo = new boolean[20][10];
     private String[][] fijoVisib = new String[20][10];
+    private Piezas piezaSiguiente;
 
     public Tabla() {
         Scanner input = new Scanner(System.in);
         iniciarTabla();
         iniciarFijo();
         Piezas pieza = piezas.getPiezaAleatoria();
+        piezaSiguiente = piezas.getPiezaAleatoria();
 
         // String opcion = "";
         // while (!opcion.equals("salir")) { 
@@ -28,7 +30,7 @@ public class Tabla{
         String opcion = "";
         while (!opcion.equals("salir")) {
             dibujarPieza(pieza, tab);
-            imprimirTab(tab);
+            imprimirTab(tab, piezaSiguiente);
             opcion = input.nextLine().trim();
 
             if (opcion.equals("s")) {
@@ -37,7 +39,8 @@ public class Tabla{
                     pieza.posF += 1;
                 }
                 fijarPiezaEnFijo(pieza);
-                pieza = piezas.getPiezaAleatoria();
+                pieza = piezaSiguiente;
+                piezaSiguiente = piezas.getPiezaAleatoria();
                 if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                     System.out.println("Game Over");
                     break;
@@ -52,7 +55,8 @@ public class Tabla{
                 } else {
                     // Si no puede bajar, se fija automáticamente
                     fijarPiezaEnFijo(pieza);
-                    pieza = piezas.getPiezaAleatoria();
+                    pieza = piezaSiguiente;
+                    piezaSiguiente = piezas.getPiezaAleatoria();
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                         System.out.println("Game Over");
                         break;
@@ -83,14 +87,38 @@ public class Tabla{
         }
     }
 
-    public void imprimirTab(String[][] tab){
-        for (String[] i : tab){
-            for (String j : i) {
-                System.out.print(j);
+    public void imprimirTab(String[][] tab, Piezas piezaSiguiente){
+        System.out.println("+--------------------+     Próxima pieza:");
+        //Variables extras para hacerlo bien aesthethic :DD
+        int altura = tab.length;
+        int ancho  = tab[0].length;
+        int altoSig = piezaSiguiente.formaVisib.length;
+        int anchoSig = piezaSiguiente.formaVisib[0].length;
+
+        for (int i = 0; i < altura; i++) {
+        System.out.print("|");
+
+            // imprime el tablero normal
+            for (int j = 0; j < ancho; j++) {
+            System.out.print(tab[i][j]);
             }
+            System.out.print("|");
+
+            // imprime la pieza siguiente a la derecha de la original
+            if (i < altoSig) {
+            System.out.print("    ");
+            for (int j = 0; j < anchoSig; j++) {
+                System.out.print(piezaSiguiente.formaVisib[i][j]);
+                }
+            }
+
             System.out.println();
         }
+
+        System.out.println("+--------------------+");
     }
+
+    
 
     public void iniciarTabla(){
         for (int i = 0 ; i < tab.length ; i++){
