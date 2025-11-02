@@ -11,9 +11,10 @@ public class Tabla{
     private boolean[][] fijo = new boolean[20][10];
     private String[][] fijoVisib = new String[20][10];
     private Piezas piezaSiguiente;
+    private Scanner input;
 
     public Tabla() {
-        Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
         iniciarTabla();
         iniciarFijo();
         Piezas pieza = piezas.getPiezaAleatoria();
@@ -57,6 +58,12 @@ public class Tabla{
                     fijarPiezaEnFijo(pieza);
                     pieza = piezaSiguiente;
                     piezaSiguiente = piezas.getPiezaAleatoria();
+
+                    // Ajuste de posición inicial(Mauskeherramienta para reiniciar las coordenadas de la nueva pieza actual)
+                    //Asi evita que el programa detecte que tiene las mismas coordenadas que la anterior pieza :)
+                    pieza.posF = 0;
+                    pieza.posC = 3; // centrada en el tablero
+
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                         System.out.println("Game Over");
                         break;
@@ -65,6 +72,9 @@ public class Tabla{
             }
         }
     }
+
+    //Importante y por comodidad: las piezas deben reflejar la sombra en donde cae porque al no ser visible luego provoca un error de colisión. 
+    //O al menos reflejar un mensaje mencionando el error.
 
     // Dibuja frame: primero coloca el fijo sobre el tablero, luego la pieza encima.
     public void dibujarPieza(Piezas pieza, String[][] tab){
@@ -112,6 +122,7 @@ public class Tabla{
                 }
             }
 
+            //Aqui se pone el contador para que aparezca el puntaje 
             System.out.println();
         }
 
