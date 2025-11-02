@@ -40,8 +40,7 @@ public class Tabla{
                     pieza.posF += 1;
                 }
                 fijarPiezaEnFijo(pieza);
-                pieza = piezaSiguiente;
-                piezaSiguiente = piezas.getPiezaAleatoria();
+                pieza = iniciarNuevaPieza();
                 if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                     System.out.println("Game Over");
                     break;
@@ -56,14 +55,7 @@ public class Tabla{
                 } else {
                     // Si no puede bajar, se fija automáticamente
                     fijarPiezaEnFijo(pieza);
-                    pieza = piezaSiguiente;
-                    piezaSiguiente = piezas.getPiezaAleatoria();
-
-                    // Ajuste de posición inicial(Mauskeherramienta para reiniciar las coordenadas de la nueva pieza actual)
-                    //Asi evita que el programa detecte que tiene las mismas coordenadas que la anterior pieza :)
-                    pieza.posF = 0;
-                    pieza.posC = 3; // centrada en el tablero
-
+                    pieza = iniciarNuevaPieza();
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                         System.out.println("Game Over");
                         break;
@@ -179,6 +171,20 @@ public class Tabla{
                 }
             }
         }
+
+    }
+
+    //Reinicia las coordenadas de la nueva pieza para evitar errores de colisión
+    //Asi evita que el programa detecte que tiene las mismas coordenadas que la anterior pieza :)
+    private Piezas iniciarNuevaPieza() {
+        Piezas nueva = piezaSiguiente;
+        piezaSiguiente = piezas.getPiezaAleatoria();
+        nueva.posF = 0; 
+        nueva.posC = 3;  //posición 3 para manterner incialmente la pieza centrada
+        return nueva;
+    }
+
+
     // public void moverPieza(String s, Piezas pieza, String[][] tab){
     //     if (s.equals("s")){
     //         for (int i = pieza.posPieza.length - 1; i >= 0; i--){
@@ -193,5 +199,6 @@ public class Tabla{
     //         }
     //     }
     // }
-    }
+    
+
 }
