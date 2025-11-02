@@ -17,48 +17,49 @@ public class Tabla{
         iniciarFijo();
         Piezas pieza = piezas.getPiezaAleatoria();
 
-        // pieza.moverPieza("s");
-        // dibujarPieza(pieza, tab);
-        // imprimirTab(tab);
-        // pieza.moverPieza("w");
-        // dibujarPieza(pieza, tab);
-        // imprimirTab(tab);
+        // String opcion = "";
+        // while (!opcion.equals("salir")) { 
+        //     dibujarPieza(pieza, tab);
+        //     imprimirTab(tab);
+        //     opcion = input.nextLine();
+        //     pieza.moverPieza(opcion);
+        // }
 
-String opcion = "";
-while (!opcion.equals("salir")) {
-    dibujarPieza(pieza, tab);
-    imprimirTab(tab);
-    opcion = input.nextLine().trim();
+        String opcion = "";
+        while (!opcion.equals("salir")) {
+            dibujarPieza(pieza, tab);
+            imprimirTab(tab);
+            opcion = input.nextLine().trim();
 
-    if (opcion.equals("s")) {
-        // baja hasta el fondo
-        while (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
-            pieza.posF += 1;
-        }
-        fijarPiezaEnFijo(pieza);
-        pieza = piezas.getPiezaAleatoria();
-        if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
-            System.out.println("Game Over");
-            break;
-        }
-    } else {
-        // mover o rotar normalmente
-        pieza.moverPieza(opcion);
+            if (opcion.equals("s")) {
+                // baja hasta el fondo
+                while (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
+                    pieza.posF += 1;
+                }
+                fijarPiezaEnFijo(pieza);
+                pieza = piezas.getPiezaAleatoria();
+                if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
+                    System.out.println("Game Over");
+                    break;
+                }
+            } else {
+                // mover o rotar normalmente
+                pieza.moverPieza(opcion);
 
-        // baja una posición si puede solo una casilla
-        if (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
-            pieza.posF += 1;
-        } else {
-            // Si no puede bajar, se fija automáticamente
-            fijarPiezaEnFijo(pieza);
-            pieza = piezas.getPiezaAleatoria();
-            if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
-                System.out.println("Game Over");
-                break;
+                // baja una posición si puede solo una casilla
+                if (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
+                    pieza.posF += 1;
+                } else {
+                    // Si no puede bajar, se fija automáticamente
+                    fijarPiezaEnFijo(pieza);
+                    pieza = piezas.getPiezaAleatoria();
+                    if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
+                        System.out.println("Game Over");
+                        break;
+                    }
+                }
             }
         }
-    }
-}
     }
 
     // Dibuja frame: primero coloca el fijo sobre el tablero, luego la pieza encima.

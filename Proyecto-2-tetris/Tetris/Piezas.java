@@ -69,11 +69,11 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
 
     public void moverPieza(String s){
         if (s.equals("s")){
-            if (forma.length + posF < 20) {
+            if (forma.length - 1 + posF < 19) {
                 this.posF += 1;
-                this.forma = copiarForma();
-                this.formaVisib = copiarFormaVisib();
-            } else if (forma.length + posF == 20 && maxF < forma.length - 1){
+                // this.forma = copiarForma();
+                // this.formaVisib = copiarFormaVisib();
+            } else if (forma.length - 1 + posF == 19 && maxF < forma.length - 1){
                 boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
                 String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
                 for (int i = forma.length - 1; i > 0; i--){
@@ -91,7 +91,7 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
             }
         } else if (s.equals("a")) {
             if (posC > 0) {
-                if (maxC + forma[0].length == 10) {
+                if (maxC + posC == 9 && minC > 0) {  // maxC + forma[0].length == 10
                     for (int j = 0; j < forma[0].length - 1; j++) {
                         for (int i = 0; i < forma.length; i++){
                             forma[i][j] = forma[i][j + 1];
@@ -102,13 +102,13 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                         forma[i][forma[0].length - 1] = false;
                         formaVisib[i][forma[0].length - 1] = "  ";
                     }
-                } else if (maxC + forma[0].length == 9) {
-                    this.forma = copiarForma();
-                    this.formaVisib = copiarFormaVisib();
-                } else if (maxC + forma[0].length < 9){
+                //} else if (maxC + forma[0].length == 8) { // maxC + forma[0].length == 9
+                //    this.forma = copiarForma();
+                //    this.formaVisib = copiarFormaVisib();
+                } else if (maxC + posC <= 9){ // maxC + forma[0].length < 9
                     this.posC -= 1;
                 }
-            } else if (forma[0].length - 1 + posC == 0 && minC > 0){
+            } else if (posC == 0 && minC > 0){
                 boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
                 String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
                 for (int j = 0; j < forma[0].length - 1; j++){
@@ -125,8 +125,8 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                 this.formaVisib = formaVisibAuxiliar;
             }
         } else if (s.equals("d")) {
-            if (forma[0].length + posC < 10) {
-                if (minC + forma[0].length == 1) {
+            if (forma[0].length - 1 + posC < 9) { // forma[0].length + posC < 10
+                if (minC + posC == 0 && maxC < forma[0].length - 1) { // minC + forma[0].length == 1 y min de la forma base es mayor que min forma
                     for (int j = forma[0].length - 1; j > 0; j--) {
                         for (int i = 0; i < forma.length; i++){
                             forma[i][j] = forma[i][j - 1];
@@ -137,10 +137,11 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                         forma[i][0] = false;
                         formaVisib[i][0] = "  ";
                     }
-                } else if (minC + forma[0].length == 2) {
-                    this.forma = copiarForma();
-                    this.formaVisib = copiarFormaVisib();
-                } else if (minC + forma[0].length > 2){
+                //} else if (minC + posC == 1) { // minC + forma[0].length == 2 
+                //    System.out.println("Hola2");
+                //    this.forma = copiarForma();
+                //    this.formaVisib = copiarFormaVisib();
+                } else if (minC + posC >= 0) { // minC + forma[0].length > 2
                     this.posC += 1;
                 }
             } else if (forma[0].length + posC == 10 && maxC < forma[0].length - 1){
