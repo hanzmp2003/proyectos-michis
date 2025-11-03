@@ -34,7 +34,8 @@ public class Tabla{
                     pieza.posF += 1;
                 }
                 fijarPiezaEnFijo(pieza);
-                int lineasEliminadas = eliminarLineasCompletas();
+                int lineasEliminadas = eliminarLineasCompletas(0,0);
+                System.out.println(lineasEliminadas);
                 puntaje.calcularPuntos(lineasEliminadas);
                 pieza = iniciarNuevaPieza();
                 if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
@@ -51,7 +52,8 @@ public class Tabla{
                 } else {
                     // Si no puede bajar, se fija automáticamente
                     fijarPiezaEnFijo(pieza);
-                    int lineasEliminadas = eliminarLineasCompletas();
+                    int lineasEliminadas = eliminarLineasCompletas(0,0);
+                    System.out.println(lineasEliminadas);
                     puntaje.calcularPuntos(lineasEliminadas);
                     pieza = iniciarNuevaPieza();
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
@@ -208,39 +210,36 @@ public class Tabla{
     }
 
     //eliminar lineas full true
-    public int eliminarLineasCompletas(){
-        int lineasEliminadas = 0;
-        for (int fila = 0; fila < fijo.length; fila++) {
-        boolean completa = true;
+    public int eliminarLineasCompletas(int lineasEliminadas, int fila) {
+            boolean completa = true;
 
-        for (int col = 0; col < fijo[0].length; col++) {
-            if (!fijo[fila][col]) {  //si detecta qe hay una columna falsa indica que la linea no esta completa
-                completa = false;
-                break;
-            }
-        }
-
-            if (completa) {
-            lineasEliminadas++;
-
-            //mueve todas las piezas superiores hacia abajo
-            for (int f = fila; f > 0; f--) {
-                for (int c = 0; c < fijo[0].length; c++) {
-                    fijo[f][c] = fijo[f - 1][c];
-                    fijoVisib[f][c] = fijoVisib[f - 1][c];
+            for (int col = 0; col < fijo[0].length; col++) {
+                if (!fijo[fila][col]) { // si detecta qe hay una columna falsa indica que la linea no esta completa
+                    completa = false;
+                    break;
                 }
             }
+            if (completa) {
+                lineasEliminadas++;
 
-            //limpia la fila en la que estaba las piezas anteriores
-            for (int c = 0; c < fijo[0].length; c++) {
-                fijo[0][c] = false;
-                fijoVisib[0][c] = "  ";
+                // mueve todas las piezas superiores hacia abajo
+                for (int f = fila; f > 0; f--) {
+                    for (int c = 0; c < fijo[0].length; c++) {
+                        fijo[f][c] = fijo[f - 1][c];
+                        fijoVisib[f][c] = fijoVisib[f - 1][c];
+                    }
+                }
+                // limpia la fila en la que estaba las piezas anteriores
+                for (int c = 0; c < fijo[0].length; c++) {
+                    fijo[0][c] = false;
+                    fijoVisib[0][c] = "  ";
+                }
+
+                fila--;
             }
-
-            fila--;
-            }   
-        }
-        
+            if(fila < fijo.length-1){
+                lineasEliminadas=eliminarLineasCompletas(lineasEliminadas, fila+1);
+            }
         return lineasEliminadas;
     }
 

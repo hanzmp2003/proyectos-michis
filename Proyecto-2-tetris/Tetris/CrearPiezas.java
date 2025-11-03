@@ -1,3 +1,14 @@
+/**  
+ * Clase CrearPieza se encarga de 
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ *
+ * @version 1.0 
+*/
+
 package Tetris;
 
 public class CrearPiezas { //se encarga de construir todas las formas y asignarles colores.
