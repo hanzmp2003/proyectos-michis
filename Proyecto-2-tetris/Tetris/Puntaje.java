@@ -14,11 +14,8 @@ public class Puntaje {
     public void calcularPuntos(int lineasEliminadas){
         lineas += lineasEliminadas;
         if(lineas > 0){
-            puntos = 100 * lineasEliminadas;
-        }else {
-            puntos = 0;
+            puntos = puntos + 100 * lineasEliminadas;
         }
-        
     }
 
     public int getLineas(){
