@@ -12,21 +12,15 @@ public class Tabla{
     private String[][] fijoVisib = new String[20][10];
     private Piezas piezaSiguiente;
     private Scanner input;
+    private Puntaje puntaje;
 
     public Tabla() {
         input = new Scanner(System.in);
+        puntaje = new Puntaje();
         iniciarTabla();
         iniciarFijo();
         Piezas pieza = piezas.getPiezaAleatoria();
         piezaSiguiente = piezas.getPiezaAleatoria();
-
-        // String opcion = "";
-        // while (!opcion.equals("salir")) { 
-        //     dibujarPieza(pieza, tab);
-        //     imprimirTab(tab);
-        //     opcion = input.nextLine();
-        //     pieza.moverPieza(opcion);
-        // }
 
         String opcion = "";
         while (!opcion.equals("salir")) {
@@ -40,6 +34,8 @@ public class Tabla{
                     pieza.posF += 1;
                 }
                 fijarPiezaEnFijo(pieza);
+                int lineasEliminadas = eliminarLineasCompletas();
+                puntaje.calcularPuntos(lineasEliminadas);
                 pieza = iniciarNuevaPieza();
                 if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                     System.out.println("Game Over");
@@ -55,6 +51,8 @@ public class Tabla{
                 } else {
                     // Si no puede bajar, se fija automáticamente
                     fijarPiezaEnFijo(pieza);
+                    int lineasEliminadas = eliminarLineasCompletas();
+                    puntaje.calcularPuntos(lineasEliminadas);
                     pieza = iniciarNuevaPieza();
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
                         System.out.println("Game Over");
@@ -65,8 +63,6 @@ public class Tabla{
         }
     }
 
-    //Importante y por comodidad: las piezas deben reflejar la sombra en donde cae porque al no ser visible luego provoca un error de colisión. 
-    //O al menos reflejar un mensaje mencionando el error.
 
     // Dibuja frame: primero coloca el fijo sobre el tablero, luego la pieza encima.
     public void dibujarPieza(Piezas pieza, String[][] tab){
@@ -125,17 +121,17 @@ public class Tabla{
 
             // imprime la pieza siguiente a la derecha de la original
             if (i < altoSig) {
-            System.out.print("    ");
+            System.out.print("     ");
             for (int j = 0; j < anchoSig; j++) {
                 System.out.print(piezaSiguiente.formaVisib[i][j]);
                 }
             }
-
-            //Aqui se pone el contador para que aparezca el puntaje 
+            
             System.out.println();
         }
 
         System.out.println("+--------------------+");
+        puntaje.mostrarPuntaje();
     }
 
     
@@ -209,6 +205,43 @@ public class Tabla{
         fila++;
         }
         return fila;
+    }
+
+    //eliminar lineas full true
+    public int eliminarLineasCompletas(){
+        int lineasEliminadas = 0;
+        for (int fila = 0; fila < fijo.length; fila++) {
+        boolean completa = true;
+
+        for (int col = 0; col < fijo[0].length; col++) {
+            if (!fijo[fila][col]) {  //si detecta qe hay una columna falsa indica que la linea no esta completa
+                completa = false;
+                break;
+            }
+        }
+
+            if (completa) {
+            lineasEliminadas++;
+
+            //mueve todas las piezas superiores hacia abajo
+            for (int f = fila; f > 0; f--) {
+                for (int c = 0; c < fijo[0].length; c++) {
+                    fijo[f][c] = fijo[f - 1][c];
+                    fijoVisib[f][c] = fijoVisib[f - 1][c];
+                }
+            }
+
+            //limpia la fila en la que estaba las piezas anteriores
+            for (int c = 0; c < fijo[0].length; c++) {
+                fijo[0][c] = false;
+                fijoVisib[0][c] = "  ";
+            }
+
+            fila--;
+            }   
+        }
+        
+        return lineasEliminadas;
     }
 
 
