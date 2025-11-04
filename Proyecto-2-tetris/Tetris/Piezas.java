@@ -12,6 +12,7 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
     public int maxC;
     public int minC;
     public int maxF;
+    Sonido sonido = new Sonido();
 
     //Esto es util para cuando crea las piezas en otra clase, esto para simplificar el código
     public Piezas(boolean[][] forma, String color) {
@@ -68,9 +69,11 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
     }
 
     public void moverPieza(String s){
+        boolean movido = false;
         if (s.equals("s")){
             if (forma.length - 1 + posF < 19) {
                 this.posF += 1;
+                movido = true;
                 // this.forma = copiarForma();
                 // this.formaVisib = copiarFormaVisib();
             } else if (forma.length - 1 + posF == 19 && maxF < forma.length - 1){
@@ -88,6 +91,7 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                 }
                 this.forma = formaAuxiliar;
                 this.formaVisib = formaVisibAuxiliar;
+                movido = true;
             }
         } else if (s.equals("a")) {
             if (posC > 0) {
@@ -108,6 +112,8 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                 } else if (maxC + posC <= 9){ // maxC + forma[0].length < 9
                     this.posC -= 1;
                 }
+                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+                movido = true;
             } else if (posC == 0 && minC > 0){
                 boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
                 String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
@@ -123,6 +129,8 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                 }
                 this.forma = formaAuxiliar;
                 this.formaVisib = formaVisibAuxiliar;
+                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+                movido = true;
             }
         } else if (s.equals("d")) {
             if (forma[0].length - 1 + posC < 9) { // forma[0].length + posC < 10
@@ -144,6 +152,8 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
                 } else if (minC + posC >= 0) { // minC + forma[0].length > 2
                     this.posC += 1;
                 }
+                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+                movido = true;
             } else if (forma[0].length + posC == 10 && maxC < forma[0].length - 1){
                 boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
                 String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
@@ -164,6 +174,11 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
             rotar90();
             this.forma = copiarForma();
             this.formaVisib = copiarFormaVisib();
+            Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+            movido = true;
+        }
+        if ((s.equals("a") || s.equals("d") || s.equals("w")) && !movido) {
+            Sonido.reproducir("Paquete_sonidos/SFX_PieceLockdown.wav");
         }
         calcularLimites();
     }

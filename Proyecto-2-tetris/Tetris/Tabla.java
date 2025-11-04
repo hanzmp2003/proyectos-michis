@@ -29,6 +29,7 @@ public class Tabla{
             opcion = input.nextLine().trim();
 
             if (opcion.equals("s")) {
+                Sonido.reproducir("Paquete_sonidos/SFX_PieceHardDrop.wav");
                 // baja hasta el fondo
                 while (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
                     pieza.posF += 1;
@@ -39,7 +40,10 @@ public class Tabla{
                 puntaje.calcularPuntos(lineasEliminadas);
                 pieza = iniciarNuevaPieza();
                 if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
-                    System.out.println("Game Over");
+                    Sonido.reproducir("Paquete_sonidos/SFX_GameOver.wav");
+                    System.out.println("\u001B[1;31m=== GAME OVER ===\u001B[0m");
+                    try { Thread.sleep(4500); } catch (InterruptedException ignored) {}
+
                     break;
                 }
             } else {
@@ -57,7 +61,9 @@ public class Tabla{
                     puntaje.calcularPuntos(lineasEliminadas);
                     pieza = iniciarNuevaPieza();
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
-                        System.out.println("Game Over");
+                        Sonido.reproducir("Paquete_sonidos/SFX_GameOver.wav");
+                        System.out.println("\u001B[1;31m=== GAME OVER ===\u001B[0m");
+                        try { Thread.sleep(4500); } catch (InterruptedException ignored) {}
                         break;
                     }
                 }
@@ -157,7 +163,7 @@ public class Tabla{
         }
     }
 
-    // omprueba si una forma (la de la pieza) cabe en posF,posC sin colisionar
+    // comprueba si una forma (la de la pieza) cabe en posF,posC sin colisionar
     public boolean puedeColocar(Piezas pieza, int posF, int posC) {
         boolean[][] forma = pieza.forma;
         for (int i = 0; i < forma.length; i++) {
@@ -221,6 +227,7 @@ public class Tabla{
             }
             if (completa) {
                 lineasEliminadas++;
+                Sonido.reproducir("Paquete_sonidos/SFX_SpecialLineClearTriple.wav");
 
                 // mueve todas las piezas superiores hacia abajo
                 for (int f = fila; f > 0; f--) {
