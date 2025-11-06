@@ -17,6 +17,11 @@ package Tetris;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println("TETRIS");
+        System.out.println("W --> Rotar");
+        System.out.println("A --> Mover a la Izquierda");
+        System.out.println("D --> Mover a la Derecha");
+        System.out.println("S --> Bajar pieza");
         Sonido.reproducir("Paquete_sonidos/SFX_GameStart.wav");
         Tabla tabla = new Tabla();
     }
