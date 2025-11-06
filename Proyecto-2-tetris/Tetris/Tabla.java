@@ -36,7 +36,6 @@ public class Tabla{
                 }
                 fijarPiezaEnFijo(pieza);
                 int lineasEliminadas = eliminarLineasCompletas(0,0);
-                System.out.println(lineasEliminadas);
                 puntaje.calcularPuntos(lineasEliminadas);
                 pieza = iniciarNuevaPieza();
                 if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
@@ -57,7 +56,6 @@ public class Tabla{
                     // Si no puede bajar, se fija automáticamente
                     fijarPiezaEnFijo(pieza);
                     int lineasEliminadas = eliminarLineasCompletas(0,0);
-                    System.out.println(lineasEliminadas);
                     puntaje.calcularPuntos(lineasEliminadas);
                     pieza = iniciarNuevaPieza();
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
@@ -249,24 +247,6 @@ public class Tabla{
             }
         return lineasEliminadas;
     }
-
-
-
-
-    // public void moverPieza(String s, Piezas pieza, String[][] tab){
-    //     if (s.equals("s")){
-    //         for (int i = pieza.posPieza.length - 1; i >= 0; i--){
-    //             for (int j = pieza.posPieza[0].length - 1; j >= 0; j--){
-    //                 if (pieza.posPieza[i][j]){
-    //                     pieza.posPieza[i+1][j] = pieza.posPieza[i][j];
-    //                     pieza.posPieza[i][j] = false;
-    //                     tab[i+1][j] = tab[i][j];
-    //                     tab[i][j] = "  ";
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
     
 
 }
