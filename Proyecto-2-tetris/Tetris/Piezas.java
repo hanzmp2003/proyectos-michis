@@ -1,20 +1,69 @@
+/**
+ * En la clase Piezas se encuentra toda la lógica relacionada con las piezas del tetris, tales como visualización,
+ * forma, rotación
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ *
+ * @version 1.0 
+ */
 package Tetris;
 
-public class Piezas { //encapsula la lógica de rotación y visualización.
+public class Piezas { 
+
     public static final String RESET = "\u001B[0m";
+    /**
+     * Forma la base de la pieza
+     */
     public boolean[][] formaBase;
+    /**
+     * Forma la base visible
+     */
     public String[][] formaBaseVisib;
+    /**
+     * La froma visible actual 
+     */
     public String[][] formaVisib; // Debido a que el profe no nos quiere, hay que estar modificando este atributo en paralelo también (color aleatorio por pieza).
+    /**
+     * Forma actual de la pieza
+     */
     public boolean[][] forma;
+    /**
+     * Color ANSI asignado a la pieza
+     */
     public String color;
+    /**
+     * Posición de la pieza en la tabla (fila)
+     */
     public int posF; // La idea de estos dos atributos, es que guarden la ubicación de cada entrada de la matriz en la tabla.
+    /**
+     * Posición de la pieza (columna)
+     */
     public int posC;
+    /**
+     * Límite superior para moviento de columna
+     */
     public int maxC;
+    /**
+     * Límite inferio para movimiento de columna
+     */
     public int minC;
+    /**
+     * Límite superior para movimiento en fila
+     */
     public int maxF;
     Sonido sonido = new Sonido();
 
     //Esto es util para cuando crea las piezas en otra clase, esto para simplificar el código
+
+    /**
+     * Constructor de la clase pieza
+     * 
+     * @param forma es una matriz  booleana que representa la forma de la pieza
+     * @param color  es el color ANSI que se le asigna a la pieza 
+     */
     public Piezas(boolean[][] forma, String color) {
         this.color = color;
         this.formaBase = forma;
@@ -26,7 +75,11 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
         this.posC = 3;
     }
 
-    // Rotar 90° a la derecha
+
+    /**
+     * Rota la pieza 90° a las derecha
+     * Modifica la forma de la matriz 
+     */
     public void rotarDerecha() {
         int filas = forma.length;
         int columnas = forma[0].length;
@@ -40,6 +93,10 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
         forma = rotada;
     }
 
+    /**
+     * Rota 90° la matriz
+     * Afecta a la formaBase y a la formaBaseVisib
+     */
     public void rotar90(){
         int n = formaBase.length;
         String[][] nuevaMV = new String[n][n];
@@ -54,7 +111,10 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
         this.formaBaseVisib = nuevaMV;
     }
 
-    // Mostrar la pieza con color ANSI
+    
+    /**
+     * Imprime la pieza con su color correspondiente en ANSI
+     */
     public void imprimir() {
         for (int i = 0; i < forma.length; i++) {
             for (int j = 0; j < forma[i].length; j++) {
@@ -68,6 +128,15 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
         }
     }
 
+    /**
+     * Mueve la pieza segun la tecla indicada 
+     * 
+     * @param s teclas a presionar 
+     * s abajo 
+     * w rotar 
+     * d derecha 
+     * a izquierda
+     */
     public void moverPieza(String s){
         boolean movido = false;
         if (s.equals("s")){
@@ -230,7 +299,10 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
             }
         }
     }
-
+    /**
+     * Copia la forma booleana base 
+     * @return una copia independiente de la matriz de formaBase 
+     */
     public boolean[][] copiarForma(){
         boolean[][] formaNueva = new boolean[formaBase.length][formaBase[0].length];
         for (int i = 0; i < formaBase.length; i++) {
@@ -240,7 +312,10 @@ public class Piezas { //encapsula la lógica de rotación y visualización.
         }
         return formaNueva;
     }
-
+    /**
+     * Copia la forma visible base 
+     * @return una copia independiente de formaBaseVisib
+     */
     public String[][] copiarFormaVisib(){
         String[][] formaVisibNueva = new String[formaBaseVisib.length][formaBaseVisib[0].length];
         for (int i = 0; i < formaBase.length; i++) {
