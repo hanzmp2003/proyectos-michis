@@ -1,3 +1,15 @@
+/**
+ * Esta clase se encarga del tablero principal del tetris, controla caida de piezas, la líneas que 
+ * se completan, colisiones y actualización del puntaje 
+ * 
+ * @author Hanz Madrigal Porras, C4G754
+ * @author Chun Ping Liu Li, C5G492
+ * @author Emanuel Sancho Sánchez, C07332
+ * @author Jefferson Emanuel Miranda Sabala, C24874
+ *
+ * @version 1.0 
+ */
+
 package Tetris;
 import java.util.Random;
 import java.util.Scanner;
@@ -14,6 +26,10 @@ public class Tabla{
     private Scanner input;
     private Puntaje puntaje;
 
+
+    /**
+     * Este es el constructor de la clase Tabla que se encarga de inicializar las estructuras del tetris
+     */
     public Tabla() {
         input = new Scanner(System.in);
         puntaje = new Puntaje();
@@ -71,6 +87,11 @@ public class Tabla{
 
 
     // Dibuja frame: primero coloca el fijo sobre el tablero, luego la pieza encima.
+    /**
+     * Dibuja el tablero mezclado las piezas, la pieza actual y la sombra 
+     * @param pieza es la pieza actual 
+     * @param tab es el tablero visible 
+     */
     public void dibujarPieza(Piezas pieza, String[][] tab){
         iniciarTabla(); 
         //Copiar tablero fijo
@@ -108,6 +129,11 @@ public class Tabla{
         }
     }
 
+    /**
+     * Imprime el tablero completo y la pieza siguiente 
+     * @param tab es el tablero principal 
+     * @param piezaSiguiente  es la pieza que va a ser usada en el juego 
+     */
     public void imprimirTab(String[][] tab, Piezas piezaSiguiente){
         System.out.println("+--------------------+     Próxima pieza:");
         //Variables extras para hacerlo bien aesthethic :DD
@@ -141,13 +167,17 @@ public class Tabla{
     }
 
     
-
+    /**
+     * Reinicia el tablero visible
+     */
     public void iniciarTabla(){
         for (int i = 0 ; i < tab.length ; i++){
             tab[i] = new String[]{"  ","  ","  ","  ","  ","  ","  ","  ","  ","  "};
         }
     }
-    // inicializa las estructuras del tablero fijo
+    /**
+     * Acá inicializa la matriz de bloques que ya se han fijado al inicio
+     */
     private void iniciarFijo() {
         for (int i = 0; i < fijo.length; i++) {
             for (int j = 0; j < fijo[0].length; j++) {
@@ -162,6 +192,14 @@ public class Tabla{
     }
 
     // comprueba si una forma (la de la pieza) cabe en posF,posC sin colisionar
+
+/**
+ * Se verifica si una pieza se puede colocar en la posisción dada 
+ * @param pieza es la pieza que se va a revisar 
+ * @param posF fila objetivo 
+ * @param posC columna objetivo 
+ * @return true si la pieza no choca con los límites ni con los bloques ya fijados 
+ */
     public boolean puedeColocar(Piezas pieza, int posF, int posC) {
         boolean[][] forma = pieza.forma;
         for (int i = 0; i < forma.length; i++) {
@@ -176,7 +214,11 @@ public class Tabla{
         return true;
     }
 
-    // fija la pieza en el tablero fijo (cuando toca fondo o no puede bajar)
+    
+    /**
+     * Pasa una pieza al tablero de bloques fijados 
+     * @param pieza es la pieza a fijar
+     */
     public void fijarPiezaEnFijo(Piezas pieza) {
         for (int i = 0; i < pieza.forma.length; i++) {
             for (int j = 0; j < pieza.forma[0].length; j++) {
@@ -193,8 +235,12 @@ public class Tabla{
 
     }
 
-    //Reinicia las coordenadas de la nueva pieza para evitar errores de colisión
+    
     //Asi evita que el programa detecte que tiene las mismas coordenadas que la anterior pieza :)
+    /**
+     * Crea una pieza nueva con posición inicial reiniciada 
+     * @return Nueva pieza lista para colocarse 
+     */
     private Piezas iniciarNuevaPieza() {
         Piezas nueva = piezaSiguiente;
         piezaSiguiente = piezas.getPiezaAleatoria();
@@ -203,6 +249,11 @@ public class Tabla{
         return nueva;
     }
 
+    /**
+     * Calcula donde caerá una pieza cuando se suelta 
+     * @param pieza es la pieza actual 
+     * @return es la fila más baja posible sin colisión 
+     */
 
     private int calcularAlturaCaida(Piezas pieza) {
         int fila = pieza.posF;
@@ -213,12 +264,18 @@ public class Tabla{
         return fila;
     }
 
-    //eliminar lineas full true
+    /**
+     * Elimina las líneas completas del tablero fijo de forma recursiva
+     * @param lineasEliminadas es el contador que acumula las líneas que se quitaron 
+     * @param fila es la fila actual a revisar 
+     * @return la cantidad total de líneas eliminadas 
+     */
     public int eliminarLineasCompletas(int lineasEliminadas, int fila) {
             boolean completa = true;
 
             for (int col = 0; col < fijo[0].length; col++) {
-                if (!fijo[fila][col]) { // si detecta qe hay una columna falsa indica que la linea no esta completa
+                if (!fijo[fila][col]) { 
+                    // si detecta qe hay una columna falsa indica que la linea no esta completa
                     completa = false;
                     break;
                 }
