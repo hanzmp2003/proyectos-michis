@@ -92,26 +92,8 @@ public class Piezas {
     }
 
 
-
     /**
-     * Rota la pieza 90° a las derecha
-     * Modifica la forma de la matriz 
-     */
-    public void rotarDerecha() {
-        int filas = forma.length;
-        int columnas = forma[0].length;
-        boolean[][] rotada = new boolean[columnas][filas];
-
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                rotada[j][filas - 1 - i] = forma[i][j];
-            }
-        }
-        forma = rotada;
-    }
-
-    /**
-     * Rota 90° la matriz
+     * Rota la pieza 90° a la derecha
      * Afecta a la formaBase y a la formaBaseVisib
      */
     public void rotar90(){
@@ -127,23 +109,7 @@ public class Piezas {
         this.formaBase = nuevaM;
         this.formaBaseVisib = nuevaMV;
     }
-
     
-    /**
-     * Imprime la pieza con su color correspondiente en ANSI
-     */
-    public void imprimir() {
-        for (int i = 0; i < forma.length; i++) {
-            for (int j = 0; j < forma[i].length; j++) {
-                if (forma[i][j]) {
-                    System.out.print(color + "██" + Piezas.RESET);
-                } else {
-                    System.out.print("  ");
-                }
-            }
-            System.out.println();
-        }
-    }
 
     /**
      * Mueve la pieza segun la tecla indicada 
