@@ -11,13 +11,11 @@
  */
 
 package Tetris;
-import java.util.Random;
 import java.util.Scanner;
 
 // La transformación de las piezas al tablero será sumarle 3 a las columnas.
 
 public class Tabla{
-    private Random rand;
     private CrearPiezas piezas = new CrearPiezas();
     private String[][] tab = new String[20][10];
     private boolean[][] fijo = new boolean[20][10];

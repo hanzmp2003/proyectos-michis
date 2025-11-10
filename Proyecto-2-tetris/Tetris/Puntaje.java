@@ -15,8 +15,6 @@ package Tetris;
 public class Puntaje {
     private int puntos;
     private int lineas;
-    //private int nivel; agregamos nivel ¿?
-
     /**
      * Constructor de la clase Puntaje 
      * 
@@ -27,7 +25,6 @@ public class Puntaje {
         lineas = 0;
     }
 
-    //sumar puntos según líneas eliminadas
     /**
      * Suma los puntos según las líneas que se hayan eliminado, donde cada línea tiene un valor de 100
      * @param lineasEliminadas número de líneas que se eliminaron en la partida 
@@ -40,7 +37,7 @@ public class Puntaje {
     }
 
     /**
-     * Devuelve la cantidad de líneas qie se han eliminado 
+     * Devuelve la cantidad de líneas que se han eliminado 
      * @return el número de líneas  eliminadas 
      */
     public int getLineas(){
@@ -48,7 +45,7 @@ public class Puntaje {
     }
 
     /**
-     * Devuelve el pintaje acumulado 
+     * Devuelve el puntaje acumulado 
      * @return el puntaje actual
      */
     public int getPuntos(){
@@ -56,7 +53,7 @@ public class Puntaje {
     }
     
     /**
-     * Muestra en la pantalla el puntaj y las líneas acumuladas en la partida 
+     * Muestra en la pantalla el puntaje y las líneas acumuladas en la partida 
      */
     public void mostrarPuntaje() {
         System.out.println("Puntos: " + puntos + " | Líneas: " + lineas);

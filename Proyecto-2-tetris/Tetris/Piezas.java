@@ -23,7 +23,7 @@ public class Piezas {
      */
     public String[][] formaBaseVisib;
     /**
-     * La froma visible actual 
+     * La forma visible actual 
      */
     public String[][] formaVisib; // Debido a que el profe no nos quiere, hay que estar modificando este atributo en paralelo también (color aleatorio por pieza).
     /**
@@ -74,6 +74,23 @@ public class Piezas {
         this.posF = 0;
         this.posC = 3;
     }
+
+    /**
+     * Getter de forma
+     * 
+     * @return devuelve la forma de la pieza
+     */
+    public boolean[][] getForma() {
+        return forma;
+    }
+    /**
+     * Getter del color de la pieza
+     * @return devuelve el color de la pieza
+     */
+    public String getColor() {
+        return color;
+    }
+
 
 
     /**
@@ -175,10 +192,8 @@ public class Piezas {
                         forma[i][forma[0].length - 1] = false;
                         formaVisib[i][forma[0].length - 1] = "  ";
                     }
-                //} else if (maxC + forma[0].length == 8) { // maxC + forma[0].length == 9
-                //    this.forma = copiarForma();
-                //    this.formaVisib = copiarFormaVisib();
-                } else if (maxC + posC <= 9){ // maxC + forma[0].length < 9
+                
+                } else if (maxC + posC <= 9){ 
                     this.posC -= 1;
                 }
                 Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
@@ -202,8 +217,8 @@ public class Piezas {
                 movido = true;
             }
         } else if (s.equals("d")) {
-            if (forma[0].length - 1 + posC < 9) { // forma[0].length + posC < 10
-                if (minC + posC == 0 && maxC < forma[0].length - 1) { // minC + forma[0].length == 1 y min de la forma base es mayor que min forma
+            if (forma[0].length - 1 + posC < 9) { 
+                if (minC + posC == 0 && maxC < forma[0].length - 1) { 
                     for (int j = forma[0].length - 1; j > 0; j--) {
                         for (int i = 0; i < forma.length; i++){
                             forma[i][j] = forma[i][j - 1];
@@ -214,11 +229,7 @@ public class Piezas {
                         forma[i][0] = false;
                         formaVisib[i][0] = "  ";
                     }
-                //} else if (minC + posC == 1) { // minC + forma[0].length == 2 
-                //    System.out.println("Hola2");
-                //    this.forma = copiarForma();
-                //    this.formaVisib = copiarFormaVisib();
-                } else if (minC + posC >= 0) { // minC + forma[0].length > 2
+                } else if (minC + posC >= 0) { 
                     this.posC += 1;
                 }
                 Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");

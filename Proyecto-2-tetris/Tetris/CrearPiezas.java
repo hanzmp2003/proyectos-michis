@@ -11,6 +11,7 @@
 */
 
 package Tetris;
+import java.util.Random;
 
 public class CrearPiezas {
 
@@ -47,13 +48,13 @@ public class CrearPiezas {
      */
     public CrearPiezas(){
         todasLasPiezas = new Piezas[] {
-            new Piezas(crearI(), COLORES[1]),
-            new Piezas(crearO(), COLORES[2]),
-            new Piezas(crearS(), COLORES[3]),
-            new Piezas(crearJ(), COLORES[4]),
-            new Piezas(crearL(), COLORES[5]),
-            new Piezas(crearZ(), COLORES[6]),
-            new Piezas(crearT(), COLORES[7])
+            new Piezas(crearI(), null),
+            new Piezas(crearO(), null),
+            new Piezas(crearS(), null),
+            new Piezas(crearJ(), null),
+            new Piezas(crearL(), null),
+            new Piezas(crearZ(), null),
+            new Piezas(crearT(), null)
         };
 
     }
@@ -155,24 +156,22 @@ public class CrearPiezas {
         };
     }
 
-    
-    /**
-     * Acá se devuelve una pieza especifica según el índice
-     * @param indiceForma es el índice de la pieza en el arreglo 
-     * @return la pieza solicitada y devuelve null si el índice no es el correcto
-     */
-    public Piezas getPieza(int indiceForma) {
-        if (indiceForma < 0 || indiceForma >= todasLasPiezas.length) return null;
-        return todasLasPiezas[indiceForma];
-    }
 
     /**
-     * De las piezas disponibles toma una aleatroriamente y la devuelve
-     * @return una pieza al azar de las que están en el arreglo
+     * Este método selecciona aleatoriamente una de las formas base almacenadas en la lista y le asigna un color ANSI aleatorio distinto del índice 0 (RESET),
+     * para garantizar que la pieza tenga un color visible en consola.
+     *
+     * @return una nueva instancia de Piezas con forma aleatoria y color aleatorio.
      */
+
     public Piezas getPiezaAleatoria() {
-        int random = (int)(Math.random() * todasLasPiezas.length);
-        return todasLasPiezas[random];
+        Random random = new Random();
+        int index = random.nextInt(todasLasPiezas.length);
+        boolean[][] forma = todasLasPiezas[index].getForma();
+        String color = COLORES[random.nextInt(COLORES.length - 1) + 1]; 
+        return new Piezas(forma, color);
+
+
     }
 }
 
