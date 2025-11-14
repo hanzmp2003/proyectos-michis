@@ -23,6 +23,7 @@ public class Tabla{
     private Piezas piezaSiguiente;
     private Scanner input;
     private Puntaje puntaje;
+    private EstadisticaColores statsColores;
 
 
     /**
@@ -33,6 +34,7 @@ public class Tabla{
         puntaje = new Puntaje();
         iniciarTabla();
         iniciarFijo();
+        statsColores = new EstadisticaColores();
         Piezas pieza = piezas.getPiezaAleatoria();
         piezaSiguiente = piezas.getPiezaAleatoria();
 
@@ -162,6 +164,7 @@ public class Tabla{
 
         System.out.println("+--------------------+");
         puntaje.mostrarPuntaje();
+        statsColores.mostrarEstadisticas();
     }
 
     
@@ -281,6 +284,8 @@ public class Tabla{
             if (completa) {
                 lineasEliminadas++;
                 Sonido.reproducir("Paquete_sonidos/SFX_SpecialLineClearTriple.wav");
+
+                statsColores.registrarFila(fijoVisib[fila]);
 
                 // mueve todas las piezas superiores hacia abajo
                 for (int f = fila; f > 0; f--) {

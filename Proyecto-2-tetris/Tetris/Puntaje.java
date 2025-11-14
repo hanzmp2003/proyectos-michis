@@ -12,7 +12,7 @@
 
 package Tetris;
 
-public class Puntaje {
+public class Puntaje { //TODO: Cambiar está clase y convertirlo en un árbol, el árbol se trata de acomodar los colores y el puntaje es un promedio en base a eso.
     private int puntos;
     private int lineas;
     /**
