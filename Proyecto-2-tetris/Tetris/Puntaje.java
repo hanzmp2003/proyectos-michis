@@ -13,6 +13,7 @@
 package Tetris;
 
 public class Puntaje { //TODO: Cambiar está clase y convertirlo en un árbol, el árbol se trata de acomodar los colores y el puntaje es un promedio en base a eso.
+    public int puntos2;
     private int puntos;
     private int lineas;
     /**
@@ -21,6 +22,7 @@ public class Puntaje { //TODO: Cambiar está clase y convertirlo en un árbol, e
      * Inicializan los puntos y las líneas en cero 
      */
     public Puntaje(){
+        puntos2 = 0;
         puntos = 0;
         lineas = 0;
     }
@@ -59,5 +61,8 @@ public class Puntaje { //TODO: Cambiar está clase y convertirlo en un árbol, e
         System.out.println("Puntos: " + puntos + " | Líneas: " + lineas);
     }
 
+    public void sumarPuntos(int puntajeFila){
+        puntos2 += puntajeFila;
+    }
     
 }

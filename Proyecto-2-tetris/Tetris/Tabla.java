@@ -163,8 +163,9 @@ public class Tabla{
         }
 
         System.out.println("+--------------------+");
-        puntaje.mostrarPuntaje();
-        statsColores.mostrarEstadisticas();
+        //puntaje.mostrarPuntaje();
+        System.out.printf("\nPuntos: %d  |  %s\n",statsColores.puntajeTotal,statsColores.getCombo());
+        //statsColores.mostrarEstadisticas();
     }
 
     
