@@ -94,37 +94,51 @@ public class Tabla{
      */
     public void dibujarPieza(Piezas pieza, String[][] tab){
         iniciarTabla(); 
-        //Copiar tablero fijo
+
+        // Copiar el tablero fijo
         for (int i = 0 ; i < fijoVisib.length ; i++) {
             for (int j = 0 ; j < fijoVisib[0].length ; j++) {
                 tab[i][j] = fijoVisib[i][j];
             }
         }
 
-        // calcular la pieza donde podría caer (El Ghost piece lo tuve que buscar para programarlo)
+        // Calcular sombra
         int sombraF = calcularAlturaCaida(pieza);
 
-        // dibujar la sombra
+        // Dibujar sombra (sin pisar bloques fijos)
         for (int i = 0 ; i < pieza.formaVisib.length ; i++) {
-            for (int j = 0 ; j < pieza.formaVisib[0].length ; j++){
-                if (!pieza.forma[i][j]) continue;
+            for (int j = 0 ; j < pieza.formaVisib[0].length ; j++) {
+                if (!pieza.forma[i][j]) {
+                    continue;
+                }
                 int fila = sombraF + i;
                 int col  = pieza.posC + j;
                 if (fila >= 0 && fila < tab.length && col >= 0 && col < tab[0].length) {
-                tab[fila][col] = "\u001B[37m░░\u001B[0m"; 
+                    if (!fijo[fila][col]) {
+                        tab[fila][col] = "\u001B[37m░░\u001B[0m";
+                    }
                 }
             }
         }
 
-        // superponer la pieza actual
+        // Dibujar la pieza actual SIN PISAR BLOQUES FIJOS
         for (int i = 0 ; i < pieza.formaVisib.length ; i++) {
-            for (int j = 0 ; j < pieza.formaVisib[0].length ; j++){
-                int fila = i + pieza.posF;
-                int col  = j + pieza.posC;
-                // asegurar que no salimos del tablero al dibujar
-                if (fila >= 0 && fila < tab.length && col >= 0 && col < tab[0].length) {
-                    tab[fila][col] = pieza.formaVisib[i][j];
+            for (int j = 0 ; j < pieza.formaVisib[0].length ; j++) {
+                if (!pieza.forma[i][j]){
+                    continue;
                 }
+                int fila = pieza.posF + i;
+                int col  = pieza.posC + j;
+
+                if (fila < 0 || fila >= tab.length || col < 0 || col >= tab[0].length){
+                    continue;
+                }
+                // ESTA ES LA CORRECCIÓN CRÍTICA:
+                if (fijo[fila][col]){ 
+                    continue;
+                }
+
+                tab[fila][col] = pieza.formaVisib[i][j];
             }
         }
     }
