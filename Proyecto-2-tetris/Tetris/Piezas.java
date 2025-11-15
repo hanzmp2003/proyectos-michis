@@ -56,7 +56,7 @@ public class Piezas {
     public int maxF;
     Sonido sonido = new Sonido();
 
-    private Tabla tablero = new Tabla();
+    // private Tabla tablero = new Tabla();
 
     //Esto es util para cuando crea las piezas en otra clase, esto para simplificar el código
 
@@ -124,7 +124,7 @@ public class Piezas {
      * 
      * Evita colisiones fantasmas y que la pieza se deforme
      */
-    public void moverPieza(String direccion) {
+    public void moverPieza(String direccion, Tabla tablero) {
         boolean movido = false;
 
         switch (direccion) {

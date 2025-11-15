@@ -32,52 +32,63 @@ public class Tabla{
     public Tabla() {
         input = new Scanner(System.in);
         puntaje = new Puntaje();
+        statsColores = new EstadisticaColores();
+
         iniciarTabla();
         iniciarFijo();
-        statsColores = new EstadisticaColores();
-        Piezas pieza = piezas.getPiezaAleatoria();
+
         piezaSiguiente = piezas.getPiezaAleatoria();
+        buclePrincipal();
+    }
+
+
+    private void buclePrincipal() {
+
+        Piezas pieza = iniciarNuevaPieza();
 
         String opcion = "";
+
         while (!opcion.equals("salir")) {
+
             dibujarPieza(pieza, tab);
             imprimirTab(tab, piezaSiguiente);
+
             opcion = input.nextLine().trim();
 
             if (opcion.equals("s")) {
                 Sonido.reproducir("Paquete_sonidos/SFX_PieceHardDrop.wav");
-                // baja hasta el fondo
-                while (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
-                    pieza.posF += 1;
-                }
-                fijarPiezaEnFijo(pieza);
-                int lineasEliminadas = eliminarLineasCompletas(0,0);
-                puntaje.calcularPuntos(lineasEliminadas);
-                pieza = iniciarNuevaPieza();
-                if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
-                    Sonido.reproducir("Paquete_sonidos/SFX_GameOver.wav");
-                    System.out.println("\u001B[1;31m=== GAME OVER ===\u001B[0m");
-                    try { Thread.sleep(4500); } catch (InterruptedException ignored) {}
 
+                while (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
+                    pieza.posF++;
+                }
+
+                fijarPiezaEnFijo(pieza);
+                int lineas = eliminarLineasCompletas(0, 0);
+                puntaje.calcularPuntos(lineas);
+
+                pieza = iniciarNuevaPieza();
+
+                if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
+                    gameOver();
                     break;
                 }
-            } else {
-                // mover o rotar normalmente
-                pieza.moverPieza(opcion);
 
-                // baja una posición si puede solo una casilla
+            } else {
+
+                // ⬅️⬆️➡️ Baja — mover pieza ahora recibe this:
+                pieza.moverPieza(opcion, this);
+
                 if (puedeColocar(pieza, pieza.posF + 1, pieza.posC)) {
-                    pieza.posF += 1;
+                    pieza.posF++;
                 } else {
-                    // Si no puede bajar, se fija automáticamente
                     fijarPiezaEnFijo(pieza);
-                    int lineasEliminadas = eliminarLineasCompletas(0,0);
-                    puntaje.calcularPuntos(lineasEliminadas);
+                    int lineas = eliminarLineasCompletas(0, 0);
+                    puntaje.calcularPuntos(lineas);
+
                     pieza = iniciarNuevaPieza();
+
                     if (!puedeColocar(pieza, pieza.posF, pieza.posC)) {
-                        Sonido.reproducir("Paquete_sonidos/SFX_GameOver.wav");
-                        System.out.println("\u001B[1;31m=== GAME OVER ===\u001B[0m");
-                        try { Thread.sleep(4500); } catch (InterruptedException ignored) {}
+                        gameOver();
                         break;
                     }
                 }
@@ -85,6 +96,11 @@ public class Tabla{
         }
     }
 
+    private void gameOver() {
+        Sonido.reproducir("Paquete_sonidos/SFX_GameOver.wav");
+        System.out.println("\u001B[1;31m=== GAME OVER ===\u001B[0m");
+        try { Thread.sleep(4500); } catch (InterruptedException ignored) {}
+    }
 
     // Dibuja frame: primero coloca el fijo sobre el tablero, luego la pieza encima.
     /**
