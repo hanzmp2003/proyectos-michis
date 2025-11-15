@@ -30,7 +30,10 @@ public class EstadisticaColores {
         }
     }
 
-    // registra una fila completa
+    /** 
+     * Registra una fila completa de colores
+     * @param fila Arreglo de Strings representando los colores de la fila
+    */
     public void registrarFila(String[] fila){
 
         reset(); // borra conteos previos
@@ -74,7 +77,7 @@ public class EstadisticaColores {
         System.out.println("Combo: ¡x" + comboActual + "!");
         System.out.println("Puntaje total acumulado: " + puntajeTotal);
     }
-
+    
     public int getPuntajeTotal(){
         return puntajeTotal;
     }
@@ -94,6 +97,9 @@ public class EstadisticaColores {
         return arbol;
     }
 
+    /** 
+     * Obtiene el color dominante de la fila actual
+    */
     public String colorDominante(){
         if (colores.isEmpty()) return null;
 

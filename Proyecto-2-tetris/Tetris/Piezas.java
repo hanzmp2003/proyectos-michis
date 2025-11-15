@@ -213,7 +213,9 @@ public class Piezas {
         calcularLimites();
     }
 
-
+    /**
+     * Genera la forma base visible de la pieza con el color asignado
+     */
     public void formaBaseVisible(){
         for (int i = 0; i < formaBaseVisib.length; i++) {
             for (int j = 0; j < formaBaseVisib[0].length; j++) {
@@ -226,6 +228,9 @@ public class Piezas {
         }
     }
 
+    /**
+     * Calcula los límites de la pieza para evitar colisiones fantasmas
+     */
     public void calcularLimites() {
         minC = forma[0].length;
         maxC = -1;
