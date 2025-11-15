@@ -128,45 +128,86 @@ public class Piezas {
         boolean movido = false;
 
         switch (direccion) {
+
             case "s":
                 if (tablero.puedeColocar(this, posF + 1, posC)) {
-                posF++;
-                movido = true;
-            }
-            break;
+                    posF++;
+                    movido = true;
+                }
+                break;
 
             case "a":
                 if (tablero.puedeColocar(this, posF, posC - 1)) {
-                posC--;
-                movido = true;
-                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
-            }
-            break;
+                    posC--;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+                }
+                break;
 
             case "d":
                 if (tablero.puedeColocar(this, posF, posC + 1)) {
-                posC++;
-                movido = true;
-                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
-            }
-            break;
+                    posC++;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+                }
+                break;
 
             case "w":
-                rotar90();
-                if (tablero.puedeColocar(this, posF, posC)) {
-                forma = copiarForma();
-                formaVisib = copiarFormaVisib();
-                movido = true;
-                Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                boolean[][] formaAntes = copiarForma();
+                String[][] formaVisibAntes = copiarFormaVisib();
 
-            }else{
-                rotar90(); rotar90(); rotar90(); // revertir rotación
-            }
-            break;
-    }
+                rotar90();
+                this.forma = copiarForma();
+                this.formaVisib = copiarFormaVisib();
+
+                if (tablero.puedeColocar(this, posF, posC)) {
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                }
+
+                else if (tablero.puedeColocar(this, posF, posC + 1)) {
+                    posC++;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                }
+
+                else if (tablero.puedeColocar(this, posF, posC + 2)) {
+                    posC += 2;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                }
+
+                else if (tablero.puedeColocar(this, posF, posC - 1)) {
+                    posC--;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                }
+
+                else if (tablero.puedeColocar(this, posF, posC - 2)) {
+                    posC -= 2;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                }
+
+                else if (tablero.puedeColocar(this, posF + 1, posC)) {
+                    posF++;
+                    movido = true;
+                    Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+                }
+
+                else {
+                    // Nada funcionó → revertir
+                    this.formaBase = formaAntes;
+                    this.formaBaseVisib = formaVisibAntes;
+                    this.forma = copiarForma();
+                    this.formaVisib = copiarFormaVisib();
+                }
+
+                break;
+        }
 
         if ((direccion.equals("a") || direccion.equals("d") || direccion.equals("w")) && !movido) {
-        Sonido.reproducir("Paquete_sonidos/SFX_PieceLockdown.wav");
+            Sonido.reproducir("Paquete_sonidos/SFX_PieceLockdown.wav");
         }
 
         calcularLimites();
