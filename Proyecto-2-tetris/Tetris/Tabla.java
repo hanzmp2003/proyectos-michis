@@ -210,7 +210,9 @@ public class Tabla{
     // comprueba si una forma (la de la pieza) cabe en posF,posC sin colisionar
 
 /**
- * Se verifica si una pieza se puede colocar en la posisción dada 
+ * 
+ * Verifica si una pieza puede colocarse en una posición sin salirse del tablero ni chocar con bloques ya fijados.
+ * Además, es el validador central de colisiones. No mueve ni modifica la pieza, solo responde si el movimiento es válido.
  * @param pieza es la pieza que se va a revisar 
  * @param posF fila objetivo 
  * @param posC columna objetivo 
