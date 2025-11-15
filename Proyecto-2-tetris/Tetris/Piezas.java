@@ -56,6 +56,8 @@ public class Piezas {
     public int maxF;
     Sonido sonido = new Sonido();
 
+    private Tabla tablero = new Tabla();
+
     //Esto es util para cuando crea las piezas en otra clase, esto para simplificar el código
 
     /**
@@ -119,115 +121,57 @@ public class Piezas {
      * w rotar 
      * d derecha 
      * a izquierda
+     * 
+     * Evita colisiones fantasmas y que la pieza se deforme
      */
-    public void moverPieza(String s){
+    public void moverPieza(String direccion) {
         boolean movido = false;
-        if (s.equals("s")){
-            if (forma.length - 1 + posF < 19) {
-                this.posF += 1;
-                movido = true;
-                // this.forma = copiarForma();
-                // this.formaVisib = copiarFormaVisib();
-            } else if (forma.length - 1 + posF == 19 && maxF < forma.length - 1){
-                boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
-                String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
-                for (int i = forma.length - 1; i > 0; i--){
-                    for (int j = 0; j < forma[0].length; j++){
-                        formaAuxiliar[i][j] = forma[i - 1][j];
-                        formaVisibAuxiliar[i][j] = formaVisib[i - 1][j];
-                    }
-                }
-                for (int i = 0; i < forma.length; i++) {
-                    formaAuxiliar[0][i] = false;
-                    formaVisibAuxiliar[0][i] = "  ";
-                }
-                this.forma = formaAuxiliar;
-                this.formaVisib = formaVisibAuxiliar;
+
+        switch (direccion) {
+            case "s":
+                if (tablero.puedeColocar(this, posF + 1, posC)) {
+                posF++;
                 movido = true;
             }
-        } else if (s.equals("a")) {
-            if (posC > 0) {
-                if (maxC + posC == 9 && minC > 0) {  // maxC + forma[0].length == 10
-                    for (int j = 0; j < forma[0].length - 1; j++) {
-                        for (int i = 0; i < forma.length; i++){
-                            forma[i][j] = forma[i][j + 1];
-                            formaVisib[i][j] = formaVisib[i][j + 1];
-                        }
-                    }
-                    for (int i = 0; i < forma.length; i++){
-                        forma[i][forma[0].length - 1] = false;
-                        formaVisib[i][forma[0].length - 1] = "  ";
-                    }
-                
-                } else if (maxC + posC <= 9){ 
-                    this.posC -= 1;
-                }
-                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+            break;
+
+            case "a":
+                if (tablero.puedeColocar(this, posF, posC - 1)) {
+                posC--;
                 movido = true;
-            } else if (posC == 0 && minC > 0){
-                boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
-                String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
-                for (int j = 0; j < forma[0].length - 1; j++){
-                    for (int i = 0; i < forma.length; i++){
-                        formaAuxiliar[i][j] = forma[i][j+1];
-                        formaVisibAuxiliar[i][j] = formaVisib[i][j+1];
-                    }
-                }
-                for (int i = 0; i < forma.length; i++) {
-                    formaAuxiliar[i][forma[0].length - 1] = false;
-                    formaVisibAuxiliar[i][formaVisib[0].length - 1] = "  ";
-                }
-                this.forma = formaAuxiliar;
-                this.formaVisib = formaVisibAuxiliar;
                 Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
-                movido = true;
             }
-        } else if (s.equals("d")) {
-            if (forma[0].length - 1 + posC < 9) { 
-                if (minC + posC == 0 && maxC < forma[0].length - 1) { 
-                    for (int j = forma[0].length - 1; j > 0; j--) {
-                        for (int i = 0; i < forma.length; i++){
-                            forma[i][j] = forma[i][j - 1];
-                            formaVisib[i][j] = formaVisib[i][j - 1];
-                        }
-                    }
-                    for (int i = 0; i < forma.length; i++){
-                        forma[i][0] = false;
-                        formaVisib[i][0] = "  ";
-                    }
-                } else if (minC + posC >= 0) { 
-                    this.posC += 1;
-                }
-                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
+            break;
+
+            case "d":
+                if (tablero.puedeColocar(this, posF, posC + 1)) {
+                posC++;
                 movido = true;
-            } else if (forma[0].length + posC == 10 && maxC < forma[0].length - 1){
-                boolean[][] formaAuxiliar = new boolean[forma.length][forma[0].length];
-                String[][] formaVisibAuxiliar = new String[formaVisib.length][formaVisib[0].length];
-                for (int j = forma[0].length - 1; j > 0; j--){
-                    for (int i = 0; i < forma.length; i++){
-                        formaAuxiliar[i][j] = forma[i][j-1];
-                        formaVisibAuxiliar[i][j] = formaVisib[i][j-1];
-                    }
-                }
-                for (int i = 0; i < forma.length; i++) {
-                    formaAuxiliar[i][0] = false;
-                    formaVisibAuxiliar[i][0] = "  ";
-                }
-                this.forma = formaAuxiliar;
-                this.formaVisib = formaVisibAuxiliar;
+                Sonido.reproducir("Paquete_sonidos/SFX_PieceMoveLR.wav");
             }
-        } else if (s.equals("w")){
-            rotar90();
-            this.forma = copiarForma();
-            this.formaVisib = copiarFormaVisib();
-            Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
-            movido = true;
+            break;
+
+            case "w":
+                rotar90();
+                if (tablero.puedeColocar(this, posF, posC)) {
+                forma = copiarForma();
+                formaVisib = copiarFormaVisib();
+                movido = true;
+                Sonido.reproducir("Paquete_sonidos/SFX_PieceRotateLR.wav");
+
+            }else{
+                rotar90(); rotar90(); rotar90(); // revertir rotación
+            }
+            break;
+    }
+
+        if ((direccion.equals("a") || direccion.equals("d") || direccion.equals("w")) && !movido) {
+        Sonido.reproducir("Paquete_sonidos/SFX_PieceLockdown.wav");
         }
-        if ((s.equals("a") || s.equals("d") || s.equals("w")) && !movido) {
-            Sonido.reproducir("Paquete_sonidos/SFX_PieceLockdown.wav");
-        }
+
         calcularLimites();
     }
+
 
     public void formaBaseVisible(){
         for (int i = 0; i < formaBaseVisib.length; i++) {
@@ -241,41 +185,22 @@ public class Piezas {
         }
     }
 
-    public void calcularLimites(){
-        int cerrar = 0;
-        int cerrar2 = 0;
-        for (int j = forma[0].length - 1; j >= 0 && cerrar == 0; j--){
-            for (int i = 0; i < forma.length && cerrar2 == 0; i++){
-                if (forma[i][j]){
-                    this.maxC = j;
-                    cerrar2 = 1;
-                    cerrar = 1;
-                }
-            }
-        }
-        cerrar = 0;
-        cerrar2 = 0;
-        for (int j = 0; j < forma[0].length && cerrar == 0; j++){
-            for (int i = 0; i < forma.length && cerrar2 == 0; i++){
-                if (forma[i][j]){
-                    this.minC = j;
-                    cerrar2 = 1;
-                    cerrar = 1;
-                }
-            }
-        }
-        cerrar = 0;
-        cerrar2 = 0;
-        for (int i = forma.length - 1; i >= 0 && cerrar == 0; i--){
-            for (int j = 0; j < forma[0].length && cerrar2 == 0; j++){
-                if (forma[i][j]){
-                    this.maxF = i;
-                    cerrar2 = 1;
-                    cerrar = 1;
+    public void calcularLimites() {
+        minC = forma[0].length;
+        maxC = -1;
+        maxF = -1;
+
+        for (int i = 0; i < forma.length; i++) {
+            for (int j = 0; j < forma[0].length; j++) {
+                if (forma[i][j]) {
+                    if (j < minC) minC = j;
+                    if (j > maxC) maxC = j;
+                    if (i > maxF) maxF = i;
                 }
             }
         }
     }
+
     /**
      * Copia la forma booleana base 
      * @return una copia independiente de la matriz de formaBase 
