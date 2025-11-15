@@ -18,8 +18,8 @@ El juego permite al usuario mover y rotar piezas que caen dentro de un tablero d
 ## Cómo Compilar y Ejecutar
 - Clonar el repositorio en tu máquina usando el comando git clone https://github.com/hanzmp2003/proyectos-michis.git
 - Entrar en la carpeta del proyecto correspondiente a Tetris, ejemplo: cd C:\Users\user1\proyectos-michis\Proyecto-2-tetris
-- Compilar los archivos Java del proyecto, javac *.java
-- Ejecutar el programa principal, java.Main
+- Compilar los archivos Java del proyecto, javac Tetris\*.java
+- Ejecutar el programa principal, java Tetris.Main
 - Consideración adicional: el proyecto incluye efectos de sonido como característica opcional. Para que funcionen correctamente, es importante ejecutar el programa desde la carpeta raíz del proyecto, ya que las rutas de los archivos de audio dependen de esa ubicación.
 
 ## Controles
