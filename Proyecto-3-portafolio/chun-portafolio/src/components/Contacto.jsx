@@ -30,7 +30,7 @@ export default function Contacto() {
             Repositorio del Portafolio
           </h2>
           <a 
-            href="https://github.com/akaringo/portfolio" 
+            href="https://github.com/Akaringo101/mi-portafolio" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sakura underline hover:text-sakuraDark transition"
