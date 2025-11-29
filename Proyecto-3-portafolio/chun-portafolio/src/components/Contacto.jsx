@@ -11,15 +11,30 @@ export default function Contacto() {
           <h2 className="text-4xl text-sakuraDark font-semibold mb-3 drop-shadow">
             Contacto
           </h2>
-          <p className="text-sakura text-lg">Email: akaringo@example.com</p>
-          <p className="text-sakura text-lg mt-1">GitHub: github.com/akaringo</p>
+          <p className="text-sakura text-lg">Email: chun.liuli@ucr.ac.cr</p>
+          <p className="text-sakura text-lg mt-1">
+            GitHub: 
+            <a 
+              href="https://github.com/Akaringo101" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-sakuraDark transition ml-1"
+            >
+              github.com/akaringo
+            </a>
+          </p>
         </div>
 
         <div>
           <h2 className="text-4xl text-sakuraDark font-semibold mb-3 drop-shadow">
             Repositorio del Portafolio
           </h2>
-          <a className="text-sakura underline hover:text-sakuraDark transition">
+          <a 
+            href="https://github.com/akaringo/portfolio" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-sakura underline hover:text-sakuraDark transition"
+          >
             Ver en GitHub
           </a>
         </div>

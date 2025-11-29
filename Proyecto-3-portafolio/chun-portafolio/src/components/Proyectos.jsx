@@ -1,25 +1,28 @@
 export default function Proyectos() {
   const proyectos = [
-    { //El object sirve para ajustar la imagen con la posición que quiera
+    { 
       title: "Proyecto Pokémon", 
       img: "/pokemon.jpeg", 
       desc: "Una simulación de combate simple en la terminal del famoso juego de Pokémon",
       tecnologias: ["Java"],
-      imgPosition: "object-center"   //object - center  significa el centro de la imagen
+      imgPosition: "object-center",
+      repoLink: "https://github.com/Akaringo101/Proyectos"
     },
     { 
       title: "Tetris", 
       img: "/Tetris.jpg", 
       desc: "Una versión clásica del Tetris para práctica.",
       tecnologias: ["Java"],
-      imgPosition: "object-bottom"   //object - bottom que se ajuste empezando desde abajo de la imagen
+      imgPosition: "object-bottom",
+      repoLink: "https://github.com/Akaringo101/Proyectos"
     },
     { 
       title: "Lista Enlazada de Youtubers", 
       img: "/Youtuber.jpeg", 
       desc: "Administración de canales suscriptos, cuenta con las opciones para agregar, consultar y desuscribirse",
       tecnologias: ["Java"],
-      imgPosition: "object-[center_20%]"    //Ajuste de imagen personalizado, para que se note la cara
+      imgPosition: "object-[center_20%]",
+      repoLink: "https://github.com/Akaringo101/Proyectos"
     },
   ];
 
@@ -56,8 +59,13 @@ export default function Proyectos() {
               </div>
             </div>
             
-            <a className="text-sakura underline hover:text-sakuraDark transition">
-              Ver proyecto
+            <a 
+              href={p.repoLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sakura underline hover:text-sakuraDark transition"
+            >
+              Ver proyecto en GitHub
             </a>
           </div>
         ))}

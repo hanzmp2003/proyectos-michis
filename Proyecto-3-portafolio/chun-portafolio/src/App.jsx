@@ -3,7 +3,6 @@ import SobreMi from "./components/SobreMi";
 import Presentacion from "./components/Presentacion";
 import Habilidades from "./components/Habilidades";
 import Proyectos from "./components/Proyectos";
-import Timeline from "./components/Timeline";
 import Contacto from "./components/Contacto";
 import { useState } from "react";
 
@@ -15,7 +14,6 @@ export default function App() {
       <Presentacion />
       <Habilidades />
       <Proyectos />
-      <Timeline />
       <Contacto />
     </div>
   );
