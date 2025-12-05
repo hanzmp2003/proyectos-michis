@@ -13,7 +13,7 @@ Los proyectos aplican los fundamentos de la **Programación Orientada a Objetos 
 ## Estructura del Repositorio
 - `Proyecto-1-pokemon/` → Simulador básico de batallas de gimnasio inspirado en Pokémon.  
 - `Proyecto-2-tetris/` → Implementación del clásico juego Tetris en consola. 
-- `Proyecto-3-portafolio/` → Este proyecto consiste en desarrollar un sitio web destinado a la presentación de portafolios.
+- `Proyecto-3-portafolio/` → Elaborción de un sitio web destinado a la presentación de portafolios.
 
 ## Integrantes
 - Hanz Madrigal Porras, C4G754  
