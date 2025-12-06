@@ -27,7 +27,7 @@ En primer lugar, se encuentra el repositorio correspondiente a la página genera
 - Enlace para la página principal : https://akaringo101.github.io/Proyecto-3/
 ### Portafolios 
 - Chun: https://akaringo101.github.io/mi-portafolio/
-- Emanuel: 
+- Emanuel: https://emanuel287.github.io/portafolio-emanuel/
 - Hanz: 
 - Jefferson: 
 
