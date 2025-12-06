@@ -28,6 +28,6 @@ En primer lugar, se encuentra el repositorio correspondiente a la página genera
 ### Portafolios 
 - Chun: https://akaringo101.github.io/mi-portafolio/
 - Emanuel: https://emanuel287.github.io/portafolio-emanuel/
-- Hanz: 
-- Jefferson: 
+- Hanz: https://hanzmp2003.github.io/mi-portafolio/
+- Jefferson: https://emalambda.github.io/proyecto-michis-TP3/
 
